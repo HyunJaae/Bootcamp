@@ -1,0 +1,49 @@
+Git hub Code Stacking file
+
+----------------------------------------------------------------
+
+리모트 레포지토리와 연결하기까지
+git init : git 초기화 및 로컬작업위치 깃 생성
+git config --global "user.name"  : 이름설정
+git config --global "user.email" : 이메일설정
+git remote add origin "branchname" "remote repository url" : local과 연결할 branch remote repository url  설정
+
+----------------------------------------------------------------
+
+브런치의 생성과 활용
+git branch : remote repository의 생성된 브런치 확인
+git branch devlop : devlop branch 추가
+git checkout develop : devlop branch로의 이동
+git branch -d “branch” : branch 삭제
+git merge dvelop : 선택한 branch의 내용을 현재 branch와 동일화
+
+----------------------------------------------------------------
+
+리모트 레포지토리 push
+
+git status : local에서의 변경 작업내용 확인
+git add . : 모든 파일 staging area 이동
+git add : : 변경 내용 staging area 이동
+git commit -m  "messgae" : staging area의 파일을 local repository로 이동 , 커밋 메시지 입력
+git push origin "branch" : local의 해당 브런치에 push
+
+----------------------------------------------------------------
+
+git 버전관리
+
+git clone "레포지토리 주소" : // local repository에 remote repository를 그대로 get
+git log : commit한 기록확인 및 hash값 확인 
+git reset HEAD^ : 가장 최근 commit 상태로 되돌아감
+git reset --hard : 지정한 커밋 시점으로 돌아감과 동시의 이후의 커밋 내용을 모두 삭제 
+git reset --soft : 지정한 커밋 시점으로 돌아감 , 이후의 커밋 내용을 모두 보존 (branch의 이동)
+git reset --mixed : staging area의 add된 내용들을 모두 삭제
+
+----------------------------------------------------------------
+
+git 협업 순서
+
+git fork : 다른사람의 원격 저장소를 내 원격 저장소로 가져온다.
+git fetch : staging area와 remote repository의 상태를 동일하게 만들어준다.
+git add - commit - git push 
+pull request (PR) : fork해간 원격 저장소와 원작자의  원격 저장소의 차이점을 보여줌
+contribution : 원작자가 나의 PR을 받아줘 프로젝트에 반영 (기여했다.)
