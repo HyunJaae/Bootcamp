@@ -1,12 +1,131 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Comfortaa:wght@600&family=Exo+2:wght@600&family=Nanum+Gothic+Coding:wght@700&family=Nanum+Gothic:wght@700&family=Rowdies&display=swap');
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    <title>NOTFLIX</title>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
 </head>
+
 <body>
-    main test
+<div id="wrap">
+    <section>
+        <div class="main-header">
+            <h1><a href="/">NOTFLIX</a></h1>
+            <ul class="primary-navigation">
+                <li class="navigation-home"><a href="/">홈</a></li>
+                <li class="navigation-login"><a href="/main2">로그인</a></li>
+                <li class="navigation-join"><a href="#">회원가입</a></li>
+            </ul>
+        </div>
+
+        <div class="main-poster">
+            <div class="poster-carousel">
+                <h6 class="poster-carousel-title">현재 뜨고 있는 영화</h6>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://t1.daumcdn.net/cfile/tistory/231235395466C11011"
+                                 class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://t1.daumcdn.net/cfile/tistory/264BF9335466C1140E"
+                                 class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://t1.daumcdn.net/cfile/tistory/264BF9335466C1140E"
+                                 class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        {# 나중에 크롤링해온 이미지들 슬라이더로 만들어볼 예정 일단은 이미지만 넣어봅니다#}
+        <div class="mycards">
+            <span class="mycards-title">이거 어때?</span>
+            <div class="row row-cols-1 row-cols-md-6 g-6" id="cards-box">
+
+
+                <div class="col">
+                    <div class="card h-60">
+                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                             class="card-img-top">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-60">
+                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                             class="card-img-top">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-60">
+                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                             class="card-img-top">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-60">
+                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                             class="card-img-top">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-60">
+                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                             class="card-img-top">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-60">
+                        <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                             class="card-img-top">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <footer class="member-footer">
+        <nav>
+            <a href="#">Blog</a> |
+            <a href="#">Github</a>
+        </nav>
+        <p>
+            <span>개발자 : 항해스터디 1조 </span><br>
+            <span>이메일 hanghae@naver.com</span><br>
+            <span>Copyright 2020. cocoder. All Rights Reserved.</span>
+        </p>
+
+    </footer>
+</div>
 </body>
-</html>
+
