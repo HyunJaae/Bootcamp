@@ -15,44 +15,9 @@
     <title>스파르타 피디아</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/main/static/style.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 
-    <script>
-        $(document).ready(function () {
-            listing();
-        });
-
-        function listing() {
-            $.ajax({
-                type: 'GET',
-                url: '/movie',
-                data: {},
-                success: function (response) {
-                    alert(response['msg'])
-                }
-            })
-        }
-
-        function posting() {
-            $.ajax({
-                type: 'POST',
-                url: '/movie',
-                data: {sample_give: '데이터전송'},
-                success: function (response) {
-                    alert(response['msg'])
-                }
-            });
-        }
-
-        function open_box() {
-            $('#post-box').show()
-        }
-
-        function close_box() {
-            $('#post-box').hide()
-        }
-    </script>
 
 </head>
 
