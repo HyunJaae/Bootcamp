@@ -1,12 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- ajax import -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- css파일의 경로 설정 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css')}}">
+
+    <!-- script 파일의 경로 설정  -->
+    <script src="{{ url_for('static', filename='mypage.js')}}"></script>
+
+    <!-- google font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&family=Parisienne&display=swap" rel="stylesheet">
+
+
+
+    <title>My_page</title>
+
+
 </head>
+
 <body>
-    my_page test_page
+    <div id="wrap">
+        <section>
+            <div class="nav" id="nav">
+                <h6 class="nav__logo"><a href="/" class="nav__logo_a">NOTFLIX</a> </h6>
+                <ul class="primary-navigation-login">
+                    <li class="navigation-login"><a href="#" class="navigation-login_a">로그인</a></li>
+                    <li class="navigation-join"><a href="#" class="navigation-join_a">회원가입</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="mypage_title">
+            <div id="message" class="message">
+                <h2>임인혁님 안녕하세요!!</h2>
+                <p>임인혁님이 즐겨보신 영화를 추가해 <br>나만의 영화관을 만들어보세요!!</p>
+
+                <div class="mybtns">
+                    <button id="open_box" onclick="open_box()" type="button" class="btn btn-dark">나만의 영화 기록하기</button>
+                </div>
+            </div>
+
+
+            <div class="mypage-form" id="mypage-form">
+
+                <div id="input-group" class="input-group">
+                    <h3>영화의 링크를 입력해주세요</h3>
+                    <input id="link_input" class="form-control form-control-lg link_input" type="text"
+                        placeholder="영화 링크를 입력해주세요" aria-label=".form-control-lg example">
+
+                    <h4>평점을 선택해주세요</h4>
+                    <select id="star" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>별점을 남겨주세요!</option>
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+
+                    <div class="mb-3">
+                        <h4>감상평을 입력해주세요</h4>
+                        <textarea id="comment" class="form-control" id="exampleFormControlTextarea1"
+                            rows="4"></textarea>
+                    </div>
+
+                    <button id="save_box" onclick="save_box()" type="button"
+                        class="btn btn-dark close_box">저장하기</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="my-card" class="my-card">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                                content.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This card has even longer content than the first to show that equal
+                                height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This card has even longer content than the first to show that equal
+                                height action.</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Last updated 3 mins ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="member-footer">
+            <nav>
+                <a href="#">Blog</a> |
+                <a href="#">Github</a>
+            </nav>
+            <p>
+                <span>개발자 : 항해스터디 1조 </span><br>
+                <span>이메일 hanghae@naver.com</span><br>
+                <span>Copyright 2020. cocoder. All Rights Reserved.</span>
+            </p>
+        </footer>
+    </div>
 </body>
+
 </html>

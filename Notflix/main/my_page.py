@@ -9,3 +9,24 @@ blueprint = Blueprint("my_page" , __name__ , url_prefix="/my_page")
 @blueprint.route("/") #<- 데코레이터
 def mypage_template():
     return render_template("my_page.html")
+
+#이름을 받아와 리턴해줘 마이페이지에 이름이 표시되게한다.
+  
+
+#user_index가 1이면 POST로 받아온 정보들을 user_index1로 db에 저장한다.
+@blueprint.route("/save_post", methods=["POST"]) #Update session에 담겨있는 user_index를 받아 user_index를 별도로 할당해 저장할 것 
+def input_save(): # user의 input 정보 저장하기
+  link_receive = request.form['link_give']
+  star_receive = request.form['star_give']
+  comment_receive = request.form['comment_give']
+  
+  return jsonify({'msg':'POST 연결 완료!'})
+
+#user_index에 따라 저장돼 있는 데이터들을 temp_html로 붙힐 수 있게 리턴한다.
+
+
+@blueprint.route("/user_get", methods=["GET"])
+def user_get(): # db에서 user정보 가져오기
+  user_get = list(db.users.find({},{'_id':False}))
+  return jsonify({'user': user_get})
+ 
