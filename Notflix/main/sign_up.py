@@ -1,11 +1,41 @@
-from main import * #from main import * : main에 선언된 모든 값을 가져온다 , __init__ file에 선언된 라이브러리를 가져와 사용할 수 있음.
+from flask import Flask, render_template, request, jsonify
 from flask import Blueprint
 
-#객체 = Blueprint("name" , __name__ , url_prefix="") : (이름, 모듈명, URL 프리픽스 값)
-#이름은 url_for함수에서 사용되며 , 모듈명은 init.py에서 선언한 모듈을 뜻함 , url_prefix="주소" 주소에는 브라우져에서 선언될 url을 입력한다 
+app = Flask(__name__)
+
+from pymongo import MongoClient
+client = MongoClient('mongodb+srv://notflix:1514@cluster0.jtaa3.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.notflix
 
 blueprint = Blueprint("sign_up" , __name__ , url_prefix="/sign_up")
 
-@blueprint.route("/") #<- 데코레이터
+@blueprint.route("/")
 def signup_template():
     return render_template("sign_up.html")
+
+@app.route('/')
+def home():
+    return render_template('main.html')
+
+
+@app.route("/users", methods=["POST"])
+def users_post():
+    name_receive = request.form['name_give']
+    email_receive = request.form['email_give']
+    password_receive = request.form['password_give']
+
+    users_list = list(db.users.find({}, {'_id': False}))
+    count = len(users_list) + 1
+
+    doc = {
+        'user_index':count,
+        'name': name_receive,
+        'email': email_receive,
+        'password': password_receive
+    }
+    db.users.insert_one(doc)
+
+    return jsonify({'msg': '회원가입을 축하합니다'})
+
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=5000, debug=True)
