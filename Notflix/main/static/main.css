@@ -200,30 +200,6 @@ a:hover {
 ul {
   list-style: none;
 }
-/* footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  margin-left: 20px;
-}
-.footer__icons {
-  margin-bottom: 30px;
-}
-.footer__icon {
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
-}
-.member-footer {
-  color: lightgray;
-}
-#wrap {
-  min-height: 100vh;
-  position: relative;
-  width: 100%;
-} */
 
 /* Footer  */
 footer {
