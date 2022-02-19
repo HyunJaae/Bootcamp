@@ -178,7 +178,7 @@ footer {
     height: 100vh;
 }
 
-.mypage_form > .mypage__inputform  {
+.mypage_form > .mypage__inputform {
     display: block;
     height: 60%;
     width: 45%;
@@ -210,7 +210,7 @@ footer {
     margin: 2% auto 0 auto;
 }
 
-.mypage__inputform > .comment_form > h4 {
+.mypage__inputform>.comment_form > h4 {
     margin: 4% auto 2% auto;
     color: white;
 }
@@ -229,10 +229,10 @@ footer {
     background: transparent;
     border: 1px solid white;
     width: 15%;
-    height: 45px;
+    height: 40px;
     float: None;
     border-radius: 30%;
-    margin: 20% auto 0 auto;
+    margin: 19% auto 0 auto;
 }
 
 .movie_card {
@@ -273,4 +273,82 @@ footer {
     margin: 2% 0 -2% 2%;
     float: left;
     padding: 0 0 0 0;
+}
+
+/* Correction.css */
+.correction_wrap{
+    background: url("https://help.nflxext.com/0af6ce3e-b27a-4722-a5f0-e32af4df3045_what_is_netflix_5_en.png") no-repeat center;
+    width: 600px;
+    height:600px;
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, .4);
+    background-size: cover;
+}
+
+.correction_form {
+    display: block;
+    background: transparent;
+    width: 100%;
+    height:80%;
+    margin: 0 auto 0 auto;
+}
+
+.correction_form > .correction__inputform  {
+    display: block;
+    height: 100%;
+    width: 90%;
+    margin: 10% auto 0 auto;
+    text-align: center;
+    border-radius: 2%;
+}
+
+.correction__inputform > h3 {
+    margin: 4% auto 0 auto;
+    color: white;
+}
+
+.correction__inputform > .link_input {
+    width: 80%;
+    height: 40px;
+    margin: 2% auto 0 auto;
+}
+
+.correction__inputform > h4 {
+margin: 4% auto 0 auto;
+    color: white;
+}
+
+.correction__inputform > select {
+    width: 40%;
+    height: 40px;
+    margin: 2% auto 0 auto;
+}
+
+.correction__inputform > .correction_comment_form > h4 {
+    margin: 4% auto 2% auto;
+    color: white;
+}
+
+.correction__inputform > .correction_comment_form {
+    display: block;
+    width: 80%;
+    height: 40px;
+    margin: 2% auto 0 auto;
+}
+
+
+.correction_comment_form > .correction_btn {
+    color: white;
+    display: block;
+    background: transparent;
+    border: 1px solid white;
+    width: 40%;
+    height: 45px;
+    border-radius: 30%;
+    margin: 10% auto 0 auto;
+}
+
+.correction_btn:hover {
+    background:gray;
 }

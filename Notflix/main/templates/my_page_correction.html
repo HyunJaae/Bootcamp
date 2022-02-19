@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- ajax import -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- css파일의 경로 설정 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css')}}">
+
+    <!-- script 파일의 경로 설정  -->
+    <script src="{{ url_for('static', filename='mypage.js')}}"></script>
+
+    <!-- google font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&family=Parisienne&display=swap" rel="stylesheet">
+
+
+
+    <title>게시물 수정하기</title>
+
+
+</head>
+
+<body>
+    <div class="correction_wrap">
+            <div class="correction_form" id="correction_from">
+                <div id="correction__inputform" class="correction__inputform">
+
+                    <h3>영화의 링크를 입력해주세요</h3>
+                    <input id="correction_input" class="form-control form-control-lg link_input" type="text"
+                        placeholder="영화 링크를 입력해주세요" aria-label=".form-control-lg example">
+
+                    <h4>평점을 선택해주세요</h4>
+                    <select id="correction_star_select" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+
+                    <div class="correction_comment_form"> 
+                        <h4>감상평을 입력해주세요</h4>
+                        <textarea id="correction_comment_input" class="form-control" id="exampleFormControlTextarea1"
+                            rows="4"></textarea>
+                        <button id="correction_save" onclick="correctionMovie()" type="button"
+                        class="correction_btn btn-dark ">수정하기</button>
+                    </div>
+                    
+
+
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+</body>
+
+</html>

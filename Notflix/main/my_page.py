@@ -10,6 +10,8 @@ blueprint = Blueprint("my_page" , __name__ , url_prefix="/my_page")
 @blueprint.route("/") #<- 데코레이터
 def mypage_template():
     return render_template("my_page.html")
+  
+
 
 
 
@@ -62,6 +64,47 @@ def delete(): # db에서 user정보 가져오기
   
   db.my_page.delete_one({'name': name_find})
   return jsonify({'msg': '삭제완료 되었습니다.'})
+
+#수정을 누르면 팝업이 뜬다. 팝업창에 입력한 link , 평점 , comment가 변경된 데이터로 저장된다.
+
+#수정 창 팝업
+@blueprint.route("/correction_page") #<- 데코레이터
+def mypage_correction_template():
+    return render_template("my_page_correction.html")
+
+#link , 평점 , comment가 변경됨 (기존의 data를 index해야함)
+#기존의 link , 평점 , comment 전부 index할 것 
+#새롭게 들어온 link를 크롤링할 것
+
+@blueprint.route("/correction", methods=["POST"])
+def correction(): # 클라이언트에서 데이터 받기
+  link_find = request.form['link_give']
+  name_find = request.form['name_give']
+  star_find = request.form['star_give']
+  comment_find = request.form['comment_give']
+  
+  return jsonify({'link' : link_find, 'name' : name_find, 'star' : star_find, 'comment' : comment_find})
+  
+
+@blueprint.route("/correction_update", methods=["GET , POST"])
+def correction_update(): 
+  correction_link = request.form['correction_link_give']
+  correction_star = request.form['correction_star_give']
+  correction_comment = request.form['correction_comment_give']
+  
+  parsing = link_select(correction_link)
+  correction_img = parsing['img']
+  correction_name = parsing['name']
+  
+  db.my_page.update({'img': link_find}, {'$set': {'img': correction_img}},
+                    {'name': name_find}, {'$set': {'name': correction_name}},
+                    {'star': star_find}, {'$set': {'star': correction_star}},
+                    {'comment': comment_find}, {'$set': {'comment': correction_comment}},)  
+  return jsonify({'msg': '수정 완료 되었습니다.'})
+
+
+  
+  
 
 
 
