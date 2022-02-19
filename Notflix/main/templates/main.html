@@ -13,12 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>NOTFLIX</title>
 
 
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-    
+   
 
 
 </head>
@@ -26,6 +26,7 @@
 <body>
 <div id="wrap">
 <section>
+     <!-- nav starts -->
 <div class="nav" id="nav">
     <h6 class="nav__logo"><a href="/" class="nav__logo_a" onclick="showMovies">NOTFLIX</a> </h6>
      <ul class="primary-navigation-login">
@@ -33,13 +34,14 @@
          <li class="navigation-join"><a href="/sign_up" class="navigation-join_a">회원가입</a></li>
      </ul>
 </div>
-
+<!-- nav ends -->
 
 
 
         {#   header#}
         <div class="banner">
             <div class="banner__contents">
+                
                 <h1 class="banner__title">컨텐츠 제목 </h1>
                 <div class="banner__buttons">
                     <button class="banner__button">재생</button>
@@ -50,6 +52,7 @@
                     영화 줄거리가 여기에 들어갈 겁니다
                 </div>
             </div>
+            
             <div class="banner--fadeBottom">
 
             </div>
@@ -107,31 +110,8 @@
         {#현재 상영작 #}
         <div class="row">
             <h2>현재 상영중 </h2>
-            <div class="row_posters">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
+            <div class="row_posters" id="air_movies">
+                
             </div>
         </div>
         {# 인기 영화  #}
@@ -183,7 +163,7 @@
     </section>
 
 
-    <script src="{{ url_for('static', filename='main.js')}}"></script>
+    
 
 <!-- footer section  -->
 
@@ -236,5 +216,6 @@
 
 
 </div>
+<script src="{{ url_for('static', filename='main.js')}}"></script>
 </body>
 

@@ -8,23 +8,30 @@ window.addEventListener('scroll',()=>{
     }
 })
 
-// $(document).ready(function () {
-//     showMovies()
+
+
+$(document).ready(function () {
+    showNaverMovies()
    
 
-// });
+});
 
-function showMovies(){
-    
+function showNaverMovies(){
     
         $.ajax({
             type: "GET",
-            url: "/showMovies",
+            url: "/showNaverMovie",
             data: {},
             success: function (response) {
-                alert(response["재시작"])
-                window.location.reload()
+                let rows = response['naverMovies']
+
+                for(let i=0; i<rows.length; i++){
+                    let image=rows[i]['movieImg']
+                    let temp_html=`<img src=${image} class="row__poster ">`              
+               
+                    $('#air_movies').append(temp_html)
             }
+        }
         });
     
 }
