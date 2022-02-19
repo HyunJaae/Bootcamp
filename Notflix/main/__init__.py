@@ -1,7 +1,9 @@
-from flask import Flask , render_template , request , jsonify
+from flask import Flask , render_template , request , jsonify , session 
 from pymongo import MongoClient
+from bs4 import BeautifulSoup
 import certifi
 
+#db 연결
 ca = certifi.where()
 client = MongoClient('mongodb+srv://notflix:1514@cluster0.jtaa3.mongodb.net/Cluster0?retryWrites=true&w=majority',tlsCAFile=ca)
 db = client.notflix
@@ -16,6 +18,10 @@ from . import my_page
 from . import community
 
 app = Flask(__name__)
+
+#session import
+app.secret_key = "hanhae99toy"
+
 
 app.register_blueprint(main.blueprint) # (main.blueprint) main.py에서 사용할 blueprint객체를 blueprint로 설정할거야
 app.register_blueprint(main2.blueprint)

@@ -1,3 +1,4 @@
+
 html {
     margin: 0;
     padding: 0;
@@ -133,13 +134,12 @@ footer {
     width: 100%;
     height: 90px;
     bottom: 0;
-    margin: 0 auto 0 auto;
-    position: absolute;
+    margin: 2% auto 0 auto;
 }
 
 /* 여기부터 my_page */
 
-.mypage_title {
+.title {
     background: url("https://help.nflxext.com/0af6ce3e-b27a-4722-a5f0-e32af4df3045_what_is_netflix_5_en.png") no-repeat center;
     width: 100%;
     content: "";
@@ -148,14 +148,14 @@ footer {
     background-size: cover;
 }
 
-.message {
+.title__message {
     display: block;
     color: white;
     margin: 5% auto 5% auto;
     text-align: center;
 }
 
-.mybtns {
+.title__btn {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -163,7 +163,7 @@ footer {
     margin-top: 20px;
 }
 
-.mybtns>button {
+.title__btn > button {
     background: transparent;
     border-radius: 30%;
     border: 1px solid white;
@@ -171,51 +171,51 @@ footer {
 }
 
 
-.mypage-form {
+.mypage_form {
     display: none;
     background: transparent;
     width: 100%;
     height: 100vh;
 }
 
-.mypage-form>.input-group {
+.mypage_form > .mypage__inputform  {
     display: block;
     height: 60%;
     width: 45%;
-    margin: 7% auto 0 auto;
+    margin: 10% auto 0 auto;
     border: 2px solid gray;
     text-align: center;
     border-radius: 2%;
 }
 
-.mypage-form>.input-group>h3 {
+.mypage__inputform > h3 {
     margin: 4% auto 0 auto;
     color: white;
 }
 
-.mypage-form>.input-group>.link_input {
+.mypage__inputform > .link_input {
     width: 60%;
     height: 40px;
     margin: 2% auto 0 auto;
 }
 
-.mypage-form>.input-group>h4 {
+.mypage__inputform > h4 {
     margin: 4% auto 0 auto;
     color: white;
 }
 
-.mypage-form>.input-group>select {
+.mypage__inputform > select {
     width: 40%;
     height: 40px;
     margin: 2% auto 0 auto;
 }
 
-.mypage-form>.input-group>.mb-3>h4 {
+.mypage__inputform > .comment_form > h4 {
     margin: 4% auto 2% auto;
     color: white;
 }
 
-.mypage-form>.input-group>.mb-3 {
+.mypage__inputform > .comment_form {
     display: block;
     width: 80%;
     height: 40px;
@@ -223,7 +223,7 @@ footer {
 }
 
 
-.mypage-form>.input-group>button {
+.mypage__inputform > .save_btn {
     color: white;
     display: none;
     background: transparent;
@@ -235,13 +235,42 @@ footer {
     margin: 20% auto 0 auto;
 }
 
-.my-card {
-    width: 95%;
-    display: flex;
-    /* */
+.movie_card {
+    width: 100%;
+    max-width: 1200px;
     margin: 22.5% auto 0 auto;
+    display:flex;
+    clear: both;
 }
 
 .row {
-    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    display:flex;
+}
+
+.card {
+    width: 370px;
+    display:flex;
+    margin-bottom: 5%;
+}
+
+.card-body > .delete {
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 2% 0 -2% -2%;
+    float: left;
+    padding: 0 0 0 0;
+}
+
+.card-body > .correction {
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 2% 0 -2% 2%;
+    float: left;
+    padding: 0 0 0 0;
 }

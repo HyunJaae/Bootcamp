@@ -1,70 +1,118 @@
-// function save_member() {
-//     let name = $('#name_input').val();
-//     let id = $('#id_input').val();
-//     let b = $('#b_input').val();
-    
-//     if ($('#name_input').val() == '') {
-//         alert('이름을 입력해주세요.')
-//         return;
-//     } else if ($('#id_input').val() == '') {
-//         alert('ID를 입력해주세요')
-//         return;
-//     } else if ($('#b_input').val() == '') {
-//         alert('비밀번호를 입력해주세요')
-//         return;
-//     }
-
-//     $.ajax({
-//         type: 'POST',
-//         url: '/my_page/save_member',
-//         data: {
-//             name_give: name,
-//             id_give: id,
-//             b_give: b
-//         },
-//         success: function (response) {
-//             console.log(name, id,b)
-//         }
-//     });
-// }
-
-function open_box(){
-    $('#mypage-form').show()
-    $('#save_box').show()
-    $('#open_box').hide()
-    document.getElementById('message').style.display = 'none'
-    document.getElementById('my-card').style.display = 'none'
+function open__form() {
+    $('#open__form').hide()
+    $('#mypage_form').show()
+    $('#save').show()
+    document.getElementById('title__message').style.display = 'none'
+    document.getElementById('movie_card').style.display = 'none'
 }
 
-function save_box(){
-    $('#mypage-form').hide()
-    $('#open_box').show()
-    $('#message').show()
-    $('#save_box').hide()
-    document.getElementById('my-card').style.display = 'block'
+function save() {
+    $('#title__message').show()
+    $('#open__form').show()
+    $('#mypage_form').hide()
+    $('#save').hide()
+    document.getElementById('movie_card').style.display = 'block'
 
     let link = $('#link_input').val()
-    let star = $('#star').val()
-    let comment = $('#comment').val()
+    let star = $('#star_select').val()
+    let comment = $('#comment_input').val()
 
-    $.ajax({
-        type: "POST",
-        url: "/my_page/save_post",
-        data: {link_give : link , star_give : star , comment_give : comment},
-        success: function (response) {
-            alert(response['msg'])
+    if (link == '') {
+        alert('link를 입력해주세요')
+
+    }else if (star == '') {
+        alert('평점을 입력해주세요')
+
+    }else if (comment == '') {
+        alert('감상평을 입력해주세요')
+
+    }else {
+        $.ajax({
+            type: "POST",
+            url: "/my_page/save",
+            data: {
+                link_give: link,
+                star_give: star,
+                comment_give: comment
+            },
+            success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                
+            }
+        });
     }
-});
-
 }
 
-function user_get() {
+$(document).ready(function(){
+    data_post();
+  });
+
+function data_post(){
     $.ajax({
             type: "GET",
-            url: "/my_page/user_get",
+            url: "/my_page/data_post",
             data: {},
-            success: function (response) {
-                console.log(response)
+            success: function(response) {
+                let temp_html =``
+
+                let card = response['data_page']
+
+                for(let i = 0 ; i < card.length ; i++){
+                    let img = card[i]['img']
+                    let name = card[i]['name']
+                    let star = card[i]['star']
+                    let comment = card[i]['comment']
+                    let star_image = "⭐".repeat(star)
+
+                    let temp_html = `<div class="col-sm-4">
+                                        <div class="card h-80">
+                                            <img src="${img}"
+                                                class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${name}</h5>
+                                                <p class="card-text"></p>
+                                                <p>평점 : ${star_image}</p>
+                                                <p class="mycomment">${comment}</p>
+                                                <button id="deleteMovie" onclick="deleteMovie()" type="button"
+                                                    class="delete btn btn-dark close_box">삭제</button>
+                                                <button id="correctionMovie" onclick="correctionMovie()" type="button"
+                                                    class="correction btn btn-dark close_box">수정</button>
+                                            </div>
+                                        </div>
+                                    </div>`
+                $('#card-box').append(temp_html)
+
+                }
+        }
+    });
+}
+
+function deleteMovie(){
+    var selectName = $(".card-title").html();
+    $.ajax({
+        type: "POST",
+        url: "/my_page/delete",
+        data: {name_find : selectName
+        },
+        success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+        }
+    });
+}
+
+
+function correctionMovie(){
+    var selectCard = $("#my-card").html();
+    $.ajax({
+        type: "POST",
+        url: "/my_page/delete",
+        data: {name_find : selectName
+        },
+        success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
         }
     });
 }
