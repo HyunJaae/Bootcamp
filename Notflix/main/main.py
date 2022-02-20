@@ -24,22 +24,37 @@ headers = {
 #     'https://movie.naver.com/movie/running/current.naver', headers=headers)
 
 url = 'https://movie.naver.com/movie/running/current.naver'
+url2 = 'https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q=%EC%98%81%ED%99%94+%EC%88%9C%EC%9C%84'
 blueprint = Blueprint("main", __name__, url_prefix="/")
-response = requests.get(url)
+response = requests.get(url2)
 soup = BeautifulSoup(response.content, 'html.parser')
 
 
-ul = soup.find('ul', class_="lst_detail_t1")
-images = ul.select('li> div > a >img')
+# movieInfoList = soup.find('ol', attrs={'class': 'movie_list'}).find_all('li')
+# for movieInfo in movieInfoList:
+#     movieImg = movieInfo.find('img').attrs.get('src')
 
-for image in images:
-    doc = {
-        'movieImg': image['src']
-    }
-    # db.mainMovie.insert_one(doc)
+#     # print(f'이미지: {movieImg}')
+#     doc = {
+#         'movieImg': movieImg
+#     }
+# db.mainMovie.insert_one(doc)
 
 
-@blueprint.route("/")  # <- 데코레이터
+# ul = soup.find('ul', class_="lst_detail_t1")
+# images = ul.select('li> div > a >img')
+# print(len(images))
+
+# for image in images:
+
+#     doc = {
+#         'movieImg': image['src']
+#     }
+
+# db.mainMoviePage1.insert_one(doc)
+
+
+@ blueprint.route("/")  # <- 데코레이터
 def main_template():
 
     return render_template("main.html")
@@ -49,7 +64,13 @@ def main_template():
 # def main_movies():
 
 
-@blueprint.route("/showNaverMovie", methods=['GET'])
+@ blueprint.route("/showNaverMovie", methods=['GET'])
 def show_main_movies():
     naverMovie_List = list(db.main.find({}, {'_id': False}))
     return jsonify({'naverMovies': naverMovie_List})
+
+
+@blueprint.route("/showDaumMovie", methods=["GET"])
+def show_main_daum_movies():
+    daumMovie_List = list(db.mainMovie.find({}, {'_id': False}))
+    return jsonify({'daumMovies': daumMovie_List})

@@ -22,7 +22,7 @@ body {
 .row__poster {
   width: 100%;
   object-fit: contain;
-  max-height: 100px;
+  max-height: 150px;
   margin-right: 10px;
   transition: transform 450ms;
 }
@@ -49,20 +49,30 @@ body {
 .row {
   color: white;
   margin-left: 20px;
+  position: relative;
 }
+
 .banner {
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRigTGj8tAUTLQLTa2-yaOqDSZcW5cB2GbhJQ&usqp=CAU");
-  background-size: cover;
-  background-position: center center;
+  object-fit: cover;
   color: white;
-  object-fit: contain;
-  height: 450px;
+  height: 800px;
+
+  margin-bottom: 100px;
+  text-align: center;
 }
 .banner__contents {
+  height: 90%;
   margin-left: 30px;
   padding-top: 140px;
-  height: 190px;
 }
+
+.banner__contents > img {
+  height: 130%;
+  width: 40%;
+  display: block;
+  margin: 0 auto;
+}
+
 .banner__title {
   font-size: 3rem;
   font-weight: 800;
@@ -105,10 +115,16 @@ body {
     black
   );
 }
+
 section {
   flex: 1;
   padding-bottom: 20%;
 }
+.swiper {
+  width: 600px;
+  height: 300px;
+}
+
 /* nav section */
 .nav__logo {
   font-size: 40px;
