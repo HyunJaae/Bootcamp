@@ -11,8 +11,11 @@ blueprint = Blueprint("my_page" , __name__ , url_prefix="/my_page")
 def mypage_template():
     return render_template("my_page.html")
   
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 2896d2cb96b10d259bf17a60be824dbd1321e2a2
 
 
 #사용자의 input 값인 link 를 크롤링해서 이미지 링크와 영화의 주소 값을 추출하는 함수
@@ -46,8 +49,10 @@ def input_save(): # user의 input 정보 저장하기
   name = parsing['name']
   star = star_receive
   comment = comment_receive
+  count = list(db.my_page.find({},{'_id':False}))
+  num = len(count) + 1
   
-  doc = {'img': img , 'name' : name ,'star': star , 'comment' : comment }
+  doc = {'post_num': num , 'img': img , 'name' : name ,'star': star , 'comment' : comment }
   db.my_page.insert_one(doc)
   return jsonify({'msg':'저장 완료 되었습니다!'})
 
@@ -60,14 +65,17 @@ def input_post():
 #삭제하기 버튼을 누르면 클라이언트에서 영화의 이름을 Post로 db에 보내줌 -> db에서 똑같은 이름의 data를 찾아 삭제함
 @blueprint.route("/delete", methods=["POST"])
 def delete(): # db에서 user정보 가져오기
-  name_find = request.form['name_find']
-  
-  db.my_page.delete_one({'name': name_find})
+  num_receive = request.form['num_give']
+  db.my_page.delete_one({'post_num': int(num_receive)})
   return jsonify({'msg': '삭제완료 되었습니다.'})
 
 #수정을 누르면 팝업이 뜬다. 팝업창에 입력한 link , 평점 , comment가 변경된 데이터로 저장된다.
 
+<<<<<<< HEAD
+#수정 창 팝업을 띄움과 동시에 num을 받고 num을 리턴해준다
+=======
 #수정 창 팝업
+>>>>>>> 2896d2cb96b10d259bf17a60be824dbd1321e2a2
 @blueprint.route("/correction_page") #<- 데코레이터
 def mypage_correction_template():
     return render_template("my_page_correction.html")
@@ -76,6 +84,16 @@ def mypage_correction_template():
 #기존의 link , 평점 , comment 전부 index할 것 
 #새롭게 들어온 link를 크롤링할 것
 
+<<<<<<< HEAD
+
+@blueprint.route("/correction_update", methods=["POST"])
+def correction_update(): 
+  num_receive = request.form['num_give'] #팝업을 띄울 때 받았다.
+  correction_link = request.form['correction_link_give']
+  correction_star = request.form['correction_star_give']
+  correction_comment = request.form['correction_comment_give']
+
+=======
 @blueprint.route("/correction", methods=["POST"])
 def correction(): # 클라이언트에서 데이터 받기
   link_find = request.form['link_give']
@@ -92,18 +110,36 @@ def correction_update():
   correction_star = request.form['correction_star_give']
   correction_comment = request.form['correction_comment_give']
   
+>>>>>>> 2896d2cb96b10d259bf17a60be824dbd1321e2a2
   parsing = link_select(correction_link)
   correction_img = parsing['img']
   correction_name = parsing['name']
   
+<<<<<<< HEAD
+  db.my_page.update_many({'post_num': int(num_receive)} , {'$set' : { "img" : correction_img}})  
+  db.my_page.update_many({'post_num': int(num_receive)} , {'$set' : { "name" : correction_name}})  
+  db.my_page.update_many({'post_num': int(num_receive)} , {'$set' : { "star" : correction_star}})  
+  db.my_page.update_many({'post_num': int(num_receive)} , {'$set' : { "comment" : correction_comment}})   
+
+
+=======
   db.my_page.update({'img': link_find}, {'$set': {'img': correction_img}},
                     {'name': name_find}, {'$set': {'name': correction_name}},
                     {'star': star_find}, {'$set': {'star': correction_star}},
                     {'comment': comment_find}, {'$set': {'comment': correction_comment}},)  
+>>>>>>> 2896d2cb96b10d259bf17a60be824dbd1321e2a2
   return jsonify({'msg': '수정 완료 되었습니다.'})
 
 
   
+<<<<<<< HEAD
+
+
+
+
+  
+=======
+>>>>>>> 2896d2cb96b10d259bf17a60be824dbd1321e2a2
   
 
 
