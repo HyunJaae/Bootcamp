@@ -9,3 +9,4 @@ blueprint = Blueprint("login" , __name__ , url_prefix="/login")
 @blueprint.route("/") #<- 데코레이터
 def login_template():
     return render_template("login.html")
+
