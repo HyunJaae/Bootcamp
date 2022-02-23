@@ -46,7 +46,7 @@ function showDaumMovies(){
             let rows = response['daumMovies']
 
             for(let i=0; i<rows.length; i++){
-                let image=rows[i]['movieImg']
+                let image=rows[i]['Imageurl']
                 let temp_html=`
                 <div class=" banner__contents carousel-item">
                 <img src=${image} >
@@ -75,3 +75,19 @@ const swiper = new Swiper('.swiper', {
     
  
   });
+
+// 메인에 넣을 이미지 주소 db에 넣기 
+  function posting() {
+    let url = $('#url').val()
+    
+    $.ajax({
+
+        type: 'POST',
+        url: '/MainPagemovie',
+        data: {url_give: url},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.reload()
+        }
+    });
+}

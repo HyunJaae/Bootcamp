@@ -67,8 +67,8 @@ body {
 }
 
 .banner__contents > img {
-  height: 130%;
-  width: 40%;
+  height: 100%;
+  width: 80%;
   display: block;
   margin: 0 auto;
 }

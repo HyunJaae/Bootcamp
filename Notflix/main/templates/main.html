@@ -32,6 +32,7 @@
      <ul class="primary-navigation-login">
          <li class="navigation-login"><a href="/login" class="navigation-login_a">로그인</a></li>
          <li class="navigation-join"><a href="/sign_up" class="navigation-join_a">회원가입</a></li>
+         <button id="movie"onclick="open_box()">영화 기록하기</button>
      </ul>
 </div>
 <!-- nav ends -->
@@ -79,7 +80,19 @@
                    
             </div>
         </div> -->
-
+<!-- 메인 화면에 넣을 이미지 넣는 임시 박스 -->
+        <div class="mypost" id="post-box-movie">
+          <div class="form-floating mb-3">
+              <input id="url" type="email" class="form-control" placeholder="name@example.com">
+              <label>영화URL</label>
+          </div>
+         
+         
+          <div class="mybtns">
+              <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+              <button id="movie-close"onclick="close_box(this.id)" type="button" class="btn btn-outline-dark">닫기</button>
+          </div>
+      </div>
 
         {#  NOTFLIX ORIGINALS#}
         <div class="row">

@@ -72,5 +72,19 @@ def show_main_movies():
 
 @blueprint.route("/showDaumMovie", methods=["GET"])
 def show_main_daum_movies():
-    daumMovie_List = list(db.mainMovie.find({}, {'_id': False}))
+    daumMovie_List = list(db.MainPageImg.find({}, {'_id': False}))
     return jsonify({'daumMovies': daumMovie_List})
+
+
+@blueprint.route("/MainPagemovie",methods=["POST"])
+def check_post():
+
+    url_receive = request.form['url_give']
+
+    doc={
+            'Imageurl':url_receive
+        }
+    db.MainPageImg.insert_one(doc)
+        
+
+   
