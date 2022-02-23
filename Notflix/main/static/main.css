@@ -55,12 +55,12 @@ body {
 .banner {
   object-fit: cover;
   color: white;
-  height: 800px;
+  height: 900px;
   margin-bottom: 100px;
   text-align: center;
 }
 .banner__contents {
-  height: 90%;
+  height: 105%;
   margin-left: 30px;
   padding-top: 140px;
   margin: 0 auto;
