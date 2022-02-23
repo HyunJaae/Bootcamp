@@ -80,9 +80,11 @@ def show_main_daum_movies():
 def check_post():
 
     url_receive = request.form['url_give']
+    Movie_receive=request.form['Movieurl__give']
 
     doc={
-            'Imageurl':url_receive
+            'Imageurl':url_receive,
+            'AdressUrl':Movie_receive
         }
     db.MainPageImg.insert_one(doc)
         

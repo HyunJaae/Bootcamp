@@ -47,9 +47,10 @@ function showDaumMovies(){
 
             for(let i=0; i<rows.length; i++){
                 let image=rows[i]['Imageurl']
+                let MimageAddress=rows[i]['AdressUrl']
                 let temp_html=`
                 <div class=" banner__contents carousel-item">
-                <img src=${image} >
+                <a href=${MimageAddress}><img src=${image} ></a>
                </div>`              
            
                 $('#carouselExampleControls').append(temp_html)
@@ -79,12 +80,13 @@ const swiper = new Swiper('.swiper', {
 // 메인에 넣을 이미지 주소 db에 넣기 
   function posting() {
     let url = $('#url').val()
+    let Movieurl=$('#Movieurl').val()
     
     $.ajax({
 
         type: 'POST',
         url: '/MainPagemovie',
-        data: {url_give: url},
+        data: {url_give: url, Movieurl__give:Movieurl},
         success: function (response) {
             alert(response['msg'])
             window.location.reload()

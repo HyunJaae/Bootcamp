@@ -56,7 +56,6 @@ body {
   object-fit: cover;
   color: white;
   height: 800px;
-
   margin-bottom: 100px;
   text-align: center;
 }
@@ -64,11 +63,12 @@ body {
   height: 90%;
   margin-left: 30px;
   padding-top: 140px;
+  margin: 0 auto;
 }
 
-.banner__contents > img {
+.banner__contents > a> img {
   height: 100%;
-  width: 80%;
+  width: 100%;
   display: block;
   margin: 0 auto;
 }
