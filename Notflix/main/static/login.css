@@ -73,7 +73,7 @@ body::before {
 .btn-area {
     margin-top: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
 }
 .btn-area button{

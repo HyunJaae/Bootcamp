@@ -16,4 +16,23 @@ $(btn).on('click', function() {
     }
 })
 
-// /login/save_member
+// function loginDone() {
+//     $.ajax({
+//         type: 'GET',
+//         url: '/done',
+//         data: {},
+//         success: function (response) {
+//             let rows = response['users']
+//             for(i = 0; i < len(rows); i++){
+//                 let Id = rows[i]['name']
+//                 let Pw = rows[i]['password']
+
+//                 if (Id == $(id).val() || Pw == $(pw).val()){
+//                     location.href = "main.html"
+//                 } else {
+//                     location.reload();
+//                 }
+//             }
+//         }
+//     })
+// }
