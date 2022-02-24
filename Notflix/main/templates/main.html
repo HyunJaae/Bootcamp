@@ -19,7 +19,10 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <link href="./carousel.css" rel="stylesheet"> <!--추가--> 
+    <!--추가-->
 
+   
 
 </head>
 
@@ -41,12 +44,11 @@
 
         {#   header#}
      <div id="carouselExampleControls" class=" banner carousel slide" data-bs-ride="carousel">
-        
-               <div class=" banner__contents carousel-item active" >
-                 <a href="https://movie.naver.com/movie/bi/mi/basic.naver?code=176501"><img src="https://t1.daumcdn.net/cfile/tistory/9932EA415E4A86EC0B"></a>
-               </div>
-             
-            
+          
+               <div class="banner__contents carousel-item active" >
+                <a href="https://movie.naver.com/movie/bi/mi/basic.naver?code=176501" class="d-block w-100"><img src="https://t1.daumcdn.net/cfile/tistory/9932EA415E4A86EC0B" class="d-block w-100"></a>
+               </div>   
+          
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                <span class="visually-hidden">Previous</span>
@@ -55,7 +57,13 @@
                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                <span class="visually-hidden">Next</span>
           </button>
-     </div>
+     </div> 
+
+
+     
+
+
+   
 
         <!-- <div class="banner">
             <div class="banner__contents">
@@ -101,49 +109,12 @@
 
         {#  NOTFLIX ORIGINALS#}
         <div class="row">
+            
             <h2>NOTFLIX ORIGINALS</h2>
             
-            <div class="row_posters">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
-                <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
-                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
+            <div class="row_posters" id="row_posters_middle">
+                <!-- <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
+                     alt="오징어 게임 이미지 " class="row__poster row__posterLarge "> -->
 
             </div>
         </div>
@@ -263,5 +234,6 @@
 </div>
 <script src="{{ url_for('static', filename='main.js')}}"></script>
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script src="./carousel.min.js" type="text/javascript"></script>
 </body>
 
