@@ -13,11 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>NOTFLIX</title>
 
 
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 
 
 </head>
@@ -25,39 +26,83 @@
 <body>
 <div id="wrap">
 <section>
+     <!-- nav starts -->
 <div class="nav" id="nav">
-    <h6 class="nav__logo"><a href="/" class="nav__logo_a">NOTFLIX</a> </h6>
+    <h6 class="nav__logo"><a href="/" class="nav__logo_a" onclick="showMovies">NOTFLIX</a> </h6>
      <ul class="primary-navigation-login">
-         <li class="navigation-login"><a href="#" class="navigation-login_a">로그인</a></li>
-         <li class="navigation-join"><a href="#" class="navigation-join_a">회원가입</a></li>
+         <li class="navigation-login"><a href="/login" class="navigation-login_a">로그인</a></li>
+         <li class="navigation-join"><a href="/sign_up" class="navigation-join_a">회원가입</a></li>
+        
      </ul>
 </div>
-
+<!-- nav ends -->
 
 
 
         {#   header#}
-        <div class="banner">
+     <div id="carouselExampleControls" class=" banner carousel slide" data-bs-ride="carousel">
+        
+               <div class=" banner__contents carousel-item active" >
+                 <a href="https://movie.naver.com/movie/bi/mi/basic.naver?code=176501"><img src="https://t1.daumcdn.net/cfile/tistory/9932EA415E4A86EC0B"></a>
+               </div>
+             
+            
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+               <span class="visually-hidden">Next</span>
+          </button>
+     </div>
+
+        <!-- <div class="banner">
             <div class="banner__contents">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRigTGj8tAUTLQLTa2-yaOqDSZcW5cB2GbhJQ&usqp=CAU">
+               
                 <h1 class="banner__title">컨텐츠 제목 </h1>
                 <div class="banner__buttons">
                     <button class="banner__button">재생</button>
                     <button class="banner__button">기록하기</button>
-                </div>
+                </div> 
 
                 <div class="banner__description">
                     영화 줄거리가 여기에 들어갈 겁니다
-                </div>
-            </div>
+                </div>  
+               </div>
+               
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+               
+
             <div class="banner--fadeBottom">
-
+                   
             </div>
-        </div>
-
+        </div> -->
+<!-- 메인 화면에 넣을 이미지 넣는 임시 박스 -->
+         <!-- <div class="mypost" id="post-box-movie">
+          <div class="form-floating mb-3">
+              <input id="url" type="email" class="form-control" placeholder="name@example.com">
+              <label>영화URL</label>
+          </div>
+          <div class="form-floating">
+               <input id="Movieurl" type="email" class="form-control" placeholder="name@example.com">
+               <label>영화주소 URL</label>
+           </div>
+           </div>
+         
+         
+          <div class="mybtns">
+              <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+              <button id="movie-close"onclick="close_box(this.id)" type="button" class="btn btn-outline-dark">닫기</button>
+          </div>
+      </div>  -->
 
         {#  NOTFLIX ORIGINALS#}
         <div class="row">
             <h2>NOTFLIX ORIGINALS</h2>
+            
             <div class="row_posters">
                 <img src="https://w.namu.la/s/c8497e89ea0df1a739a5d81b172ff083df2cb94bf0470154ea9f6963a24234f13d949a6fa1c6f80c6e42094bb1d5515b56fd93b10f95077968796cad878c8e8554d213f18395582fa2722a2cb353a7cbd1f0d560b54aa179f66d8457d626f94c"
                      alt="오징어 게임 이미지 " class="row__poster row__posterLarge ">
@@ -106,32 +151,13 @@
         {#현재 상영작 #}
         <div class="row">
             <h2>현재 상영중 </h2>
-            <div class="row_posters">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMzFfMjc3%2FMDAxNjQzNTkyOTA0MzM5.ZImtqUEA2znDMWpeexRXMIe6OVu17MNnaL8MMmuOKO4g.ELPnX0j_yEntzWODR6TsvoHiDRMsgVXBTx4kf2pfHiEg.PNG.jinair21%2F%25C5%25B7%25B8%25DE%25C0%25CC%25C4%25BF.png&type=a340"
-                     alt="상영중인 영화 이미지 " class="row__poster  ">
+            <div class="row_posters" id="air_movies">
+                <!-- 크롤링한 영화 이미지 들어갑니다. -->
             </div>
+            
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
         </div>
         {# 인기 영화  #}
         <div class="row">
@@ -182,33 +208,60 @@
     </section>
 
 
+    
 
-<script>
-    const nav=document.getElementById('nav');
-    window.addEventListener('scroll',()=>{
-        if(window.scrollY >=100){
-            nav.classList.add('nav__black')
-        }else{
-            nav.classList.remove('nav__black')
-        }
-    })
-</script>
+<!-- footer section  -->
 
-<footer class="member-footer">
-    <nav class="footer__icons">
-        <a href="https://github.com/Hanghae99Study/Hanghae99-ToyProject"><img src="data:image/png;base64,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" class="footer__icon"></a>
-        <a href="#"></a>
-        <a href="#"></a>
-        <a href="#"></a>
-    </nav>
-    <p>
-        <span>만든이 : 항해 스터디 1조원 </span>
-        <span>역할분담</span><br>
-        <span>메인 : 서호진<br> 로그인 : 이현재 <br>마이페이지 : 임인혁<br> 회원가입 : 최지은 <br>커뮤니티 : 조병윤 </span>
-        <span>Copyright 2022. Hanghae99. All Rights Reserved.</span>
-    </p>
+<footer>
+     <h5>Questions ?  Contact us </h5>
+     <div class="content">
+          <div class="middle box">
+               <div><a href="https://github.com/Hanghae99Study/Hanghae99-ToyProject"><img src="data:image/png;base64,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" ></a></div>
+         
+          </div>
 
+    
+          <div class="middle box">
+               <div><a href="#">FAQ</a></div>
+               <div><a href="#">자막 및 음성</a></div>
+               <div><a href="#">음성지원</a></div>
+               <div><a href="#">고객센터</a></div>
+               <br><br>
+               <select>
+                    <option value="/kw-en/">English</option>
+                    <option value="/kw/">Korean</option>
+
+               </select>
+               <br><br>
+               <p>Hanghae99</p>
+          </div>
+          <div class="middle box ">
+               <div> <a href="#">기프트카드</a></div>
+               <div><a href="#">미디어 센터</a></div>
+               <div><a href="#">투자 정보(IR)</a></div>
+               <div> <a href="#">입사 정보</a></div>
+          </div>
+          <div class="middle box ">
+              
+               <div><a href="#">이용 약관</a></div>
+               <div><a href="#">개인정보</a></div>
+               <div><a href="#">법적 고지</a></div>
+               <div><a href="#">쿠키 설정</a></div>
+          </div>
+          <div class="middle box ">
+               <div> <a href="#">회사 정보 </a></div>
+               <div><a href="#">문의하기</a></div>
+               <div><a href="#">Contact Us</a></div>  
+               
+          </div>
+     </div>
 </footer>
+
+
+
+
 </div>
+<script src="{{ url_for('static', filename='main.js')}}"></script>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 </body>
 
