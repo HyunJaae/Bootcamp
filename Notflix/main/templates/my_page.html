@@ -42,27 +42,26 @@
             </div>
         </section>
 
-        <div class="mypage_title">
-            <div id="message" class="message">
+        <div class="title">
+            <div id="title__message" class="title__message">
                 <h2>임인혁님 안녕하세요!!</h2>
                 <p>임인혁님이 즐겨보신 영화를 추가해 <br>나만의 영화관을 만들어보세요!!</p>
 
-                <div class="mybtns">
-                    <button id="open_box" onclick="open_box()" type="button" class="btn btn-dark">나만의 영화 기록하기</button>
+                <div class="title__btn">
+                    <button id="open__form" onclick="open__form()" type="button" class="btn btn-dark">나만의 영화 기록하기</button>
                 </div>
             </div>
 
 
-            <div class="mypage-form" id="mypage-form">
+            <div class="mypage_form" id="mypage_form">
+                <div id="mypage__inputform" class="mypage__inputform">
 
-                <div id="input-group" class="input-group">
                     <h3>영화의 링크를 입력해주세요</h3>
                     <input id="link_input" class="form-control form-control-lg link_input" type="text"
                         placeholder="영화 링크를 입력해주세요" aria-label=".form-control-lg example">
 
                     <h4>평점을 선택해주세요</h4>
-                    <select id="star" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>별점을 남겨주세요!</option>
+                    <select id="star_select" class="form-select form-select-sm" aria-label=".form-select-sm example">
                         <option value="1">⭐</option>
                         <option value="2">⭐⭐</option>
                         <option value="3">⭐⭐⭐</option>
@@ -70,74 +69,20 @@
                         <option value="5">⭐⭐⭐⭐⭐</option>
                     </select>
 
-                    <div class="mb-3">
+                    <div class="comment_form"> 
                         <h4>감상평을 입력해주세요</h4>
-                        <textarea id="comment" class="form-control" id="exampleFormControlTextarea1"
+                        <textarea id="comment_input" class="form-control" id="exampleFormControlTextarea1"
                             rows="4"></textarea>
                     </div>
 
-                    <button id="save_box" onclick="save_box()" type="button"
-                        class="btn btn-dark close_box">저장하기</button>
+                    <button id="save" onclick="save()" type="button"
+                        class="save_btn btn-dark close_box">저장하기</button>
                 </div>
             </div>
         </div>
 
-        <div id="my-card" class="my-card">
-            <div class="row row-cols-1 row-cols-md-4 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This card has even longer content than the first to show that equal
-                                height action.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This card has even longer content than the first to show that equal
-                                height action.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
+        <div id="movie_card" class="movie_card">
+            <div class="row row-cols-1 row-cols-md-4 g-4" id="card-box">
             </div>
         </div>
 

@@ -18,6 +18,7 @@ class loginForm:
 
 @blueprint.route("/") #<- 데코레이터
 def login_template():
+<<<<<<< HEAD
         return render_template("login.html")
 
 @blueprint.route("/login_done", methods=["get"])
@@ -30,3 +31,7 @@ def login_done():
 # 회원가입 창을 통해 등록한 유저 정보를 로그인 입력 시 대조하여 확인 후 메인페이지로 이동시키기
 # 대조 시 맞지 않을 경우 아니라고 알림창 띄우기
 # 메인페이지 이동 시 로그인 상태 유지
+=======
+    return render_template("login.html")
+
+>>>>>>> ce90033feeac3314884e369de8423f101ec1e719
