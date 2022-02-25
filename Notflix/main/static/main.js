@@ -16,6 +16,7 @@ $(document).ready(function () {
     showNaverMovies()
     showDaumMovie()
     showDaumMoviesMain()
+    showNaver2020Movies()
 
 });
 
@@ -90,7 +91,27 @@ function showDaumMovie(){
     });
 }
 
+//2020인기 영화 
+function showNaver2020Movies(){
+    
+    $.ajax({
+        type: "GET",
+        url: "/showNaver2020Movie",
+        data: {},
+        success: function (response) {
+            let rows = response['naver2020List']
 
+            for(let i=0; i<rows.length; i++){
+                let image2020=rows[i]['naver2020Img']
+                let mLink2020=rows[i]['naver2020Link']
+                let temp_html=`<a href=${mLink2020} class="row__poster "><img src=${image2020} ></a>`              
+           
+                $('#naver2020Movie').append(temp_html)
+        }
+    }
+    });
+
+}
   
 // 메인에 넣을 이미지 주소 db에 넣기 
 //   function posting() {
