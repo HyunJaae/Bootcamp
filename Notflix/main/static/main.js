@@ -75,3 +75,29 @@ const swiper = new Swiper('.swiper', {
     
  
   });
+
+
+
+
+  function open_box() { 
+        $('#post-box-movie').show()
+ 
+}
+function close_box(){
+    $('#post-box-movie').hide()
+}
+// 메인화면 영화 기록하기
+function posting() {
+    let url = $('#url').val()
+  
+    $.ajax({
+
+        type: 'POST',
+        url: '/movie',
+        data: {url_give: url},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.reload()
+        }
+    });
+}
