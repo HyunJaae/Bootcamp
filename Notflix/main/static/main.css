@@ -31,20 +31,29 @@ body {
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
+  margin-bottom: 20px;
 }
 
 .row__poster:hover {
   transform: scale(1.2);
 }
+.row_posters_middle{
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+}
+
 
 .row_posters::-webkit-scrollbar {
   display: none;
 }
 .row__posterLarge {
-  max-height: 250px;
+  max-height: 270px;
+ 
 }
-.row__posterLarge:hover {
-  transform: scale(1.1);
+.row__posterLarge :hover {
+  transform: scale(0.9);
 }
 .row {
   color: white;
@@ -55,22 +64,22 @@ body {
 .banner {
   object-fit: contain;
   color: white;
-  height: 800px;
-
+  height: 900px;
   margin-bottom: 100px;
   text-align: center;
 }
 .banner__contents {
-  height: 90%;
+  height: 105%;
   margin-left: 30px;
   padding-top: 140px;
+  margin: 0 auto;
+  
 }
 
-.banner__contents > img {
-  height: 130%;
-  width: 40%;
-  display: block;
-  margin: 0 auto;
+.banner__contents > a> img {
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 
 .banner__title {
