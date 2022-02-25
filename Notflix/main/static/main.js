@@ -30,8 +30,9 @@ function showNaverMovies(){
                 let rows = response['naverMovies']
 
                 for(let i=0; i<rows.length; i++){
-                    let image=rows[i]['movieImg']
-                    let temp_html=`<img src=${image} class="row__poster ">`              
+                    let image=rows[i]['movidImg']
+                    let mLink=rows[i]['movieLink']
+                    let temp_html=`<a href=${mLink} class="row__poster "><img src=${image} ></a>`              
                
                     $('#air_movies').append(temp_html)
             }
@@ -89,43 +90,21 @@ function showDaumMovie(){
     });
 }
 
-// 슬라이더 버튼 js 
-const swiper = new Swiper('.swiper', {
-    // Optional parameters
-   
-    loop: true,
-  
-    
-  
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  
-    
- 
-  });
 
- 
-
-
-
-  
   
 // 메인에 넣을 이미지 주소 db에 넣기 
-  function posting() {
-    let url = $('#url').val()
-    let Movieurl=$('#Movieurl').val()
+//   function posting() {
+//     let url = $('#url').val()
+//     let Movieurl=$('#Movieurl').val()
     
-    $.ajax({
+//     $.ajax({
 
-        type: 'POST',
-        url: '/MainPagemovie',
-        data: {url_give: url, Movieurl__give:Movieurl},
-        success: function (response) {
-            alert(response['msg'])
-            window.location.reload()
-        }
-    });
-}
+//         type: 'POST',
+//         url: '/MainPagemovie',
+//         data: {url_give: url, Movieurl__give:Movieurl},
+//         success: function (response) {
+//             alert(response['msg'])
+//             window.location.reload()
+//         }
+//     });
+// }

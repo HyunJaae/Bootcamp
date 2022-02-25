@@ -28,20 +28,35 @@ url = 'https://movie.naver.com/movie/running/current.naver'
 
 url2 = 'https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q=%EC%98%81%ED%99%94+%EC%88%9C%EC%9C%84'
 blueprint = Blueprint("main", __name__, url_prefix="/")
-response = requests.get(url2)
-
+response = requests.get(url)
 soup = BeautifulSoup(response.content, 'html.parser')
-movieInfoList = soup.find('ol', attrs={'class': 'movie_list'}).find_all('li')
-for movieInfo in movieInfoList:
-    movieImg = movieInfo.find('img').attrs['src']
-    movieLink =movieInfo.find('a').attrs.get('href')
-    movieTitle=movieInfo.find('a',attrs={'class':'tit_main'})
-    # print(f'이미지: {movieImg}')
-    doc = {
-        'movieLink': "https://search.daum.net/search?"+movieLink,
-        'movieImg': movieImg,
-        'movieTitle':movieTitle.get_text()
+
+naverMovieInfoList = soup.find('ul', attrs={'class':'lst_detail_t1'}).find_all('li')
+for naverMovieInfo in naverMovieInfoList:
+    images = naverMovieInfo.find('img').attrs['src']
+    link=naverMovieInfo.find('a').attrs['href']
+    
+    doc={
+        'movidImg':images,
+        'movieLink':"https://movie.naver.com/"+link
     }
+
+    # db.MainMoviesPage.insert_one(doc)
+    # db.MainMoviesPage.drop()
+  
+
+
+# movieInfoList = soup.find('ol', attrs={'class': 'movie_list'}).find_all('li')
+# for movieInfo in movieInfoList:
+#     movieImg = movieInfo.find('img').attrs['src']
+#     movieLink =movieInfo.find('a').attrs.get('href')
+#     movieTitle=movieInfo.find('a',attrs={'class':'tit_main'})
+#     # print(f'이미지: {movieImg}')
+#     doc = {
+#         'movieLink': "https://search.daum.net/search?"+movieLink,
+#         'movieImg': movieImg,
+#         'movieTitle':movieTitle.get_text()
+#     }
    
     # print("https://search.daum.net/search?"+movieLink)
    
@@ -54,18 +69,7 @@ for movieInfo in movieInfoList:
 
 
 
-# ul = soup.find('ul', class_="lst_detail_t1")
-# images = ul.select('li> div > a >img')
-# movies_names=ul.select('li > dl> dt >a')
-# print(len(images))
 
-# for image in images:  
-#     doc = {
-#                 'movieImg': image['src']
-#             }
-#     db.MainMoviesPage.insert_one(doc)
-#     db.MainMoviesPage.drop()
-  
     
 
     
@@ -83,7 +87,7 @@ def main_template():
 
 @ blueprint.route("/showNaverMovie", methods=['GET'])
 def show_main_movies():
-    naverMovie_List = list(db.main.find({}, {'_id': False}))
+    naverMovie_List = list(db.MainMoviesPage.find({}, {'_id': False}))
     return jsonify({'naverMovies': naverMovie_List})
 
 # 완전 큰 메인 
