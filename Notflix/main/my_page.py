@@ -42,7 +42,8 @@ def input_save():  # user의 input 정보 저장하기
     comment_receive = request.form['comment_give']
 
     parsing = link_select(link_receive)
-
+    
+    link = link_receive
     img = parsing['img']
     name = parsing['name']
     star = star_receive
@@ -50,7 +51,7 @@ def input_save():  # user의 input 정보 저장하기
     count = list(db.my_page.find({}, {'_id': False}))
     num = len(count) + 1
 
-    doc = {'post_num': num, 'img': img, 'name': name,
+    doc = {'link' : link , 'post_num': num, 'img': img, 'name': name,
            'star': star, 'comment': comment}
     db.my_page.insert_one(doc)
     return jsonify({'msg': '저장 완료 되었습니다!'})
