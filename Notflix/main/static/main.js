@@ -78,8 +78,8 @@ function showDaumMovie(){
                 let MimageAddress=rows[i]['AdressUrl']
                 
                 let temp_html=            
-               `<div class= "banner__contents carousel-item"> 
-                 <a href=${MimageAddress} ><img src=${image} ></a>
+               `<div class= "banner__contents carousel-item   data-bs-interval="200000"> 
+                 <a href=${MimageAddress}  ><img src=${image} ></a>
                </div>`
                            
                       

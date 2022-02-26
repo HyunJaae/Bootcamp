@@ -27,13 +27,13 @@ headers = {
 url = 'https://movie.naver.com/movie/running/current.naver'
 
 url2 = 'https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q=%EC%98%81%ED%99%94+%EC%88%9C%EC%9C%84'
-url3="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=2020%EB%85%84+%EC%98%81%ED%99%94+%EC%88%9C%EC%9C%84"
+url3 = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=2020%EB%85%84+%EC%98%81%ED%99%94+%EC%88%9C%EC%9C%84"
 blueprint = Blueprint("main", __name__, url_prefix="/")
 response = requests.get(url3)
 soup = BeautifulSoup(response.content, 'html.parser')
 
 
-# 2020년 인기 영화 크롤링 코드 
+# 2020년 인기 영화 크롤링 코드
 
 # Naver2020List=soup.find('div',attrs={'class':'_content'}).find_all('li')
 # for naver2020 in Naver2020List:
@@ -44,9 +44,7 @@ soup = BeautifulSoup(response.content, 'html.parser')
 #         'naver2020Img':naver2020Img,
 #         'naver2020Link':"https://search.naver.com/search.naver"+naver2020Link
 #     }
-    # db.naver2020Movie.insert_one(doc)
-
-
+# db.naver2020Movie.insert_one(doc)
 
 
 # 네이버 상영 영화 크롤링 코드
@@ -55,17 +53,17 @@ soup = BeautifulSoup(response.content, 'html.parser')
 # for naverMovieInfo in naverMovieInfoList:
 #     images = naverMovieInfo.find('img').attrs['src']
 #     link=naverMovieInfo.find('a').attrs['href']
-    
+
 #     doc={
 #         'movidImg':images,
 #         'movieLink':"https://movie.naver.com/"+link
 #     }
 
-    # db.MainMoviesPage.insert_one(doc)
-    # db.MainMoviesPage.drop()
-  
+# db.MainMoviesPage.insert_one(doc)
+# db.MainMoviesPage.drop()
 
-# 다음 영화 예매율 순위 크롤링 코드 
+
+# 다음 영화 예매율 순위 크롤링 코드
 
 # movieInfoList = soup.find('ol', attrs={'class': 'movie_list'}).find_all('li')
 # for movieInfo in movieInfoList:
@@ -78,13 +76,10 @@ soup = BeautifulSoup(response.content, 'html.parser')
 #         'movieImg': movieImg,
 #         'movieTitle':movieTitle.get_text()
 #     }
-   
-    # print("https://search.daum.net/search?"+movieLink)
-   
-    
-    
-    # db.mainMovie.insert_one(doc)
-  
+
+# print("https://search.daum.net/search?"+movieLink)
+
+# db.mainMovie.insert_one(doc)
 
 
 @ blueprint.route("/")  # <- 데코레이터
@@ -102,27 +97,31 @@ def show_main_movies():
     naverMovie_List = list(db.MainMoviesPage.find({}, {'_id': False}))
     return jsonify({'naverMovies': naverMovie_List})
 
-# 완전 큰 메인 
+# 완전 큰 메인
+
+
 @blueprint.route("/showDaumMovie", methods=["GET"])
 def show_main_daum_movies():
     daumMovie_List = list(db.MainPageImg.find({}, {'_id': False}))
     return jsonify({'daumMovies': daumMovie_List})
 
 
-#  중간 크기 메인 
+#  중간 크기 메인
 @blueprint.route("/showDaumMovieMain", methods=["GET"])
 def show_main_daum_movies_middle():
     daumMovieMain_List = list(db.mainMovie.find({}, {'_id': False}))
     return jsonify({'daumMoviesMain': daumMovieMain_List})
 
-# 2020인기 영화 
+# 2020인기 영화
+
+
 @blueprint.route("/showNaver2020Movie", methods=["GET"])
 def show__naver2020Movie():
     naver2020_List = list(db.naver2020Movie.find({}, {'_id': False}))
     return jsonify({'naver2020List': naver2020_List})
 
 
-# 완전 큰 메인 입력할 때 씀 
+# 완전 큰 메인 입력할 때 씀
 # @blueprint.route("/MainPagemovie",methods=["POST"])
 # def check_post():
 
@@ -134,6 +133,3 @@ def show__naver2020Movie():
 #             'AdressUrl':Movie_receive
 #         }
 #     db.MainPageImg.insert_one(doc)
-        
-
-   
