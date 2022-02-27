@@ -59,6 +59,7 @@ function data_post(){
                 let card = response['data_page']
 
                 for(let i = 0 ; i < card.length ; i++){
+                    let link = card[i]['link']
                     let num = card[i]['post_num']
                     let img = card[i]['img']
                     let name = card[i]['name']
@@ -68,7 +69,7 @@ function data_post(){
 
                     let temp_html = `<div class="col-sm-4">
                                         <div class="card h-80">
-                                            <img src="${img}"
+                                            <img onClick="window.open('${link}')" src="${img}"
                                                 class="card-img-top">
                                             <div class="card-body">
                                                 <h5 class="card-title">${name}</h5>
@@ -126,8 +127,16 @@ function correctionMovie(){
         var correctiontStar = $("#correction_star_select").val();
         var correctionComment = $("#correction_comment_input").val();
         var post_num = localStorage.getItem('post_num')
-        console.log(post_num + correctionLink + correctiontStar + correctionComment)
 
+        if (correctionLink == '') {
+            alert('link를 입력해주세요')
+    
+        }else if (correctiontStar == '') {
+            alert('평점을 입력해주세요')
+    
+        }else if (correctionComment == '') {
+            alert('감상평을 입력해주세요')
+        }else{
         $.ajax({
             type: "POST",
             url: "/my_page/correction_update",
@@ -143,4 +152,16 @@ function correctionMovie(){
                     opener.document.location.reload();
             }
         });
+    }
 }
+
+//nav controller
+const nav=document.getElementById('nav');
+
+window.addEventListener('scroll',()=>{
+    if(window.scrollY >=100){
+        nav.classList.add('nav__black')
+    }else{
+        nav.classList.remove('nav__black')
+    }
+})
