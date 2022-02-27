@@ -15,8 +15,6 @@ $(btn).on('click', function() {
         },1500);
     }
 })
-
-<<<<<<< HEAD
 // function loginDone() {
 //     $.ajax({
 //         type: 'GET',
@@ -37,7 +35,4 @@ $(btn).on('click', function() {
 //         }
 //     })
 // }
-=======
 // /login/save_member
-
->>>>>>> ce90033feeac3314884e369de8423f101ec1e719

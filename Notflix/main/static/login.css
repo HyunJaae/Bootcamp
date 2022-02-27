@@ -134,17 +134,10 @@ body::before {
 .primary-navigation{
     display: flex;
     width: 90%;
-    justify-content: space-evenly;
+    justify-content: right;
     align-items: right;
 }
 .primary-navigation li > a {
     font-size: 15px; color: #fff;
+    text-decoration-line: none
 }
-.primary-navigation-login{
-    display: flex;
-    width: 30%;
-    align-items: center;
-    justify-content: right;
-}
-.navigation-login-login{ margin-right: 30px; }
-ul{ list-style: none; }
