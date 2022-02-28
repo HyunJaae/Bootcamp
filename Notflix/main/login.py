@@ -1,4 +1,3 @@
-import re
 from main import * #from main import * : main에 선언된 모든 값을 가져온다 , __init__ file에 선언된 라이브러리를 가져와 사용할 수 있음.
 from flask import Flask, Blueprint, flash, render_template, request, url_for, jsonify, redirect, session
 from pymongo import MongoClient
@@ -12,36 +11,47 @@ db = client.notflix
 blueprint = Blueprint("login" , __name__ , url_prefix="/login")
 
 class loginForm:
-    def login(self, id, pw):
-        pass
+    def login(self, uid, pw):
+        userList = list(db.users.find({}, {'_id': 0}))
+        nameKey = "name"
+        pwKey = "password"
+        userId = [val[nameKey] for val in userList]
+        userPw = [val[pwKey] for val in userList]
+        if uid in userId and pw in userPw:
+                return True
+        else:
+                return False
 
 
 
 @blueprint.route("/") #<- 데코레이터
 def login_template():
+        if "uid" in session:
+                return render_template("main.html")
         return render_template("login.html")
 
 @blueprint.route("/login_done", methods=["get"])
 def login_done():
-        userName = request.args.get("id")
-        pswd = {request.args.get("pw")}
-        userList = db.users.find({}, {'_id': 0})
-        for i in userList:
-                try:
-                        if i.get('name') in userName and i.get('password') in pswd:
-                                return render_template("main.html")
-                        else:
-                                flash("비밀번호 또는 아이디가 틀렸습니다.")
-                                return render_template("login.html")
-                except:
-                        return render_template("login.html")
-                # if i.get('name') == userName and i.get('password') == pswd:
+        uid = request.args.get("id")
+        pw = request.args.get("pw")
+        log = loginForm()
+        if log.login(uid, pw):
+                return redirect(url_for('main'))
+        else:
+                flash("아이디가 없거나 비밀번호가 틀립니다.")
+                return render_template("login.html")
+        # for i in userList:
+        #         userId = i.get('name')
+        #         userPw = i.get('password')
+        #         int = 0
+        #         count = int+1
+        #         if pswd == userPw[int]:
+        #                 return render_template("main.html")
+                # if userId in userName and userPw in pswd:
                 #         return render_template("main.html")
-                # elif i.get('name') != userName or i.get('password' != pswd):
-                #         return render_template("sign_up.html")
                 # else:
+                #         flash("비밀번호 또는 아이디가 틀렸습니다.")
                 #         return render_template("login.html")
-        return render_template("login.html")
         # try:
         #         userId = userList[int]['name']
         #         userPw = userList[int]['password']
