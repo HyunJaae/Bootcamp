@@ -7,21 +7,27 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </head>
+    {%with messages = get_flashed_messages()%}
+    {%if messages %}
+    <script type="text/javascript">
+        alert("{{messages[0]}}");
+        location.replace('/login')
+    </script>
+    {%endif%}
+    {%endwith%}   
+</head>
 <body>
     <div class="main-header">
-         <h1><a href="index.html">NOTFLIX</a></h1>
+         <h1><a href="/">NOTFLIX</a></h1>
             <ul class="primary-navigation">
-              <li class="navigation-home"><a href="/main">홈</a></li>
-               <li class="navigation-login"><a href="/main2">로그인</a></li>
-                <li class="navigation-join"><a href="#">회원가입</a></li>
+                <li class="navigation-join"><a href="/sign_up">회원가입</a></li>
             </ul>
     </div>
     <div class="login">
         <section class="login-form">
             <div class="logo">NOTFLIX</div>
             <h1>LOGIN</h1>
-            <form action="">
+            <form id="login" name="login" action="{{url_for('.login_done')}}" method="get">
                 <div class="int-area">
                     <input type="text" name="id" id="id" autocomplete="off" required>
                     <label for="id">USER NAME</label>
@@ -30,9 +36,8 @@
                     <input type="password" name="pw" id="pw" autocomplete="off" required>
                     <label for="id">PASSWORD</label>
                 </div>
-                <div class="btn-area" id="btn">
-                    <button type="submit">LOGIN</button>
-                    <button type="submit">JOIN</button>
+                <div class="btn-area">
+                    <button type="submit" id="btn">LOGIN</button>
                 </div>
             </form>
             <div class="caption">
