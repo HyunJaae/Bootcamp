@@ -1,5 +1,6 @@
 
 
+
 const nav=document.getElementById('nav');
 
 window.addEventListener('scroll',()=>{
@@ -33,7 +34,7 @@ function showNaverMovies(){
                 for(let i=0; i<rows.length; i++){
                     let image=rows[i]['movidImg']
                     let mLink=rows[i]['movieLink']
-                    let temp_html=`<a href=${mLink} class="row__poster "><img src=${image} class="item"></a>`              
+                    let temp_html=`<a href=${mLink} class=" row__poster "><img src=${image} class="item"></a>`              
                
                     $('#air_movies').append(temp_html)
             }
@@ -41,7 +42,7 @@ function showNaverMovies(){
         });
     
 }
-// 중간 크기 메인 
+// 다음 영화 예매 순위
 function showDaumMoviesMain(){
     $.ajax({
         type: "GET",
@@ -53,14 +54,14 @@ function showDaumMoviesMain(){
             for(let i=0; i<rows.length; i++){
                 let movieLink=rows[i]['movieLink']
                 let movieImg=rows[i]['movieImg']
-                let temp_html=`<a href=${movieLink} class="row__poster row__posterLarge"><img src=${movieImg} class="item"></a>`              
+                let temp_html=`<a href=${movieLink} class="row__poster row__posterLarge "><img src=${movieImg} class="item"></a>`              
            
                 $('#row_posters_middle').append(temp_html)
         }
     }
     });
 }
-new Carousel(document.querySelector('#carousel-banner'));
+
 
 
 
@@ -78,7 +79,7 @@ function showDaumMovie(){
                 let MimageAddress=rows[i]['AdressUrl']
                 
                 let temp_html=            
-               `<div class= "banner__contents carousel-item   data-bs-interval="200000"> 
+               `<div class= "banner__contents carousel-item  > 
                  <a href=${MimageAddress}  ><img src=${image} class="item"></a>
                </div>`
                            
