@@ -29,57 +29,99 @@ url = 'https://movie.naver.com/movie/running/current.naver'
 url2 = 'https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q=%EC%98%81%ED%99%94+%EC%88%9C%EC%9C%84'
 url3 = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=2020%EB%85%84+%EC%98%81%ED%99%94+%EC%88%9C%EC%9C%84"
 blueprint = Blueprint("main", __name__, url_prefix="/")
+# response = requests.get(url)
+# response = requests.get(url2)
 response = requests.get(url3)
 soup = BeautifulSoup(response.content, 'html.parser')
 
+# 네이버 영화 select로 크롤링
+# response = requests.get(url3)
+# soup = BeautifulSoup(response.content, 'html.parser')
+
+# ul=soup.find('ul',class="1st_detail_t1")
+# img=ul.select('li > div > a > img')
+# for i in img:
+#     print(i.get('src'))
+
+# Naver2020List = soup.find(
+#     'div', attrs={'class': 'movie_audience_ranking _main_panel'}).find_all('div', attrs={'class': '_content'})
+# print(Naver2020List)
 
 # 2020년 인기 영화 크롤링 코드
+# Naver2020List = soup.find(
+#     'div', attrs={'class': 'movie_audience_ranking _main_panel'}).find_all('div', attrs={'class': '_content'})
 
-# Naver2020List=soup.find('div',attrs={'class':'_content'}).find_all('li')
-# for naver2020 in Naver2020List:
-#     naver2020Img=naver2020.find('img').attrs['src']
-#     naver2020Link=naver2020.find('a').attrs['href']
+# for all_content in Naver2020List:
+#     all_li = soup.find_all('div', attrs={'class': 'thumb'})
 
-#     doc={
-#         'naver2020Img':naver2020Img,
-#         'naver2020Link':"https://search.naver.com/search.naver"+naver2020Link
-#     }
-# db.naver2020Movie.insert_one(doc)
+# print(all_li)
 
+
+# @blueprint.route('/')
+# def naver2020_gathering():
+
+#     # Naver2020List = soup.find('div', attrs={'class': '_content'}).find_all('li')
+#     Naver2020List = soup.find(
+#         'div', attrs={'class': 'movie_audience_ranking _main_panel'}).find_all('div', attrs={'class': '_content'})
+
+#     for all_content in Naver2020List:
+#         all_lists = soup.find_all('div', attrs={'class': 'thumb'})
+
+#     for naver2020 in all_lists:
+#         naver2020Img = naver2020.find('img').attrs['src']
+#         naver2020Link = naver2020.find('a').attrs['href']
+
+#         doc = {
+#             'naver2020Img': naver2020Img,
+#             'naver2020Link': "https://search.naver.com/search.naver"+naver2020Link
+#         }
+#         # db.naver2020Movie.insert_one(doc)
+#     return render_template('main.html')
+
+
+# db.naver2020Movie.drop()
 
 # 네이버 상영 영화 크롤링 코드
+# @blueprint.route('/')
+# def naver_on_air_gathering():
+#     naverMovieInfoList = soup.find(
+#         'ul', attrs={'class': 'lst_detail_t1'}).find_all('li')
+#     for naverMovieInfo in naverMovieInfoList:
+#         images = naverMovieInfo.find('img').attrs['src']
+#         link = naverMovieInfo.find('a').attrs['href']
 
-# naverMovieInfoList = soup.find('ul', attrs={'class':'lst_detail_t1'}).find_all('li')
-# for naverMovieInfo in naverMovieInfoList:
-#     images = naverMovieInfo.find('img').attrs['src']
-#     link=naverMovieInfo.find('a').attrs['href']
+#         doc = {
+#             'movidImg': images,
+#             'movieLink': "https://movie.naver.com/"+link
+#         }
 
-#     doc={
-#         'movidImg':images,
-#         'movieLink':"https://movie.naver.com/"+link
-#     }
-
-# db.MainMoviesPage.insert_one(doc)
+#         # db.MainMoviesPage.insert_one(doc)
+#     return render_template('main.html')
 # db.MainMoviesPage.drop()
-
 
 # 다음 영화 예매율 순위 크롤링 코드
 
-# movieInfoList = soup.find('ol', attrs={'class': 'movie_list'}).find_all('li')
-# for movieInfo in movieInfoList:
-#     movieImg = movieInfo.find('img').attrs['src']
-#     movieLink =movieInfo.find('a').attrs.get('href')
-#     movieTitle=movieInfo.find('a',attrs={'class':'tit_main'})
-#     # print(f'이미지: {movieImg}')
-#     doc = {
-#         'movieLink': "https://search.daum.net/search?"+movieLink,
-#         'movieImg': movieImg,
-#         'movieTitle':movieTitle.get_text()
-#     }
+# @blueprint.route('/')
+# def daum_live_rank_gathering():
 
-# print("https://search.daum.net/search?"+movieLink)
+#     movieInfoList = soup.find(
+#         'ol', attrs={'class': 'movie_list'}).find_all('li')
+#     for movieInfo in movieInfoList:
+#         movieImg = movieInfo.find('img').attrs['src']
+#         movieLink = movieInfo.find('a').attrs.get('href')
+#         movieTitle = movieInfo.find('a', attrs={'class': 'tit_main'})
+#         # print(f'이미지: {movieImg}')
+#         doc = {
+#             'movieLink': "https://search.daum.net/search?"+movieLink,
+#             'movieImg': movieImg,
+#             'movieTitle': movieTitle.get_text()
+#         }
 
-# db.mainMovie.insert_one(doc)
+#     # print("https://search.daum.net/search?"+movieLink)
+#         # db.mainMovie.insert_one(doc)
+#     return render_template('main.html')
+
+# db.mainMovie.drop()
 
 
 @ blueprint.route("/")  # <- 데코레이터
