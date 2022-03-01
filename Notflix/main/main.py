@@ -99,6 +99,7 @@ soup = BeautifulSoup(response.content, 'html.parser')
 #     return render_template('main.html')
 # db.MainMoviesPage.drop()
 
+
 # 다음 영화 예매율 순위 크롤링 코드
 
 # @blueprint.route('/')
