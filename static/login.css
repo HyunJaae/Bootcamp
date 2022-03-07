@@ -1,0 +1,128 @@
+* {margin: 0; padding: 0; box-sizing: border-box;}
+
+.main_logo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+    border-bottom: solid 1px #999;
+}
+.main_logo h1 > a {
+    text-decoration-line: none;
+    font-size: 40px; color: rgb(46, 46, 165);
+}
+.main_logo h1:link{ color: white; }
+.main_logo h1:visited{
+    color: white;
+    text-decoration-line: none
+}
+.main_logo h1:hover{
+    font-weight: bolder;
+    text-decoration-line: none
+}
+.login_logo {
+    font-size: 70px; color: rgb(46, 46, 165);
+    font-weight: bolder;
+    text-align: center;
+}
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login{
+    height: 450px;
+    width: 450px;
+    border: solid 1px rgb(201, 199, 199);
+    border-radius: 10px;
+    box-shadow: .5em .5em 1.2em rgb(201, 199, 199), -0.5em -0.5em 1.2em rgb(201, 199, 199);
+}
+.login_form {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+.login_form h1 {
+    
+    font-size: 30px; color: grey;
+    text-align: left;
+    margin-top: 60px;
+}
+.int_area {
+    width: 400px; position: relative;
+    margin-top: 15px;
+}
+.int_area:first-child {margin-top: 0;}
+.int_area input {
+    width: 100%;
+    padding: 20px 10px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #999;
+    font-size: 16px; color: rgb(46, 46, 165);
+    outline: none;
+}
+.int_area label {
+    position: absolute; left: 10px; top: 20px;
+    font-size: 16px; color: #999;
+    transition: all .3s ease;
+}
+.int_area label.warning {
+    color: rgb(9, 1, 117) !important;
+    animation: warning .3s ease;
+    animation-iteration-count: 3;
+}
+@keyframes warning {
+    0% {transform: translateX(-8px);}
+    25% {transform: translateX(8px);}
+    50% {transform: translateX(-8px);}
+    75% {transform: translateX(8px);}
+    
+}
+.int_area input:focus + label,
+.int_area input:valid + label {
+    top: -2px;
+    font-size: 16px; color: rgb(46, 46, 165);
+}
+.btn_area {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn_area button{
+    width: 100px; height: 30px;
+    background: transparent;
+    color: rgb(46, 46, 165);
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid rgb(46, 46, 165);
+    border-radius: 25px;
+    cursor: pointer;
+}
+.btn_area button:hover {
+    width: 100px; height: 30px;
+    background: rgb(46, 46, 165);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-color: rgb(46, 46, 165);
+    border-radius: 25px;
+    cursor: pointer;
+}
+.caption {
+    font-family: 'Gowun Dodum', sans-serif;
+    margin-top: 20px;
+    text-align: center;
+}
+.forgot {
+    font-size: 15px; color: #999;
+    text-decoration: none;
+}
+.forgot:hover {
+    font-size: 15px; color: rgb(46, 46, 165);
+    text-decoration: none;
+}
