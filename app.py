@@ -24,25 +24,12 @@ def index_template():
 def mypage_template():
     return render_template("mypage.html")
 
-<<<<<<< HEAD
-
-
 # mypage 상단 버튼
 @app.route('/main')
 def main():
     return render_template("main.html")
 @app.route("/login")
 def login():
-=======
-# mypage 상단 우측 버튼
-@app.route('/main')
-def main():
-    return render_template("main.html")
-
-@app.route('/login/')
-def login_template():
-    print("nono")
->>>>>>> 58f796340c6502b36501cdea303a95f757aaf5db
     return render_template("login.html")
 @app.route("/join")
 def join():
