@@ -19,30 +19,30 @@ from datetime import datetime ##현재시각 출력 datetime
 import requests  ## url 정보를 받아오기 위한 requests
 import time  ## 1분 단위 주가 정보를 위한 시간 측정 time
 
-def get_code(company_code):
-    url = "https://m.stock.naver.com/domestic/index/" + company_code
-    result = requests.get(url)
-    bs_obj = BeautifulSoup(result.content, "html.parser")
-    return bs_obj
+# def get_code(company_code):
+#     url = "https://m.stock.naver.com/domestic/index/" + company_code
+#     result = requests.get(url)
+#     bs_obj = BeautifulSoup(result.content, "html.parser")
+#     return bs_obj
 
-def get_price(company_code):
-    bs_obj = get_code(company_code)
-    no_today = bs_obj.find("p", {"class": "no_today"})
-    blind = no_today.find("span", {"class": "blind"})
-    now_price = blind.text
-    return now_price
+# def get_price(company_code):
+#     bs_obj = get_code(company_code)
+#     no_today = bs_obj.find("p", {"class": "no_today"})
+#     blind = no_today.find("span", {"class": "blind"})
+#     now_price = blind.text
+#     return now_price
 
-company_codes = ["KOSDAQ","KOSPI","",""]
+# company_codes = ["KOSDAQ","KOSPI","",""]
 
-while True:
-    now = datetime.now()
-    print(now)
+# while True:
+#     now = datetime.now()
+#     print(now)
 
-    for item in company_codes:
-        now_price = get_price(item)
-        print(now_price)
-    print("--------------------")
-    time.sleep(60)
+#     for item in company_codes:
+#         now_price = get_price(item)
+#         print(now_price)
+#     print("--------------------")
+#     time.sleep(60)
 
 
 
@@ -56,12 +56,14 @@ def mypage_template():
     return render_template("mypage.html")
 
 
-@app.route("/login/")
+@app.route('/login/')
 def login_template():
+    print("nono")
     return render_template("login.html")
 
-@app.route("/login/done")
+@app.route('/login/done',  methods=['POST'])
 def done_template():
+    print("hello")
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
 
@@ -69,7 +71,7 @@ def done_template():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
-    result = db.user.find_one({'id': id_receive, 'pw': pw_hash})
+    result = db.users.find_one({'username': id_receive, 'password': pw_hash})
 
     # 찾으면 JWT 토큰을 만들어 발급합니다.
     if result is not None:
@@ -87,7 +89,7 @@ def done_template():
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
     else:
-        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+        return jsonify({'result': 'fail', 'msg': '아이디 또는 비밀번호가 일치하지 않습니다.'})
 
 @app.route("/join")
 def join_template():

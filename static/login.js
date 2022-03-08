@@ -15,7 +15,9 @@ $(btn).on('click', function() {
         },1500);
     }
 })
-
+// {% if msg %}
+//     alert("{{ msg }}")
+// {% endif %}
 function login() {
     $.ajax({
         type: "POST",
