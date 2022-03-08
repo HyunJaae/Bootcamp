@@ -46,7 +46,6 @@ import time  ## 1분 단위 주가 정보를 위한 시간 측정 time
 
 
 
-
 @app.route("/")
 def index_template():
     return render_template("index.html")
@@ -56,9 +55,19 @@ def mypage_template():
     return render_template("mypage.html")
 
 
+<<<<<<< HEAD
+# mypage 상단 우측 버튼
+@app.route('/main')
+def main():
+    return render_template("main.html")
+
+@app.route("/login")
+def login():
+=======
 @app.route('/login/')
 def login_template():
     print("nono")
+>>>>>>> b0f8495c23966eb6f726ba27ef64c1b1b4a70833
     return render_template("login.html")
 
 @app.route('/login/done',  methods=['POST'])
@@ -92,8 +101,23 @@ def done_template():
         return jsonify({'result': 'fail', 'msg': '아이디 또는 비밀번호가 일치하지 않습니다.'})
 
 @app.route("/join")
-def join_template():
+def join():
     return render_template("join.html")
+
+
+# mypage get post
+@app.route("/mypage", methods=["GET"])
+def mypage_get():
+    all_users = list(db.users.find({}, {'_id': False}))
+    return jsonify({'users':all_users})
+
+@app.route("/mypage/sell", methods=["POST"])
+def stock_sell():
+    return jsonify({'msg': '매도 완료!'})
+
+
+
+
 
 
 @app.route('/sign_up/check_dup', methods=['POST'])
