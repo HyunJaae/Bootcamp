@@ -20,7 +20,7 @@ function sign_up() {
 
     // {#비번이 빈칸인지#}
     if (password == "") {
-        $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-hidden").addClass("is-danger")
+        $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
         $("#input-password").focus()
         return;
     } else if (!is_password(password)) {
@@ -47,7 +47,7 @@ function sign_up() {
         return;
     }
     else{
-         $("#help-name").text("환영합니다").removeClass("is-hidden").addClass("is-success")
+         $("#help-name").text("환영합니다").removeClass("is-danger").addClass("is-success")
     }
     $.ajax({
         type: "POST",
