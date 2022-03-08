@@ -46,6 +46,7 @@ function sign_up() {
         $("#input-name").focus()
         return;
     }
+    else{
     $.ajax({
         type: "POST",
         url: "/sign_up/save",
@@ -59,7 +60,7 @@ function sign_up() {
             window.location.replace("/login")
         }
     });
-
+ }
 }
 
 
@@ -84,12 +85,13 @@ function check_dup() {
         $("#input-username").focus()
         return;
     }
-    if (!is_nickname(username)) {
-        $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+     if (!is_nickname(username)) {
+        $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-hidden").addClass("is-danger")
         $("#input-username").focus()
         return;
     }
     $("#help-id").addClass("is-loading")
+    $("#help-id").removeClass("is-danger")
     $.ajax({
         type: "POST",
         url: "/sign_up/check_dup",
@@ -99,10 +101,10 @@ function check_dup() {
         success: function (response) {
 
             if (response["exists"]) {
-                $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
+                $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-hidden").addClass("is-danger")
                 $("#input-username").focus()
             } else {
-                $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
+                $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-hidden").addClass("is-success")
             }
             $("#help-id").removeClass("is-loading")
 
