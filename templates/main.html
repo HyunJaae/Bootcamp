@@ -61,11 +61,43 @@
         .KOS {
             display: flex;
             justify-content: space-between;
+
+        }
+
+        .kospi {
+            border: 1px gray solid;
+            padding-right: 150px;
             margin: 200px 500px;
         }
 
+        .kosdaq {
+            border: 1px gray solid;
+            padding-right: 150px;
+            margin: 200px 200px;
+        }
+
         .list-box {
-            border: 1px gary solid;
+            display: flex;
+            justify-content: space-between;
+            margin: -120px 450px;
+        }
+
+        .box1 {
+            width:300px;
+            border-top-style:inset;
+            border-bottom-style:inset;
+            border-left-style:inset;
+            border-right-style:inset;
+            padding-bottom: 300px;
+        }
+
+        .box2 {
+            width:300px;
+            border-top-style:inset;
+            border-bottom-style:inset;
+            border-left-style:inset;
+            border-right-style:inset;
+            padding-bottom: 300px;
         }
     </style>
 </head>
@@ -93,12 +125,12 @@
     </div>
 </div>
 <div class="KOS">
-    <div>KOSPI : </div>
-    <div>KOSDAQ : </div>
+    <div class="kospi">KOSPI : </div>
+    <div class="kosdaq">KOSDAQ : </div>
 </div>
 <div class="list-box">
-    <div>실시간 리스트</div>
-    <div>실시간 리스트</div>
+    <div class="box1">실시간 리스트</div>
+    <div class="box2">실시간 리스트</div>
 </div>
 </body>
 </html>
