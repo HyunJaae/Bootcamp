@@ -47,8 +47,6 @@ function sign_up() {
         return;
     }
     else{
-
-
     $.ajax({
         type: "POST",
         url: "/sign_up/save",
