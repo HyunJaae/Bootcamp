@@ -19,22 +19,22 @@ $(btn).on('click', function() {
 //     alert("{{ msg }}")
 // {% endif %}
 function login() {
+    let username = $("#id").val();
+    let password = $("#pw").val();
     $.ajax({
         type: "POST",
-        url: "/login/done",
-        data: {id_give: $('#id').val(), pw_give: $('#pw').val()},
+        url: "/loginDone/",
+        data: {
+            username_give: username,
+            password_give: password
+        },
         success: function (response) {
             if (response['result'] == 'success') {
-                // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
-                // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
-                $.cookie('mytoken', response['token']);
-
-                alert('로그인 완료!')
-                window.location.href = '/'
+                $.cookie('mytoken', response['token'], {path: '/'});
+                window.location.replace("/")
             } else {
-                // 로그인이 안되면 에러메시지를 띄웁니다.
                 alert(response['msg'])
             }
         }
-    })
+    });
 }
