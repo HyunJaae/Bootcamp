@@ -1,9 +1,11 @@
 from http import client
 from flask import Flask, flash, render_template, request, url_for, jsonify, redirect, session
 from pymongo import MongoClient
+from datetime import timedelta, datetime
 import jwt
 import datetime
 import hashlib
+
 app = Flask(__name__)
 
 SECRET_KEY = 'GAZUAA'
@@ -54,47 +56,33 @@ def index_template():
 def mypage_template():
     return render_template("mypage.html")
 
-
-<<<<<<< HEAD
 # mypage 상단 우측 버튼
 @app.route('/main')
 def main():
     return render_template("main.html")
 
-@app.route("/login")
-def login():
-=======
 @app.route('/login/')
 def login_template():
     print("nono")
->>>>>>> b0f8495c23966eb6f726ba27ef64c1b1b4a70833
     return render_template("login.html")
 
-@app.route('/login/done',  methods=['POST'])
-def done_template():
-    print("hello")
-    id_receive = request.form['id_give']
-    pw_receive = request.form['pw_give']
+@app.route('/loginDone/', methods=["POST"])
+def sign_in():
+    # 로그인
+    username_receive = request.form['username_give']
+    password_receive = request.form['password_give']
+    print(username_receive, password_receive)
 
-    # 회원가입 때와 같은 방법으로 pw를 암호화합니다.
-    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.users.find_one({'username': username_receive, 'password': pw_hash})
 
-    # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
-    result = db.users.find_one({'username': id_receive, 'password': pw_hash})
-
-    # 찾으면 JWT 토큰을 만들어 발급합니다.
     if result is not None:
-        # JWT 토큰에는, payload와 시크릿키가 필요합니다.
-        # 시크릿키가 있어야 토큰을 디코딩(=풀기) 해서 payload 값을 볼 수 있습니다.
-        # 아래에선 id와 exp를 담았습니다. 즉, JWT 토큰을 풀면 유저ID 값을 알 수 있습니다.
-        # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
-            'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5)
+         'id': username_receive,
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
-        # token을 줍니다.
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
     else:
