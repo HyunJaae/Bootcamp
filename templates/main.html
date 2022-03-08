@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .top-box {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        .menu {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .main {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .search {
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
+
+        .searchTerm {
+            width: 100%;
+            border: 3px solid #00B4CC;
+            border-right: none;
+            padding: 5px;
+            height: 20px;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #9DBFAF;
+        }
+
+
+        .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid #00B4CC;
+            background: #00B4CC;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .wrap {
+            width: 30%;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<nav class="nav" style="">
+    <div class="top-box" style="">
+        <div class="logo" style="margin-left: 30px; margin-top: 20px;"><a
+                href="http://localhost:63342/miniproject/main.html?_ijt=kogamuagr6jfam8ahkqaj2mg5d&_ij_reload=RELOAD_ON_SAVE">gazuaaaaaa</a>
+        </div>
+
+        <div class="menu">
+            <div class="mypage" style="margin-right: 50px;"><a href="https://www.naver.com/">my page</a></div>
+            <div class="login" style="margin-right: 50px;"><a href="/login/">login</a></div>
+            <div class="sign" style="margin-right: 50px;"><a href="/join">sign in</a></div>
+        </div>
+    </div>
+</nav>
+<h1 class="main">gazuaaaaaa</h1>
+<div class="wrap">
+    <div class="search">
+        <input type="text" class="searchTerm" placeholder="검색...">
+        <button type="submit" class="searchButton">🔍
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</div>
+</body>
+</html>
