@@ -42,19 +42,38 @@ while True:
 
 
 
-
 @app.route("/")
 def index_template():
     return render_template("index.html")
 
 
-@app.route("/login/")
-def login_template():
+# mypage 상단 우측 버튼
+@app.route('/main')
+def main():
+    return render_template("main.html")
+
+@app.route("/login")
+def login():
     return render_template("login.html")
 
 @app.route("/join")
-def join_template():
+def join():
     return render_template("join.html")
+
+
+# mypage get post
+@app.route("/mypage", methods=["GET"])
+def mypage_get():
+    all_users = list(db.users.find({}, {'_id': False}))
+    return jsonify({'users':all_users})
+
+@app.route("/mypage/sell", methods=["POST"])
+def stock_sell():
+    return jsonify({'msg': '매도 완료!'})
+
+
+
+
 
 
 @app.route('/sign_up/check_dup', methods=['POST'])
