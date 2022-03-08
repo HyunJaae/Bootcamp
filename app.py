@@ -28,6 +28,18 @@ def get_price(company_code):
     now_price = blind.text
     return now_price
 
+company_codes = ["KOSDAQ","KOSPI","",""]
+
+while True:
+    now = datetime.now()
+    print(now)
+
+    for item in company_codes:
+        now_price = get_price(itme)
+        print(now_price)
+    print("--------------------")
+    time.sleep(60)
+
 
 
 
