@@ -15,30 +15,30 @@ from datetime import datetime ##현재시각 출력 datetime
 import requests  ## url 정보를 받아오기 위한 requests
 import time  ## 1분 단위 주가 정보를 위한 시간 측정 time
 
-def get_code(company_code):
-    url = "https://m.stock.naver.com/domestic/index/" + company_code
-    result = requests.get(url)
-    bs_obj = BeautifulSoup(result.content, "html.parser")
-    return bs_obj
-
-def get_price(company_code):
-    bs_obj = get_code(company_code)
-    no_today = bs_obj.find("p", {"class": "no_today"})
-    blind = no_today.find("span", {"class": "blind"})
-    now_price = blind.text
-    return now_price
-
-company_codes = ["KOSDAQ","KOSPI","",""]
-
-while True:
-    now = datetime.now()
-    print(now)
-
-    for item in company_codes:
-        now_price = get_price(itme)
-        print(now_price)
-    print("--------------------")
-    time.sleep(60)
+# def get_code(company_code):
+#     url = "https://m.stock.naver.com/domestic/index/" + company_code
+#     result = requests.get(url)
+#     bs_obj = BeautifulSoup(result.content, "html.parser")
+#     return bs_obj
+#
+# def get_price(company_code):
+#     bs_obj = get_code(company_code)
+#     no_today = bs_obj.find("p", {"class": "no_today"})
+#     blind = no_today.find("span", {"class": "blind"})
+#     now_price = blind.text
+#     return now_price
+#
+# company_codes = ["KOSDAQ","KOSPI","",""]
+#
+# while True:
+#     now = datetime.now()
+#     print(now)
+#
+#     for item in company_codes:
+#         now_price = get_price(item)
+#         print(now_price)
+#     print("--------------------")
+#     time.sleep(60)
 
 
 
@@ -63,6 +63,7 @@ def check_dup():
     exists = bool(db.users.find_one({"username": username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
+
 @app.route('/sign_up/save', methods=['POST'])
 def sign_up():
     username_receive = request.form['username_give']
@@ -74,10 +75,10 @@ def sign_up():
         "username": username_receive,                               # 아이디
         "password": password_hash,                                  # 비밀번호
         "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
-        "name" : name_receive,                                      # 유저 이름
-        "profile_pic": "",                                          # 프로필 사진 파일 이름
-        "profile_pic_real": "profile_pics/profile_placeholder.png", # 프로필 사진 기본 이미지
-        "profile_info": ""                                          # 프로필 한 마디
+        "name" : name_receive                                    # 유저 이름
+                                                 # 프로필 사진 파일 이름
+                                                # 프로필 사진 기본 이미지
+                                               # 프로필 한 마디
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
