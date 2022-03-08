@@ -2,114 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <style>
-        .top-box {
-            display: flex;
-            justify-content: space-between;
-        }
-
-
         .menu {
             display: flex;
-            margin-top: 20px;
+            justify-content: space-between;
+            margin: 20px;
         }
 
-        .main {
-            margin-top: 100px;
-            text-align: center;
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            margin-right: 0px;
         }
 
-        .search {
-            width: 100%;
-            position: relative;
+        .card {
+            width: 300px;
+            height: 200px;
+            margin: 10px;
+            margin-top: 50px;
+            padding: 10px;
+        }
+
+        .card-boxs {
             display: flex;
         }
 
-        .searchTerm {
-            width: 100%;
-            border: 3px solid #00B4CC;
-            border-right: none;
-            padding: 5px;
-            height: 20px;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-            color: #9DBFAF;
+        .btn {
+            width: 70px;
+            height: 50px;
+            margin: 30px;
+            margin-top: 100px;
+            display: inline-block;
+            justify-content: center;
+            background-color: #00B4CC;
         }
 
-
-        .searchButton {
-            width: 40px;
-            height: 36px;
-            border: 1px solid #00B4CC;
-            background: #00B4CC;
-            text-align: center;
-            color: #fff;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-size: 20px;
+        .table {
+            width: 400px;
+            height: 200px;
+            float: right;
         }
 
         .wrap {
             width: 30%;
             position: absolute;
-            top: 30%;
-            left: 50%;
+            top: 10%;
+            left: 60%;
             transform: translate(-50%, -50%);
         }
-
-        .KOS {
-            display: flex;
-            margin: 200px 500px;
-            justify-content: space-between;
-
-        }
-
-        .kospi {
-            border: 1px gray solid;
-            padding-right: 150px;
-        }
-
-        .kosdaq {
-            border: 1px gray solid;
-            padding-right: 150px;
-        }
-
-        .list-box {
-            display: flex;
-            justify-content: space-between;
-            margin: -120px 450px;
-        }
-
-        .box1 {
-            width:300px;
-            border: inset;
-            padding-bottom: 300px;
-        }
-
-        .box2 {
-            width:300px;
-            border: inset;
-            padding-bottom: 300px;
-        }
     </style>
+    <script>
+        function buy(){
+            alert('매수되었습니다.');
+        }
+    </script>
 </head>
 <body>
-<nav class="nav" style="">
-    <div class="top-box" style="">
-        <div class="logo" style="margin-left: 30px; margin-top: 20px;"><a
-                href="http://localhost:63342/miniproject/main.html?_ijt=kogamuagr6jfam8ahkqaj2mg5d&_ij_reload=RELOAD_ON_SAVE">gazuaaaaaa</a>
-        </div>
 
-        <div class="menu">
-            <div class="mypage" style="margin-right: 50px;"><a href="http://localhost:63342/Gazuaaaaa/templates/mypage.html?_ijt=dbbklrco8pst208ri7jg7bnvdb&_ij_reload=RELOAD_ON_SAVE">my page</a></div>
-            <div class="login" style="margin-right: 50px;"><a href="/login/">login</a></div>
-            <div class="sign" style="margin-right: 50px;"><a href="/join">sign in</a></div>
+<h1></h1>
+<div class="menu">
+    <div class="logo">
+        <div class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">gazuaaa</a>
         </div>
     </div>
-</nav>
-<h1 class="main">gazuaaaaaa</h1>
+    <div class="nav-menu">
+        <div class="nav-item">
+            <a class="nav-link" href="/mypage/">my page</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link" href="/login/">login</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-link disabled" href="/join" tabindex="-1" aria-disabled="true">sign in</a>
+        </div>
+    </div>
+</div>
 <div class="wrap">
     <div class="search">
         <input type="text" class="searchTerm" placeholder="검색...">
@@ -118,13 +89,262 @@
         </button>
     </div>
 </div>
-<div class="KOS">
-    <div class="kospi">KOSPI : </div>
-    <div class="kosdaq">KOSDAQ : </div>
+<button type="button" class="btn btn-primary">KOSPI</button>
+<div class="card-boxs">
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
 </div>
-<div class="list-box">
-    <div class="box1">실시간 리스트</div>
-    <div class="box2">실시간 리스트</div>
+
+<button type="button" class="btn btn-primary">KOSDAQ</button>
+<div class="card-boxs">
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
+    <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        삼성전자
+                    </p>
+                    <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+                    </button>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        ------
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+                </footer>
+            </div>
 </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>hanghae99</strong> by <a href="https://jgthms.com">6기 8조</a> mini project
+      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+    </p>
+  </div>
+</footer>
 </body>
 </html>
