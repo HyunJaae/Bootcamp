@@ -13,6 +13,10 @@ db = client.gazuaaa
 def index_template():
     return render_template("index.html")
 
+@app.route("/mypage/")
+def mypage_template():
+    return render_template("mypage.html")
+
 
 @app.route("/login/")
 def login_template():
