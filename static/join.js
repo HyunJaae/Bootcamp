@@ -47,6 +47,8 @@ function sign_up() {
         return;
     }
     else{
+         $("#help-name").text("환영합니다").removeClass("is-hidden").addClass("is-success")
+    }
     $.ajax({
         type: "POST",
         url: "/sign_up/save",
@@ -60,7 +62,7 @@ function sign_up() {
             window.location.replace("/login")
         }
     });
- }
+
 }
 
 
