@@ -39,7 +39,7 @@ while True:
     print(now)
 
     for item in company_codes:
-        now_price = get_price(itme)
+        now_price = get_price(item)
         print(now_price)
     print("--------------------")
     time.sleep(60)
