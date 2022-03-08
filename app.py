@@ -1,9 +1,11 @@
 from http import client
 from flask import Flask, flash, render_template, request, url_for, jsonify, redirect, session
 from pymongo import MongoClient
+from datetime import timedelta, datetime
 import jwt
 import datetime
 import hashlib
+
 app = Flask(__name__)
 
 SECRET_KEY = 'GAZUAA'
@@ -12,38 +14,6 @@ import certifi
 ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
-
-### bs4 라이브러리
-from bs4 import BeautifulSoup
-from datetime import datetime ##현재시각 출력 datetime
-import requests  ## url 정보를 받아오기 위한 requests
-import time  ## 1분 단위 주가 정보를 위한 시간 측정 time
-
-# def get_code(company_code):
-#     url = "https://m.stock.naver.com/domestic/index/" + company_code
-#     result = requests.get(url)
-#     bs_obj = BeautifulSoup(result.content, "html.parser")
-#     return bs_obj
-
-# def get_price(company_code):
-#     bs_obj = get_code(company_code)
-#     no_today = bs_obj.find("p", {"class": "no_today"})
-#     blind = no_today.find("span", {"class": "blind"})
-#     now_price = blind.text
-#     return now_price
-
-# company_codes = ["KOSDAQ","KOSPI","",""]
-
-# while True:
-#     now = datetime.now()
-#     print(now)
-
-#     for item in company_codes:
-#         now_price = get_price(item)
-#         print(now_price)
-#     print("--------------------")
-#     time.sleep(60)
-
 
 
 @app.route("/")
@@ -54,6 +24,7 @@ def index_template():
 def mypage_template():
     return render_template("mypage.html")
 
+<<<<<<< HEAD
 
 
 # mypage 상단 버튼
@@ -62,6 +33,16 @@ def main():
     return render_template("main.html")
 @app.route("/login")
 def login():
+=======
+# mypage 상단 우측 버튼
+@app.route('/main')
+def main():
+    return render_template("main.html")
+
+@app.route('/login/')
+def login_template():
+    print("nono")
+>>>>>>> 58f796340c6502b36501cdea303a95f757aaf5db
     return render_template("login.html")
 @app.route("/join")
 def join():
@@ -77,31 +58,23 @@ def stock_sell():
     return jsonify({'msg': '매도 완료!'})
 
 
-@app.route('/login/done',  methods=['POST'])
-def done_template():
-    print("hello")
-    id_receive = request.form['id_give']
-    pw_receive = request.form['pw_give']
+@app.route('/loginDone/', methods=["POST"])
+def sign_in():
+    # 로그인
+    username_receive = request.form['username_give']
+    password_receive = request.form['password_give']
+    print(username_receive, password_receive)
 
-    # 회원가입 때와 같은 방법으로 pw를 암호화합니다.
-    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.users.find_one({'username': username_receive, 'password': pw_hash})
 
-    # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
-    result = db.users.find_one({'username': id_receive, 'password': pw_hash})
-
-    # 찾으면 JWT 토큰을 만들어 발급합니다.
     if result is not None:
-        # JWT 토큰에는, payload와 시크릿키가 필요합니다.
-        # 시크릿키가 있어야 토큰을 디코딩(=풀기) 해서 payload 값을 볼 수 있습니다.
-        # 아래에선 id와 exp를 담았습니다. 즉, JWT 토큰을 풀면 유저ID 값을 알 수 있습니다.
-        # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
-            'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5)
+         'id': username_receive,
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
-        # token을 줍니다.
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
     else:
