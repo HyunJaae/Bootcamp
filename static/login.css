@@ -6,7 +6,8 @@
     align-items: center;
     position: relative;
     padding: 5px;
-    border-bottom: solid 1px #999;
+    border-bottom: solid 1px rgb(233, 233, 233);
+    box-shadow: 0.7em 0.7em 1.2em rgb(233, 231, 231);
 }
 .main_logo h1 > a {
     text-decoration-line: none;
