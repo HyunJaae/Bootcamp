@@ -20,7 +20,7 @@ import requests  ## url 정보를 받아오기 위한 requests
 import time  ## 1분 단위 주가 정보를 위한 시간 측정 time
 
 def get_code(company_code):
-    url = "https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=bjA3&pkid=194&qvt=0&query=" + company_code
+    url = "https://m.stock.naver.com/domestic/index/" + company_code
     result = requests.get(url)
     bs_obj = BeautifulSoup(result.content, "html.parser")
     return bs_obj
