@@ -18,22 +18,18 @@ db = client.gazuaaa
 
 @app.route("/")
 def index_template():
-    return render_template("index.html")
+    return render_template("main.html")
 
+# mypage 상단 좌측 버튼
+@app.route('/main')
+def main():
+    return render_template("main.html")
+
+# mypage 상단 우측 버튼
 @app.route("/mypage/")
 def mypage_template():
     return render_template("mypage.html")
-
-<<<<<<< HEAD
-# mypage 상단 우측 버튼
-@app.route('main')
-=======
-# mypage 상단 버튼
-@app.route('/main')
->>>>>>> d65d64eb7dff2cc24c786bb67bdaa9bf926ee101
-def main():
-    return render_template("main.html")
-@app.route("/login")
+@app.route("/login/")
 def login():
     return render_template("login.html")
 @app.route("/join")
@@ -48,8 +44,6 @@ def mypage_get():
 @app.route("/mypage/sell", methods=["POST"])
 def stock_sell():
     return jsonify({'msg': '매도 완료!'})
-
-
 
 @app.route('/login_Done/', methods=["POST"])
 def sign_in():
@@ -72,14 +66,6 @@ def sign_in():
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디 또는 비밀번호가 일치하지 않습니다.'})
-
-
-
-
-
-
-
-
 
 
 
