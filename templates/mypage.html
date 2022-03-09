@@ -13,8 +13,10 @@
         crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css')}}">
+    <script src="{{ url_for('static', filename='mypage.js') }}"></script>
 
     <title>Gazuaaaaaa | 주식정보</title>
+
 
     <script>
 
@@ -75,9 +77,9 @@
             window.location.href = "/login"
         }
     </script>
-</head>
+
 <body>
-    <div class="top-bar">
+  <div class="top-bar">
         <button onclick="goMain()" class="logo">back◁</button>
         <div class="menu">
             <ul style="list-style:none" class="bar-list">
@@ -86,19 +88,44 @@
             </ul>
 	    </div>
     </div>
+
+    <div class="top-bar">
+        <h1 class="logo"><a href="/">Gazuaa</a></h1>
+            <div class="menu">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    @username
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li>
+                        <button onclick="sign_out()" class="dropdown-item" type="button">logout</button>
+                    </li>
+                    <li>
+                        <button onclick="goJoin()" class="dropdown-item" type="button">join</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
     <div class="header">
         <div class="left"></div>
         <div class="middle"><h3>My page</h3></div>
         <div class="right">
-            최근 검색어: <a href="#">1 순위</a>
+            최근 검색어: <a href="#">삼성전자</a>
         </div>
     </div>
     <div>
-        <button onclick="showhide()" class="my-buy"><h5 class="buy-title" >나의 매수 목록 ▽</h5></button>
+        <button onclick="showhide()" class="my-buy"><h4 class="buy-title" >나의 매수 목록 🔁 </h4></button>
     </div>
 
-    <div id="stock-list" class="wrap">
+    <div class="wrap" id="stock-list" >
             <div id="stock-detail" class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">test</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">test</h6>
+                    <button onclick="sell()" id="button" type="button" class="btn btn-outline-danger">매도</button>
+                </div>
             </div>
     </div>
 </body>
