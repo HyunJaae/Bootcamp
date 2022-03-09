@@ -24,8 +24,13 @@ def index_template():
 def mypage_template():
     return render_template("mypage.html")
 
+<<<<<<< HEAD
+# mypage 상단 우측 버튼
+@app.route('main')
+=======
 # mypage 상단 버튼
 @app.route('/main')
+>>>>>>> d65d64eb7dff2cc24c786bb67bdaa9bf926ee101
 def main():
     return render_template("main.html")
 @app.route("/login")

@@ -2,58 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>gazuaaa</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
-    <style>
-        .menu {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px;
-        }
-
-        .nav-menu {
-            display: flex;
-            justify-content: space-between;
-            margin-right: 0px;
-        }
-
-        .card {
-            width: 300px;
-            height: 200px;
-            margin: 10px;
-            margin-top: 50px;
-            padding: 10px;
-        }
-
-        .card-boxs {
-            display: flex;
-        }
-
-        .btn {
-            width: 70px;
-            height: 50px;
-            margin: 30px;
-            margin-top: 100px;
-            display: inline-block;
-            justify-content: center;
-            background-color: #00B4CC;
-        }
-
-        .table {
-            width: 400px;
-            height: 200px;
-            float: right;
-        }
-
-        .wrap {
-            width: 30%;
-            position: absolute;
-            top: 10%;
-            left: 60%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css?after')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <script>
         function buy(){
             alert('매수되었습니다.');
@@ -62,25 +15,26 @@
 </head>
 <body>
 
-<h1></h1>
-<div class="menu">
-    <div class="logo">
-        <div class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">gazuaaa</a>
-        </div>
-    </div>
-    <div class="nav-menu">
-        <div class="nav-item">
-            <a class="nav-link" href="/mypage/">my page</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link" href="/login/">login</a>
-        </div>
-        <div class="nav-item">
-            <a class="nav-link disabled" href="/join" tabindex="-1" aria-disabled="true">sign in</a>
-        </div>
-    </div>
+<section class="hero is-primary">
+  <div class="hero-body">
+    <p class="title">
+    </p>
+    <p class="subtitle">
+    </p>
+  </div>
+    <div class="tabs is-centered">
+  <ul>
+    <li class="is-active"><a class="nav-link active" aria-current="page" href="main.html">Home</a>
+    </li>
+    <li><a class="nav-link" href="/mypage/">my page</a></li>
+    <li><a class="nav-link" href="/login/">login</a></li>
+    <li><a class="nav-link disabled" href="/join" tabindex="-1" aria-disabled="true">join</a></li>
+  </ul>
 </div>
+</section>
+
+
+
 <div class="wrap">
     <div class="search">
         <input type="text" class="searchTerm" placeholder="검색...">
@@ -104,11 +58,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -125,11 +79,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -146,11 +100,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -167,11 +121,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -188,11 +142,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -213,11 +167,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -234,11 +188,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -255,11 +209,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -276,11 +230,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -297,11 +251,11 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        ------
+                        70,000
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item" onclick="buy()">매수</a>
+                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
                     <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
                 </footer>
             </div>
@@ -311,28 +265,29 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">인기 검색 종목</th>
+      <th scope="col">시가</th>
+      <th scope="col">전일 대비</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>삼성전자</td>
+      <td>69,500</td>
+      <td>▼600</td>
     </tr>
     <tr>
       <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+      <td>카카오</td>
+      <td>92,100</td>
+      <td>🔺500</td>
     </tr>
     <tr>
       <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
+      <td>SK 하이닉스</td>
+      <td>118,000</td>
+      <td>🔺1,500</td>
     </tr>
   </tbody>
 </table>
@@ -341,7 +296,7 @@
   <div class="content has-text-centered">
     <p>
       <strong>hanghae99</strong> by <a href="https://jgthms.com">6기 8조</a> mini project
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      <a href="https://github.com/Gazuaaaaaa/Gazuaaaaa">GITHUP</a>. The website content
       is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
     </p>
   </div>

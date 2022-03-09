@@ -1,0 +1,47 @@
+* {font-family: 'Jua', sans-serif;}
+
+.card {
+    width: 270px;
+    height: 200px;
+    margin: 10px;
+    margin-top: 50px;
+    padding: 10px;
+}
+
+.card-boxs {
+    display: flex;
+}
+
+.btn {
+    width: 70px;
+    height: 50px;
+    margin: 30px;
+    margin-top: 100px;
+    display: inline-block;
+    justify-content: center;
+    background-color: #00B4CC;
+}
+
+.table {
+    position: fixed;
+    right: 50%;
+    top: 180px;
+    margin-right: -920px;
+    text-align: center;
+    width: 300px;
+    height: 200px;
+
+
+}
+
+.wrap {
+    width: 30%;
+    position: absolute;
+    top: 25%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.searchTerm {
+    margin-right: ;
+}
