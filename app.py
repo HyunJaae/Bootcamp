@@ -14,24 +14,21 @@ import certifi
 ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
-print(ca)
-# client = MongoClient('mongodb+srv://test:sparta@cluster0.clmqe.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
-# db = client.sparta
 
+@app.route("/")
+def index_template():
+    return render_template("main.html")
 
+# mypage 상단 좌측 버튼
+@app.route('/main')
+def main():
+    return render_template("main.html")
 
+# mypage 상단 우측 버튼
 @app.route("/mypage/")
 def mypage_template():
     return render_template("mypage.html")
 
-
-# mypage 상단 우측 버튼
-
-
-# mypage 상단 버튼
-@app.route('/')
-def main_template():
-    return render_template("main.html")
 @app.route("/login/")
 def login():
     return render_template("login.html")
@@ -50,8 +47,6 @@ def mypage_get():
 @app.route("/mypage/sell", methods=["POST"])
 def stock_sell():
     return jsonify({'msg': '매도 완료!'})
-
-
 
 @app.route('/login_Done/', methods=["POST"])
 def sign_in():
@@ -76,14 +71,6 @@ def sign_in():
     except:
         print("예외")
         return jsonify({'result': 'fail', 'msg': '그냥 안됩니다.'})
-
-
-
-
-
-
-
-
 
 
 @app.route('/sign_up/check_dup', methods=['POST'])

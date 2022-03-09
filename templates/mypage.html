@@ -16,14 +16,19 @@
     <title>Gazuaaaaaa | 주식정보</title>
 
     <script>
+         $(document).ready(function () {
+            $('#stock-list').show()
 
+        });
+        // 나의 매수 목록 버튼 클릭시 데이터 업데이트
         function showhide() {
-            if ($('#stock-list').css('display') == 'none') {
-                $('#stock-list').show();
-            } else {
-                $('#stock-list').hide();
-                window.location.reload()
-            }
+             window.location.reload()
+            // if ($('#stock-list').css('display') == 'none') {
+            //     $('#stock-list').show();
+            // } else {
+            //     $('#stock-list').hide();
+            //     window.location.reload()
+            // }
             $.ajax({
             type: "GET",
             url: "/mypage",
@@ -49,9 +54,9 @@
         function myPage(){
             window.location.reload()
         }
-        function goMain(){
-            window.location.href ="/main"
-        }
+        // function goMain(){
+        //     window.location.href ="/main"
+        // }
         function goLogin(){
             window.location.href ="/login"
         }
@@ -72,7 +77,7 @@
 </head>
 <body>
     <div class="top-bar">
-        <button onclick="goMain()" class="logo">back◁</button>
+        <h1 class="logo"><a href="/">back◁</a></h1>
         <div class="menu">
             <ul style="list-style:none" class="bar-list">
                 <li><button onclick="myPage()" type="button" class="btn btn-link">mypage</button></li>
@@ -89,11 +94,16 @@
         </div>
     </div>
     <div>
-        <button onclick="showhide()" class="my-buy"><h5 class="buy-title" >나의 매수 목록 ▽</h5></button>
+        <button onclick="showhide()" class="my-buy"><h4 class="buy-title" >나의 매수 목록 🔁 </h4></button>
     </div>
 
-    <div id="stock-list" class="wrap">
+    <div class="wrap" id="stock-list" >
             <div id="stock-detail" class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">test</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">test</h6>
+                    <button onclick="sell()" id="button" type="button" class="btn btn-outline-danger">매도</button>
+                </div>
             </div>
     </div>
 </body>
