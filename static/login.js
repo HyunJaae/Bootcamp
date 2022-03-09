@@ -25,7 +25,6 @@ function sign_in() {
     console.log(username,password)
     $.ajax({
         type: "POST",
-        dataType: 'json',
         url: "/login_Done/",
         data: {
             username_give: username,
