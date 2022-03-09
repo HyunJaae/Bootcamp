@@ -3,7 +3,7 @@ from flask import Flask, flash, render_template, request, url_for, jsonify, redi
 from pymongo import MongoClient
 from datetime import timedelta, datetime
 import jwt
-
+import logging
 import hashlib
 
 app = Flask(__name__)
@@ -25,6 +25,7 @@ def main_template():
 def mypage_template():
     return render_template("mypage.html")
 
+<<<<<<< HEAD
 # 나의 정보 보여주기
 # @app.route("/mypage_done")
 # def my_template():
@@ -41,6 +42,12 @@ def main():
     return render_template("main.html")
 
 # mypage 상단 우측 버튼
+=======
+@app.route("/login/")
+def login():
+    return render_template("login.html")
+
+>>>>>>> 1417b6a1e392403650048477892f359b898a4ce1
 
 @app.route("/join")
 def join():
@@ -60,25 +67,26 @@ def stock_sell():
 @app.route('/login_Done/', methods=["POST"])
 def sign_in():
     # 로그인
-    username_receive = request.form['username_give']
-    password_receive = request.form['password_give']
-    print(username_receive, password_receive)
-
-    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
-    result = db.users.find_one({'username': username_receive, 'password': pw_hash})
-
-    if result is not None:
-        payload = {
-         'id': username_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
-        }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
-
-        return jsonify({'result': 'success', 'token': token})
-    # 찾지 못하면
-    else:
-        return jsonify({'result': 'fail', 'msg': '아이디 또는 비밀번호가 일치하지 않습니다.'})
-
+    try:
+        username_receive = request.form['username_give']
+        password_receive = request.form['password_give']
+        print(username_receive, password_receive)
+        pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+        print(pw_hash)
+        result = db.users.find_one({'username': username_receive, 'password': pw_hash})
+        if result is not None:
+            payload = {
+            'id': username_receive,
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+            }
+            token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+            return jsonify({'result': 'success', 'token': token})
+        # 찾지 못하면
+        else:
+            return jsonify({'result': 'fail', 'msg': '아이디 또는 비밀번호가 일치하지 않습니다.'})
+    except:
+        print("예외")
+        return jsonify({'result': 'fail', 'msg': '그냥 안됩니다.'})
 
 
 @app.route('/sign_up/check_dup', methods=['POST'])
