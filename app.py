@@ -15,18 +15,32 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Clust
 db = client.gazuaaa
 
 @app.route("/")
-def index_template():
+def main_template():
     return render_template("main.html")
 
-# mypage 상단 좌측 버튼
+
+# mypage 보여주기
+@app.route("/mypage/")
+def mypage_template():
+    return render_template("mypage.html")
+
+
+# 나의 정보 보여주기
+# @app.route("/mypage_done")
+# def my_template():
+#     token_receive = request.cookies.get('mytoken', SECRET_KEY, algorithm=['HS256'])
+#     try:
+#         payload = jwt.decode(token_receive)
+#         user_info = db.users.find_one({"username": payload["id"]})
+#         return render_template('mypage.html', user_info=user_info["nick"])
+
+
+#  mypage 상단 좌측 버튼
 @app.route('/main')
 def main():
     return render_template('main.html')
 
 # mypage 상단 우측 버튼
-@app.route("/mypage/")
-def mypage_template():
-    return render_template("mypage.html")
 
 @app.route("/login/")
 def login():
@@ -36,17 +50,19 @@ def login():
     else:
         return render_template("login.html")
 
+>>>>>>> 1417b6a1e392403650048477892f359b898a4ce1
 
 @app.route("/join")
 def join():
     return render_template("join.html")
 
-# mypage get post
-@app.route("/mypage", methods=["GET"])
+# mypage
+# 나의 주식데이터 가져오기
+@app.route("/mypage/get", methods=["GET"])
 def mypage_get():
-    all_users = list(db.users.find({}, {'_id': False}))
-    return jsonify({'users':all_users})
-
+    my_stocks = list(db.users.find({}, {'_id': False}))
+    return jsonify({'stocks': my_stocks})
+# 나의 주식데이터 삭제
 @app.route("/mypage/sell", methods=["POST"])
 def stock_sell():
     return jsonify({'msg': '매도 완료!'})
