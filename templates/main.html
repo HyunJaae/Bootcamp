@@ -2,15 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>gazuaaa</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
+    <title>gazuaaa</title>
+
     <script>
         function buy(){
             alert('매수되었습니다.');
         }
+
+
+        function show_kospi(){
+            $.ajax({
+                type: 'GET',
+                url: '/main/kospi',
+                data: {},
+                success: function (response) {
+                    let kospis = response['kospi']
+                    console.log(kospis)
+                }
+            })
+        }
+        function show_kosdaq(){
+            $.ajax({
+                type: 'GET',
+                url: '/main/kosdaq',
+                data: {},
+                success: function (response) {
+                    let kosdaq = response['kosdaq']
+                    console.log(kosdaq)
+                }
+            })
+        }
+
+
     </script>
 </head>
 <body>
@@ -43,7 +79,7 @@
         </button>
     </div>
 </div>
-<button type="button" class="btn btn-primary">KOSPI</button>
+<button onclick="show_kospi()" type="button" class="btn btn-primary">KOSPI</button>
 <div class="card-boxs">
     <div class="card">
                 <header class="card-header">
@@ -152,7 +188,7 @@
             </div>
 </div>
 
-<button type="button" class="btn btn-primary">KOSDAQ</button>
+<button onclick="show_kosdaq()" type="button" class="btn btn-primary">KOSDAQ</button>
 <div class="card-boxs">
     <div class="card">
                 <header class="card-header">
