@@ -37,8 +37,8 @@
     <script>
         function buy(){
             alert('매수되었습니다.');
-        }
 
+        }
 
         function show_kospi(){
             $.ajax({
@@ -63,13 +63,6 @@
                 }
             })
         }
-
-        function sign_out() {
-            $.removeCookie('mytoken', {path: '/'})
-            window.location.replace('/main')
-        }
-
-
     </script>
 </head>
 <body>
