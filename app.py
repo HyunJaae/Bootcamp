@@ -109,7 +109,6 @@ def sign_up():
         "profile_name": username_receive,
         "name" : name_receive
 
-
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
