@@ -3,7 +3,6 @@ from flask import Flask, flash, render_template, request, url_for, jsonify, redi
 from pymongo import MongoClient
 from datetime import timedelta, datetime
 import jwt
-import logging
 import hashlib
 
 app = Flask(__name__)
@@ -22,7 +21,7 @@ def index_template():
 # mypage 상단 좌측 버튼
 @app.route('/main')
 def main():
-    return render_template("main.html")
+    return render_template('main.html')
 
 # mypage 상단 우측 버튼
 @app.route("/mypage/")
