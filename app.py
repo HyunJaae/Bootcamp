@@ -16,6 +16,7 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Clust
 db = client.gazuaaa
 
 
+<<<<<<< HEAD
 @app.route("/")
 def index_template():
     return render_template("main.html")
@@ -29,12 +30,32 @@ def main():
 @app.route("/mypage/")
 def mypage_template():
     return render_template("mypage.html")
+=======
+
+@app.route("/mypage/")
+def mypage_template():
+    return render_template("mypage.html")
+
+
+# mypage 상단 우측 버튼
+
+
+# mypage 상단 버튼
+@app.route('/')
+def main_template():
+    return render_template("main.html")
+
+
+>>>>>>> 87248b149bb1ffb4cecc688c7a0c8bd4bf69a4c1
 @app.route("/login/")
 def login():
     return render_template("login.html")
+
+
 @app.route("/join")
 def join():
     return render_template("join.html")
+
 # mypage get post
 @app.route("/mypage", methods=["GET"])
 def mypage_get():
