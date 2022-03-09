@@ -25,7 +25,7 @@ def mypage_template():
     return render_template("mypage.html")
 
 # mypage 상단 우측 버튼
-@app.route('/main')
+@app.route('main')
 def main():
     return render_template("main.html")
 

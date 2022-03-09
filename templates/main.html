@@ -2,69 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>gazuaaa</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
-    <style>
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-    </style>
-    <style>
-        * {
-            font-family: 'Jua', sans-serif;
-        }
-        .menu {
-            display: flex;
-            justify-content: space-between;
-            margin: 30px;
-            color: black;
-        }
-
-        .nav-menu {
-            display: flex;
-            padding-right: 20px;
-            align-items: center;
-        }
-
-        .nav-item {
-            margin-right: 20px;
-        }
-
-        .card {
-            width: 300px;
-            height: 200px;
-            margin: 10px;
-            margin-top: 50px;
-            padding: 10px;
-        }
-
-        .card-boxs {
-            display: flex;
-        }
-
-        .btn {
-            width: 70px;
-            height: 50px;
-            margin: 30px;
-            margin-top: 100px;
-            display: inline-block;
-            justify-content: center;
-            background-color: #00B4CC;
-        }
-
-        .table {
-            width: 400px;
-            height: 200px;
-            float: right;
-        }
-
-        .wrap {
-            width: 30%;
-            position: absolute;
-            top: 25%;
-            left: 60%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css?after')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <script>
         function buy(){
             alert('매수되었습니다.');
@@ -82,30 +24,13 @@
   </div>
     <div class="tabs is-centered">
   <ul>
-    <li class="is-active"><a>Home</a></li>
-    <li><a>my page</a></li>
-    <li><a>login</a></li>
-    <li><a>join</a></li>
+    <li class="is-active"><a class="nav-link active" aria-current="page" href="main.html">Home</a>
+    </li>
+    <li><a class="nav-link" href="/mypage/">my page</a></li>
+    <li><a class="nav-link" href="/login/">login</a></li>
+    <li><a class="nav-link disabled" href="/join" tabindex="-1" aria-disabled="true">join</a></li>
   </ul>
 </div>
-<!--  <div class="menu">-->
-<!--    <div class="logo">-->
-<!--        <div class="nav-item">-->
-<!--            <a class="nav-link active" aria-current="page" href="#">gazuaaa</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="nav-menu">-->
-<!--        <div class="nav-item">-->
-<!--            <a class="nav-link" href="/mypage/">my page</a>-->
-<!--        </div>-->
-<!--        <div class="nav-item">-->
-<!--            <a class="nav-link" href="/login/">login</a>-->
-<!--        </div>-->
-<!--        <div class="nav-item">-->
-<!--            <a class="nav-link disabled" href="/join" tabindex="-1" aria-disabled="true">join</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 </section>
 
 
@@ -371,7 +296,7 @@
   <div class="content has-text-centered">
     <p>
       <strong>hanghae99</strong> by <a href="https://jgthms.com">6기 8조</a> mini project
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+      <a href="https://github.com/Gazuaaaaaa/Gazuaaaaa">GITHUP</a>. The website content
       is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
     </p>
   </div>
