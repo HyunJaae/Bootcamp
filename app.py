@@ -3,8 +3,11 @@ from flask import Flask, flash, render_template, request, url_for, jsonify, redi
 from pymongo import MongoClient
 from datetime import timedelta, datetime
 import jwt
-import logging
 import hashlib
+import requests
+from bs4 import BeautifulSoup
+
+
 
 app = Flask(__name__)
 
@@ -17,44 +20,59 @@ db = client.gazuaaa
 
 
 @app.route("/")
-def index_template():
+def main_template():
     return render_template("main.html")
 
+# mypage 보여주기
 @app.route("/mypage/")
 def mypage_template():
     return render_template("mypage.html")
 
 # mypage 상단 좌측 버튼
-@app.route('/main')
-def main():
-    return render_template("main.html")
+# 나의 정보 보여주기
+# @app.route("/mypage_done")
+# def my_template():
+#     token_receive = request.cookies.get('mytoken', SECRET_KEY, algorithm=['HS256'])
+#     try:
+#         payload = jwt.decode(token_receive)
+#         user_info = db.users.find_one({"username": payload["id"]})
+#         return render_template('mypage.html', user_info=user_info["nick"])
 
-# mypage 상단 우측 버튼
-@app.route("/mypage/")
-def mypage_template():
-    return render_template("mypage.html")
 
 
 # mypage 상단 버튼
 @app.route("/main")
 def main():
-    return render_template("main.html")
+    url = "https://finance.naver.com/sise/sise_index.naver?code=KOSPI"
+    url2 = "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+    data = requests.get(url, headers=headers)
+    data2 = requests.get(url2, headers=headers)
+
+    req = data.text
+    req2 = data2.text
+    soup = BeautifulSoup(req, 'html.parser').select_one('#now_value').text
+    soup2 = BeautifulSoup(req2, 'html.parser').select_one('#now_value').text
+    return render_template("main.html",  kospi=soup, kosdaq=soup2)
+
+
 
 @app.route("/login/")
 def login():
     return render_template("login.html")
 
-
 @app.route("/join")
 def join():
     return render_template("join.html")
 
-# mypage get post
-@app.route("/mypage", methods=["GET"])
+# mypage
+# 나의 주식데이터 가져오기
+@app.route("/mypage/get", methods=["GET"])
 def mypage_get():
-    all_users = list(db.users.find({}, {'_id': False}))
-    return jsonify({'users':all_users})
-
+    my_stocks = list(db.users.find({}, {'_id': False}))
+    return jsonify({'stocks': my_stocks})
+# 나의 주식데이터 삭제
 @app.route("/mypage/sell", methods=["POST"])
 def stock_sell():
     return jsonify({'msg': '매도 완료!'})
