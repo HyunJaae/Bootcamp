@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css')}}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script src="{{ url_for('static', filename='login.js')}}"></script>
 </head>
 <body>
     <!-- 상단 바 -->
@@ -33,8 +32,8 @@
                             <label for="id">PASSWORD</label>
                         </div>
                         <div class="btn_area">
-                             <button type="button" id="btn" onclick="sign_in()">Login</button>
                             <button type="submit" onclick="window.location.href = '/join'">Join</button>
+                            <button type="button" id="btn" onclick="sign_in()">Login</button>
                         </div>
                     </form>
                     <div class="caption">
@@ -44,9 +43,16 @@
         </div>
     </div>
     <!-- 하단 바 -->
-    <footer>
-        
+    <footer class="footerBar">
+        <nav>
+            <a href="https://github.com/Gazuaaaaaa/Gazuaaaaa"><img src="{{ url_for('static', filename='GitHublogo.png') }}" /></a>
+        </nav>
+        <p>
+            <span>made by 6기 8조</span><br/>
+            <span>항해99 miniproject</span><br/>
+            <span>Copyright 2022. GAZUAA. All Rights Reserved.</span>
+        </p>
     </footer>
-
+    <script src="{{ url_for('static', filename='login.js')}}"></script>
 </body>
 </html>

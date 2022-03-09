@@ -2,19 +2,19 @@ let id = $('#id');
 let pw = $('#pw');
 let btn = $('#btn');
 
-// $(btn).on('click', function () {
-//     if ($(id).val() == "") {
-//         $(id).next('label').addClass('warning');
-//         setTimeout(function () {
-//             $('label').removeClass('warning');
-//         }, 1500);
-//     } else if ($(pw).val() == "") {
-//         $(pw).next('label').addClass('warning');
-//         setTimeout(function () {
-//             $('label').removeClass('warning');
-//         }, 1500);
-//     }
-// })
+$(btn).on('click', function () {
+    if ($(id).val() == "") {
+        $(id).next('label').addClass('warning');
+        setTimeout(function () {
+            $('label').removeClass('warning');
+        }, 1500);
+    } else if ($(pw).val() == "") {
+        $(pw).next('label').addClass('warning');
+        setTimeout(function () {
+            $('label').removeClass('warning');
+        }, 1500);
+    }
+})
 // {% if msg %}
 //     alert("{{ msg }}")
 // {% endif %}
@@ -33,7 +33,7 @@ function sign_in() {
         success: function (response) {
 
             if (response['result'] == 'success') {
-                $.cookie('mytoken', response['token'], {path: '/mypage'});
+                $.cookie('mytoken', response['token'], {path: '/'});
                 window.location.replace("/mypage")
             } else {
                 alert(response['msg'])
