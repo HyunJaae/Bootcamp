@@ -3,7 +3,7 @@ from flask import Flask, flash, render_template, request, url_for, jsonify, redi
 from pymongo import MongoClient
 from datetime import timedelta, datetime
 import jwt
-import datetime
+
 import hashlib
 
 app = Flask(__name__)
@@ -24,17 +24,34 @@ def index_template():
 def mypage_template():
     return render_template("mypage.html")
 
+<<<<<<< HEAD
 # mypage 상단 우측 버튼
 @app.route('main')
+=======
+# mypage 상단 버튼
+@app.route('/main')
+>>>>>>> d65d64eb7dff2cc24c786bb67bdaa9bf926ee101
 def main():
     return render_template("main.html")
-
-@app.route('/login/')
-def login_template():
-    print("nono")
+@app.route("/login")
+def login():
     return render_template("login.html")
+@app.route("/join")
+def join():
+    return render_template("join.html")
+# mypage get post
+@app.route("/mypage", methods=["GET"])
+def mypage_get():
+    all_users = list(db.users.find({}, {'_id': False}))
+    return jsonify({'users':all_users})
 
-@app.route('/loginDone/', methods=["POST"])
+@app.route("/mypage/sell", methods=["POST"])
+def stock_sell():
+    return jsonify({'msg': '매도 완료!'})
+
+
+
+@app.route('/login_Done/', methods=["POST"])
 def sign_in():
     # 로그인
     username_receive = request.form['username_give']
@@ -49,27 +66,17 @@ def sign_in():
          'id': username_receive,
          'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디 또는 비밀번호가 일치하지 않습니다.'})
 
-@app.route("/join")
-def join():
-    return render_template("join.html")
 
 
-# mypage get post
-@app.route("/mypage", methods=["GET"])
-def mypage_get():
-    all_users = list(db.users.find({}, {'_id': False}))
-    return jsonify({'users':all_users})
 
-@app.route("/mypage/sell", methods=["POST"])
-def stock_sell():
-    return jsonify({'msg': '매도 완료!'})
+
 
 
 
@@ -96,8 +103,7 @@ def sign_up():
         "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
         "name" : name_receive                                    # 유저 이름
                                                  # 프로필 사진 파일 이름
-                                                # 프로필 사진 기본 이미지
-                                               # 프로필 한 마디
+                                                # 프로필 사진 기본 이미지                                            # 프로필 한 마디
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
