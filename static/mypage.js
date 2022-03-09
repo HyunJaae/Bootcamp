@@ -3,6 +3,8 @@
             $('#stock-list').show()
 
         });
+
+
         // 나의 매수 목록 버튼 클릭시 데이터 업데이트
         function showhide() {
              window.location.reload()

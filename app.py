@@ -1,6 +1,7 @@
 from http import client
 from flask import Flask, flash, render_template, request, url_for, jsonify, redirect, session
 from pymongo import MongoClient
+from bs4 import BeautifulSoup
 from datetime import timedelta, datetime
 import jwt
 import hashlib
@@ -29,6 +30,23 @@ def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
 
+# 매수 API
+# @app.route("/main/sell", methods=['POST'])
+# def buy_stock():
+#     title_receive = request.form['title_give']
+#     price_receive = request.form['price_give']
+#     url_receive = request.form['url_give']
+#
+#     doc = {
+#         'stock_nm': title_receive,
+#         're_price':price_receive,
+#         'url':url_receive
+#         }
+#     db.mystock.insert_one(doc)
+#
+#     return jsonify({'msg': '매수 되었습니다!'})
+
+
 
 # mypage 보여주기
 @app.route("/mypage/")
@@ -36,8 +54,8 @@ def mypage_template():
     return render_template("mypage.html")
 
 
-# 나의 정보 보여주기
-# @app.route("/mypage_done")
+# # 나의 정보 보여주기
+# @app.route("/mypage_done", methods=['GET'])
 # def my_template():
 #     token_receive = request.cookies.get('mytoken', SECRET_KEY, algorithm=['HS256'])
 #     try:

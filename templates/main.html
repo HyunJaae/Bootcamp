@@ -19,11 +19,23 @@
 
     <script>
         function buy(){
-<<<<<<< HEAD
-            alert('매수되었습니다.');
+             $.ajax({
+                type: 'POST',
+                url: '/main/sell',
+                data: {'title_give'},
+                success: function (response) {
+                    let kospis = response['kospi']
+                    console.log(kospis)
+                }
+            })
         }
 
 
+
+
+           //  alert('매수되었습니다.');
+           // window.location.href="/mypage"
+        }
         function show_kospi(){
             $.ajax({
                 type: 'GET',
@@ -46,12 +58,6 @@
                 }
             })
         }
-
-
-=======
-                        alert("매수 완료!")
-                    }
->>>>>>> 8cbbac2ab4cc3aa637e688011729b57a047476f9
     </script>
 </head>
 <body>
