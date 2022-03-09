@@ -16,12 +16,20 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Clust
 db = client.gazuaaa
 
 
+<<<<<<< HEAD
 @app.route("/main/kospi", methods=['GET'])
+=======
+
+
+
+@app.route("/main/ko_spi", methods=['GET'])
+>>>>>>> c3997f393a043d75a9b20e5356337063876f467b
 def kospi():
     all_kospi = list(db.kospi.find({}, {'_id': False}))
     return jsonify({'kospi': all_kospi})
 
-@app.route("/main/kosdaq", methods=['GET'])
+
+@app.route("/main/kos_daq", methods=['GET'])
 def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
@@ -56,6 +64,10 @@ def mypage_template():
         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect("/login")
+<<<<<<< HEAD
+=======
+        
+>>>>>>> c3997f393a043d75a9b20e5356337063876f467b
 
 
 # mypage 상단 버튼
@@ -83,9 +95,21 @@ def main_template():
 
 
 #  mypage 상단 좌측 버튼
-@app.route('/main')
+@app.route('/')
 def main():
-    return render_template('main.html')
+    try:
+        token_receive = request.cookies.get('mytoken')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+            # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+        username=payload["id"]
+        status = (username == payload["id"])
+
+        user_info = db.users.find_one({"username": username}, {"_id": False})
+        return render_template('/', status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("/login"))
+
+
 
 @app.route('/my_stock', methods=['POST'])
 def my_stock():
