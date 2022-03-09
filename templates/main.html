@@ -7,6 +7,23 @@
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script>
+        function buy() {
+            alert('매수되었습니다.');
+        }
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
+    </script>
+
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
 
@@ -19,19 +36,8 @@
 
     <script>
         function buy(){
-            let stock_name = $("#card-header-title").val()
-            let stock_cost = $("#content").val()
-            $.ajax({
-                type: "POST",
-                url: "/my_stock",
-                data: {
-                    stock_name_give: stock_name,
-                    stock_cost_give: stock_cost
-                },
-                success: function (response) {
-                    alert('msg')
-                }
-            })
+            alert('매수되었습니다.');
+
         }
 
         function show_kospi(){
@@ -45,7 +51,8 @@
                 }
             })
         }
-        function show_kosdaq(){
+
+        function show_kosdaq() {
             $.ajax({
                 type: 'GET',
                 url: '/main/kosdaq',
@@ -61,23 +68,36 @@
 <body>
 
 <section class="hero is-primary">
-  <div class="hero-body">
-    <p class="title">
-    </p>
-    <p class="subtitle">
-    </p>
-  </div>
+    <div class="hero-body">
+        <p class="title">
+        </p>
+        <p class="subtitle">
+        </p>
+    </div>
     <div class="tabs is-centered">
-  <ul>
-    <li class="is-active"><a class="nav-link active" aria-current="page" href="main.html">Home</a>
-    </li>
-    <li><a class="nav-link" href="/mypage/">my page</a></li>
-    <li><a class="nav-link" href="/login">login</a></li>
-    <li><a class="nav-link disabled" href="/join" tabindex="-1" aria-disabled="true">join</a></li>
-  </ul>
-</div>
-</section>
 
+        {% if status %}
+            <ul>
+                <li class="is-active"><a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li><a class="nav-link" href="/mypage/">my page</a></li>
+
+                    <button class="button is-primary" onclick="sign_out()">log out</button>
+                </li>
+            </ul>
+        {% else %}
+           <ul>
+                <li class="is-active"><a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li><a class="nav-link" href="/mypage/">Home</a></li>
+                <li><a class="nav-link" href="/login/">Login</a></li>
+                <li><a class="nav-link" href="/join">Join</a></li>
+                <li><button onclick="sign_out()" type="button"class="nav-link disabled" tabindex="-1" aria-disabled="true" >logout</button>
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+</section>
 
 
 <div class="wrap">
@@ -91,260 +111,260 @@
 <button onclick="show_kospi()" type="button" class="btn btn-primary">KOSPI</button>
 <div class="card-boxs">
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
 </div>
 
 <button onclick="show_kosdaq()" type="button" class="btn btn-primary">KOSDAQ</button>
 <div class="card-boxs">
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
     <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        삼성전자
-                    </p>
-                    <button class="card-header-icon" aria-label="more options">
+        <header class="card-header">
+            <p class="card-header-title">
+                삼성전자
+            </p>
+            <button class="card-header-icon" aria-label="more options">
           <span class="icon">
             <i class="fas fa-angle-down" aria-hidden="true"></i>
           </span>
-                    </button>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        70,000
-                    </div>
-                </div>
-                <footer class="card-footer">
-                    <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
-                    <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
-                </footer>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                70,000
             </div>
+        </div>
+        <footer class="card-footer">
+            <a href="/mypage/" class="card-footer-item" onclick="buy()">매수</a>
+            <a href="https://finance.naver.com/" class="card-footer-item">네이버 정보</a>
+        </footer>
+    </div>
 </div>
 
 <table class="table">
-  <thead>
+    <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">인기 검색 종목</th>
-      <th scope="col">시가</th>
-      <th scope="col">전일 대비</th>
+        <th scope="col">#</th>
+        <th scope="col">인기 검색 종목</th>
+        <th scope="col">시가</th>
+        <th scope="col">전일 대비</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>삼성전자</td>
-      <td>69,500</td>
-      <td>▼600</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>카카오</td>
-      <td>92,100</td>
-      <td>🔺500</td>
+        <th scope="row">1</th>
+        <td>삼성전자</td>
+        <td>69,500</td>
+        <td>▼600</td>
     </tr>
     <tr>
-      <th scope="row">3</th>
-      <td>SK 하이닉스</td>
-      <td>118,000</td>
-      <td>🔺1,500</td>
+        <th scope="row">2</th>
+        <td>카카오</td>
+        <td>92,100</td>
+        <td>🔺500</td>
     </tr>
-  </tbody>
+    <tr>
+        <th scope="row">3</th>
+        <td>SK 하이닉스</td>
+        <td>118,000</td>
+        <td>🔺1,500</td>
+    </tr>
+    </tbody>
 </table>
 
 <footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      <strong>hanghae99</strong> by <a href="https://jgthms.com">6기 8조</a> mini project
-      <a href="https://github.com/Gazuaaaaaa/Gazuaaaaa">GITHUP</a>. The website content
-      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-    </p>
-  </div>
+    <div class="content has-text-centered">
+        <p>
+            <strong>hanghae99</strong> by <a href="https://jgthms.com">6기 8조</a> mini project
+            <a href="https://github.com/Gazuaaaaaa/Gazuaaaaa">GITHUP</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+        </p>
+    </div>
 </footer>
 </body>
 </html>

@@ -14,9 +14,8 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
 
-@app.route("/")
-def main_template():
-    return render_template("main.html")
+
+
 
 
 @app.route("/main/kospi", methods=['GET'])
@@ -42,6 +41,22 @@ def mypage_template():
             user_stock["_id"] = str(user_stock["_id"])
         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
 
+
+
+
+
+# mypage 상단 버튼
+@app.route('/')
+def main_template():
+    token_receive = request.cookies.get('mytoken')
+
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = payload["id"]
+        status = (username == payload["id"])
+        return render_template("main.html",status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
 
 # 나의 정보 보여주기
 # @app.route("/mypage_done")
@@ -78,6 +93,7 @@ def my_stock():
 
 # mypage 상단 우측 버튼
 
+
 @app.route("/login/")
 def login():
     login_cookie = request.cookies.get('mytoken')
@@ -104,6 +120,21 @@ def stock_sell():
 @app.route('/login_Done/', methods=["POST"])
 def sign_in():
     # 로그인
+
+    username_receive = request.form['username_give']
+    password_receive = request.form['password_give']
+    print(username_receive, password_receive)
+
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.users.find_one({'username': username_receive, 'password': pw_hash})
+
+    if result is not None:
+        payload = {
+         'id': username_receive,
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+
     try:
         username_receive = request.form['username_give']
         password_receive = request.form['password_give']
@@ -124,6 +155,7 @@ def sign_in():
     except:
         print("예외")
         return jsonify({'result': 'fail', 'msg': '그냥 안됩니다.'})
+3
 
 
 @app.route('/sign_up/check_dup', methods=['POST'])
@@ -141,12 +173,11 @@ def sign_up():
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     # 패스워드는 받고 해쉬암호화를 해준다.
     doc = {
-        "username": username_receive,                               # 아이디
-        "password": password_hash,                                  # 비밀번호
-        "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
-        "name" : name_receive                                    # 유저 이름
-                                                 # 프로필 사진 파일 이름
-                                                # 프로필 사진 기본 이미지                                            # 프로필 한 마디
+        "username": username_receive,
+        "password": password_hash,
+        "profile_name": username_receive,
+        "name" : name_receive
+
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
