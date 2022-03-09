@@ -16,20 +16,33 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Clust
 db = client.gazuaaa
 
 
-
 @app.route("/mypage/")
 def mypage_template():
-    return render_template("mypage.html")
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = payload["id"]
+        status = (username == payload["id"])
+        return render_template("mypage.html",status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
 
 
-# mypage 상단 우측 버튼
+
 
 
 # mypage 상단 버튼
 @app.route('/')
 def main_template():
-    return render_template("main.html")
+    token_receive = request.cookies.get('mytoken')
 
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = payload["id"]
+        status = (username == payload["id"])
+        return render_template("main.html",status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
 
 @app.route("/login/")
 def login():
@@ -76,14 +89,6 @@ def sign_in():
 
 
 
-
-
-
-
-
-
-
-
 @app.route('/sign_up/check_dup', methods=['POST'])
 def check_dup():
     username_receive = request.form['username_give']
@@ -99,12 +104,12 @@ def sign_up():
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     # 패스워드는 받고 해쉬암호화를 해준다.
     doc = {
-        "username": username_receive,                               # 아이디
-        "password": password_hash,                                  # 비밀번호
-        "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
-        "name" : name_receive                                    # 유저 이름
-                                                 # 프로필 사진 파일 이름
-                                                # 프로필 사진 기본 이미지                                            # 프로필 한 마디
+        "username": username_receive,
+        "password": password_hash,
+        "profile_name": username_receive,
+        "name" : name_receive
+
+
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})

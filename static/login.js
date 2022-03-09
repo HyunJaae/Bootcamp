@@ -34,7 +34,7 @@ function sign_in() {
 
             if (response['result'] == 'success') {
                 $.cookie('mytoken', response['token'], {path: '/'});
-                window.location.replace("/mypage")
+                window.location.replace("/")
             } else {
                 alert(response['msg'])
             }
