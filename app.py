@@ -20,9 +20,16 @@ def main_template():
 
 
 # mypage 보여주기
-@app.route("/mypage/")
+@app.route("/mypage/", methods=['GET'])
 def mypage_template():
-    return render_template("mypage.html")
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
+        print(user_stocks)
+        for user_stock in user_stocks:
+            user_stock["_id"] = str(user_stock["_id"])
+        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
 
 
 # 나의 정보 보여주기
@@ -40,6 +47,24 @@ def mypage_template():
 def main():
     return render_template('main.html')
 
+@app.route('/my_stock', methods=['POST'])
+def my_stock():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        stock_name_receive = request.form["stock_name_give"]
+        stock_cost_receive = request.form["stock_cost_give"]
+        doc = {
+            "username": user_info["username"],
+            "profile_name": user_info["profile_name"],
+            "profile_pic_real": user_info["profile_pic_real"],
+            "stock_name": stock_name_receive,
+            "stock_cost": stock_cost_receive
+        }
+        db.my_stock.insert_one(doc)
+        return jsonify({"result": "success", 'msg': '포스팅 성공'})
+
 # mypage 상단 우측 버튼
 
 @app.route("/login/")
@@ -49,8 +74,6 @@ def login():
         return redirect(url_for("main"))
     else:
         return render_template("login.html")
-
->>>>>>> 1417b6a1e392403650048477892f359b898a4ce1
 
 @app.route("/join")
 def join():

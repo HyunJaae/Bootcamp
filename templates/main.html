@@ -9,7 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <script>
         function buy(){
-                        alert("매수 완료!")
+            let stock_name = $("#card-header-title").val()
+            let stock_cost = $("#content").val()
+            $.ajax({
+                type: "POST",
+                url: "/my_stock",
+                data: {
+                    stock_name_give: stock_name,
+                    stock_cost_give: stock_cost
+                },
+                success: function (response) {
+                    alert('msg')
+                }
+            })
                     }
     </script>
 </head>
