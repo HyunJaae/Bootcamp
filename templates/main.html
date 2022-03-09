@@ -25,7 +25,56 @@
 
     <title>gazuaaa</title>
 
+<<<<<<< HEAD
 
+=======
+    <script>
+        function buy(){
+            let stock_name = $("#card-header-title").val()
+            let stock_cost = $("#content").val()
+            $.ajax({
+                type: "POST",
+                url: "/my_stock",
+                data: {
+                    stock_name_give: stock_name,
+                    stock_cost_give: stock_cost
+                },
+                success: function (response) {
+                    alert('msg')
+                }
+            })
+        }
+
+        function show_kospi(){
+            $.ajax({
+                type: 'GET',
+                url: '/main/kospi',
+                data: {},
+                success: function (response) {
+                    let kospis = response['kospi']
+                    console.log(kospis)
+                }
+            })
+        }
+
+        function show_kosdaq() {
+            $.ajax({
+                type: 'GET',
+                url: '/main/kosdaq',
+                data: {},
+                success: function (response) {
+                    let kosdaq = response['kosdaq']
+                    console.log(kosdaq)
+                }
+            })
+        }
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'})
+            window.location.replace('/main')
+        }
+    </script>
+>>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
 </head>
 <body>
 
