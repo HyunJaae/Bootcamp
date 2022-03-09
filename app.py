@@ -16,9 +16,6 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Clust
 db = client.gazuaaa
 
 
-
-
-
 @app.route("/main/kospi", methods=['GET'])
 def kospi():
     all_kospi = list(db.kospi.find({}, {'_id': False}))
@@ -29,7 +26,6 @@ def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
 
-<<<<<<< HEAD
 # 매수 API
 # @app.route("/main/sell", methods=['POST'])
 # def buy_stock():
@@ -48,8 +44,6 @@ def kosdaq():
 
 
 
-=======
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
 # mypage 보여주기
 @app.route("/mypage/", methods=['GET'])
 def mypage_template():
@@ -62,14 +56,6 @@ def mypage_template():
         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect("/login")
-        
-
-
-
-<<<<<<< HEAD
-# # 나의 정보 보여주기
-# @app.route("/mypage_done", methods=['GET'])
-=======
 
 
 # mypage 상단 버튼
@@ -87,7 +73,7 @@ def main_template():
 
 # 나의 정보 보여주기
 # @app.route("/mypage_done")
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
+
 # def my_template():
 #     token_receive = request.cookies.get('mytoken', SECRET_KEY, algorithm=['HS256'])
 #     try:

@@ -12,17 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <script>
-        function buy() {
-            alert('매수되었습니다.');
-        }
-
-        function sign_out() {
-            $.removeCookie('mytoken', {path: '/'});
-            alert('로그아웃!')
-            window.location.href = "/login"
-        }
-    </script>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css')}}">
@@ -36,40 +25,21 @@
 
     <script>
         function buy(){
-<<<<<<< HEAD
-             $.ajax({
-                type: 'POST',
-                url: '/main/sell',
-                data: {'title_give'},
-                success: function (response) {
-                    let kospis = response['kospi']
-                    console.log(kospis)
-=======
             let stock_name = $("#card-header-title").val()
             let stock_cost = $("#content").val()
             $.ajax({
                 type: "POST",
                 url: "/my_stock",
                 data: {
-                    stock_name_give: stock_name,
+                    'stock_name_give': stock_name,
                     stock_cost_give: stock_cost
                 },
                 success: function (response) {
                     alert('msg')
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
                 }
             })
         }
 
-<<<<<<< HEAD
-
-
-
-           //  alert('매수되었습니다.');
-           // window.location.href="/mypage"
-        }
-=======
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
         function show_kospi(){
             $.ajax({
                 type: 'GET',
@@ -93,14 +63,11 @@
                 }
             })
         }
-<<<<<<< HEAD
-=======
 
         function sign_out() {
             $.removeCookie('mytoken', {path: '/'})
             window.location.replace('/main')
         }
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
     </script>
 </head>
 <body>
