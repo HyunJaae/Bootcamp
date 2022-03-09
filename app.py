@@ -19,6 +19,17 @@ def main_template():
     return render_template("main.html")
 
 
+@app.route("/main/kospi", methods=['GET'])
+def kospi():
+    all_kospi = list(db.kospi.find({}, {'_id': False}))
+    return jsonify({'kospi': all_kospi})
+
+@app.route("/main/kosdaq", methods=['GET'])
+def kosdaq():
+    all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
+    return jsonify({"kosdaq": all_kosdaq})
+
+
 # mypage 보여주기
 @app.route("/mypage/", methods=['GET'])
 def mypage_template():
