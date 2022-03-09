@@ -36,7 +36,6 @@
 
     <script>
         function buy(){
-
             alert('매수되었습니다.');
         }
 
@@ -52,7 +51,8 @@
                 }
             })
         }
-        function show_kosdaq(){
+
+        function show_kosdaq() {
             $.ajax({
                 type: 'GET',
                 url: '/main/kosdaq',
@@ -62,12 +62,14 @@
                     console.log(kosdaq)
                 }
             })
-        }function sign_out(){
-    $.removeCookie('mytoken', {path: '/'})
-    window.location.replace('/main')
-}
-        alert("매수 완료!")
-                    }
+        }
+
+        function sign_out() {
+            $.removeCookie('mytoken', {path: '/'})
+            window.location.replace('/main')
+        }
+
+
     </script>
 </head>
 <body>
