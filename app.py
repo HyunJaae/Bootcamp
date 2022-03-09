@@ -29,18 +29,23 @@ def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
 
-
+@app.route("/mypage/")
 # mypage 보여주기
 @app.route("/mypage/", methods=['GET'])
 def mypage_template():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
-        print(user_stocks)
-        for user_stock in user_stocks:
-            user_stock["_id"] = str(user_stock["_id"])
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+        username = payload["id"]
+        status = (username == payload["id"])
+        return render_template("mypage.html",status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
+        # user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
+        # print(user_stocks)
+        # for user_stock in user_stocks:
+        #     user_stock["_id"] = str(user_stock["_id"])
+        # return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
 
 
 # 나의 정보 보여주기
