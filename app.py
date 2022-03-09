@@ -31,7 +31,11 @@ def mypage_template():
 
 @app.route("/login/")
 def login():
-    return render_template("login.html")
+    login_cookie = request.cookies.get('mytoken')
+    if login_cookie is not None:
+        return redirect(url_for("main"))
+    else:
+        return render_template("login.html")
 
 
 @app.route("/join")
