@@ -15,9 +15,8 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
 
-@app.route("/")
-def main_template():
-    return render_template("main.html")
+
+
 
 
 @app.route("/main/kospi", methods=['GET'])
@@ -30,6 +29,7 @@ def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
 
+<<<<<<< HEAD
 # 매수 API
 # @app.route("/main/sell", methods=['POST'])
 # def buy_stock():
@@ -48,14 +48,46 @@ def kosdaq():
 
 
 
+=======
+>>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
 # mypage 보여주기
-@app.route("/mypage/")
+@app.route("/mypage/", methods=['GET'])
 def mypage_template():
-    return render_template("mypage.html")
+    token_receive = request.cookies.get('mytoken')
+    try:
+        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
+        print(user_stocks)
+        for user_stock in user_stocks:
+            user_stock["_id"] = str(user_stock["_id"])
+        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
+        
 
 
+
+<<<<<<< HEAD
 # # 나의 정보 보여주기
 # @app.route("/mypage_done", methods=['GET'])
+=======
+
+
+# mypage 상단 버튼
+@app.route('/')
+def main_template():
+    token_receive = request.cookies.get('mytoken')
+
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = payload["id"]
+        status = (username == payload["id"])
+        return render_template("main.html",status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
+
+# 나의 정보 보여주기
+# @app.route("/mypage_done")
+>>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
 # def my_template():
 #     token_receive = request.cookies.get('mytoken', SECRET_KEY, algorithm=['HS256'])
 #     try:
@@ -69,7 +101,28 @@ def mypage_template():
 def main():
     return render_template('main.html')
 
+@app.route('/my_stock', methods=['POST'])
+def my_stock():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        stock_name_receive = request.form["stock_name_give"]
+        stock_cost_receive = request.form["stock_cost_give"]
+        doc = {
+            "username": user_info["username"],
+            "profile_name": user_info["profile_name"],
+            "profile_pic_real": user_info["profile_pic_real"],
+            "stock_name": stock_name_receive,
+            "stock_cost": stock_cost_receive
+        }
+        db.my_stock.insert_one(doc)
+        return jsonify({"result": "success", 'msg': '포스팅 성공'})
+    except:
+        return render_template("mypage.html")
+
 # mypage 상단 우측 버튼
+
 
 @app.route("/login/")
 def login():
@@ -78,7 +131,6 @@ def login():
         return redirect(url_for("main"))
     else:
         return render_template("login.html")
-
 
 @app.route("/join")
 def join():
@@ -98,6 +150,21 @@ def stock_sell():
 @app.route('/login_Done/', methods=["POST"])
 def sign_in():
     # 로그인
+
+    username_receive = request.form['username_give']
+    password_receive = request.form['password_give']
+    print(username_receive, password_receive)
+
+    pw_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
+    result = db.users.find_one({'username': username_receive, 'password': pw_hash})
+
+    if result is not None:
+        payload = {
+         'id': username_receive,
+         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+
     try:
         username_receive = request.form['username_give']
         password_receive = request.form['password_give']
@@ -118,6 +185,7 @@ def sign_in():
     except:
         print("예외")
         return jsonify({'result': 'fail', 'msg': '그냥 안됩니다.'})
+3
 
 
 @app.route('/sign_up/check_dup', methods=['POST'])
@@ -135,12 +203,11 @@ def sign_up():
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     # 패스워드는 받고 해쉬암호화를 해준다.
     doc = {
-        "username": username_receive,                               # 아이디
-        "password": password_hash,                                  # 비밀번호
-        "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
-        "name" : name_receive                                    # 유저 이름
-                                                 # 프로필 사진 파일 이름
-                                                # 프로필 사진 기본 이미지                                            # 프로필 한 마디
+        "username": username_receive,
+        "password": password_hash,
+        "profile_name": username_receive,
+        "name" : name_receive
+
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})

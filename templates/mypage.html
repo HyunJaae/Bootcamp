@@ -12,12 +12,84 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css')}}">
     <script src="{{ url_for('static', filename='mypage.js') }}"></script>
 
     <title>Gazuaaaaaa | 주식정보</title>
-</head>
+
+
+    <script>
+
+        function showhide() {
+            if ($('#stock-list').css('display') == 'none') {
+                $('#stock-list').show();
+            } else {
+                $('#stock-list').hide();
+                window.location.reload()
+            }
+            $.ajax({
+            type: "GET",
+            url: "/mypage",
+            data: {},
+            success: function (response) {
+                let rows = response['users']
+                for(let i = 0; i < rows.length; i ++){
+                    let name = rows[i]['name']
+                    let age = rows[i]['age']
+
+                    let temp_html = `<div id="stock-detail" class="card" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${name}</h5>
+                                            <h6 class="card-subtitle mb-2 text-muted">${age}</h6>
+                                            <button onclick="sell()" id="button" type="button" class="btn btn-outline-danger">매도</button>
+                                        </div>
+                                    </div>`
+                    $('#stock-detail').append(temp_html)
+                    }
+                }
+            })
+        }
+        function myPage(){
+            window.location.reload()
+        }
+        function goMain(){
+            window.location.href ="/main"
+        }
+        function goLogin(){
+            window.location.href ="/login"
+        }
+        function goJoin(){
+            window.location.href ="/join"
+        }
+        function sell(){
+            $.ajax({
+                type: 'POST',
+                url: '/mypage/sell',
+                data: {},
+                success: function (response) {
+                    alert(response["msg"])
+                }
+            })
+        }
+         function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }
+    </script>
+
 <body>
+  <div class="top-bar">
+        <button onclick="goMain()" class="logo">back◁</button>
+        <div class="menu">
+            <ul style="list-style:none" class="bar-list">
+                <li><button onclick="window.location.href='/'" type="button" class="btn btn-link">Home</button></li>
+                 <li><button onclick="sign_out()" type="button" class="btn btn-link">log out</button></li>
+            </ul>
+	    </div>
+    </div>
+
     <div class="top-bar">
         <h1 class="logo"><a href="/">Gazuaa</a></h1>
             <div class="menu">
@@ -36,6 +108,7 @@
             </div>
 
         </div>
+
     <div class="header">
         <div class="left"></div>
         <div class="middle"><h3>My page</h3></div>
