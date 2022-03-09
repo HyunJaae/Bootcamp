@@ -1,5 +1,6 @@
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
+
 .main_logo {
     display: flex;
     justify-content: left;
@@ -33,6 +34,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color:lightcoral;
+
 }
 .login{
     height: 700px;
@@ -40,6 +43,7 @@
     border: solid 1px rgb(201, 199, 199);
     border-radius: 10px;
     box-shadow: .5em .5em 1.2em rgb(201, 199, 199), -0.5em -0.5em 1.2em rgb(201, 199, 199);
+    background-color: white;
 }
 .login_form {
     display: block;
