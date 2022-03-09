@@ -3,7 +3,7 @@ from flask import Flask, flash, render_template, request, url_for, jsonify, redi
 from pymongo import MongoClient
 from datetime import timedelta, datetime
 import jwt
-import datetime
+
 import hashlib
 
 app = Flask(__name__)
@@ -45,7 +45,8 @@ def stock_sell():
     return jsonify({'msg': '매도 완료!'})
 
 
-@app.route('/loginDone/', methods=["POST"])
+
+@app.route('/login_Done/', methods=["POST"])
 def sign_in():
     # 로그인
     username_receive = request.form['username_give']
@@ -60,7 +61,7 @@ def sign_in():
          'id': username_receive,
          'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
     # 찾지 못하면
@@ -97,8 +98,7 @@ def sign_up():
         "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
         "name" : name_receive                                    # 유저 이름
                                                  # 프로필 사진 파일 이름
-                                                # 프로필 사진 기본 이미지
-                                               # 프로필 한 마디
+                                                # 프로필 사진 기본 이미지                                            # 프로필 한 마디
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
