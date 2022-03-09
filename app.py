@@ -25,7 +25,7 @@ def main_template():
 def mypage_template():
     return render_template("mypage.html")
 
-<<<<<<< HEAD
+
 # 나의 정보 보여주기
 # @app.route("/mypage_done")
 # def my_template():
@@ -42,7 +42,7 @@ def main():
     return render_template("main.html")
 
 # mypage 상단 우측 버튼
-=======
+
 @app.route("/login/")
 def login():
     return render_template("login.html")
