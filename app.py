@@ -3,7 +3,6 @@ from flask import Flask, flash, render_template, request, url_for, jsonify, redi
 from pymongo import MongoClient
 from datetime import timedelta, datetime
 import jwt
-import logging
 import hashlib
 
 app = Flask(__name__)
@@ -39,13 +38,17 @@ def mypage_template():
 #  mypage 상단 좌측 버튼
 @app.route('/main')
 def main():
-    return render_template("main.html")
+    return render_template('main.html')
 
 # mypage 상단 우측 버튼
 
 @app.route("/login/")
 def login():
-    return render_template("login.html")
+    login_cookie = request.cookies.get('mytoken')
+    if login_cookie is not None:
+        return redirect(url_for("main"))
+    else:
+        return render_template("login.html")
 
 >>>>>>> 1417b6a1e392403650048477892f359b898a4ce1
 
