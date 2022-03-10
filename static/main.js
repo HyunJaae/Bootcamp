@@ -1,5 +1,17 @@
 function buy() {
-    alert('매수되었습니다.');
+    let stock_name = $("#card-header-title").val()
+            let stock_cost = $("#content").val()
+            $.ajax({
+                type: "POST",
+                url: "/my_stock",
+                data: {
+                    'stock_name_give': stock_name,
+                    stock_cost_give: stock_cost
+                },
+                success: function (response) {
+                    alert('msg')
+                }
+            })
 }
 
 $(document).ready(function (){

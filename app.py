@@ -84,7 +84,7 @@ def kosdaq():
 #     except:
 #         return render_template("mypage.html")
 
-@app.route("/mypage/done")
+@app.route("/mypage/")
 def second():
     return render_template("mypage.html")
 # mypage 보여주기
@@ -215,7 +215,6 @@ def sign_in():
     except:
         print("예외")
         return jsonify({'result': 'fail', 'msg': '그냥 안됩니다.'})
-3
 
 
 @app.route('/sign_up/check_dup', methods=['POST'])
