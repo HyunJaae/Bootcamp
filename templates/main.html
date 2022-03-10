@@ -79,9 +79,11 @@
             $.removeCookie('mytoken', {path: '/'})
             window.location.replace('/main')
         }
+        </script>
     </script>
 </head>
 <body>
+
 
 <section class="hero is-primary">
     <div class="hero-body">
@@ -124,7 +126,7 @@
         </button>
     </div>
 </div>
-<button onclick="show_kospi()" type="button" class="btn btn-primary">KOSPI</button>
+<button onclick="show_kospi()" type="button" class="btn btn-primary">KOSPI: {{kospi}} </button>
 <div class="card-boxs">
     <div class="card">
         <header class="card-header">
@@ -233,7 +235,7 @@
     </div>
 </div>
 
-<button onclick="show_kosdaq()" type="button" class="btn btn-primary">KOSDAQ</button>
+<button onclick="show_kosdaq()" type="button" class="btn btn-primary">KOSDAQ: {{kosdaq}}</button>
 <div class="card-boxs">
     <div class="card">
         <header class="card-header">

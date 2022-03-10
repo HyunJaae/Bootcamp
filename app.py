@@ -4,6 +4,10 @@ from pymongo import MongoClient
 from datetime import timedelta, datetime
 import jwt
 import hashlib
+import requests
+from bs4 import BeautifulSoup
+
+
 
 app = Flask(__name__)
 
@@ -13,10 +17,6 @@ import certifi
 ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
-
-
-
-
 
 @app.route("/main/kospi", methods=['GET'])
 def kospi():
@@ -33,6 +33,7 @@ def kosdaq():
 def mypage_template():
     token_receive = request.cookies.get('mytoken')
     try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
         print(user_stocks)
         for user_stock in user_stocks:
@@ -69,10 +70,23 @@ def main_template():
 #         return render_template('mypage.html', user_info=user_info["nick"])
 
 
-#  mypage 상단 좌측 버튼
-@app.route('/main')
+
+# main page
+@app.route("/main")
 def main():
-    return render_template('main.html')
+    url = "https://finance.naver.com/sise/sise_index.naver?code=KOSPI"  #KOSPI URL
+    url2 = "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ" #KOSDAQ URL
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+    data = requests.get(url, headers=headers)
+    data2 = requests.get(url2, headers=headers)
+
+    req = data.text
+    req2 = data2.text
+    soup = BeautifulSoup(req, 'html.parser').select_one('#now_value').text
+    soup2 = BeautifulSoup(req2, 'html.parser').select_one('#now_value').text
+    return render_template("main.html",  kospi=soup, kosdaq=soup2)  # KOSPI, KOSDAQ 실시간 주가
+
 
 @app.route('/my_stock', methods=['POST'])
 def my_stock():
@@ -95,8 +109,6 @@ def my_stock():
         return render_template("mypage.html")
 
 # mypage 상단 우측 버튼
-
-
 @app.route("/login/")
 def login():
     login_cookie = request.cookies.get('mytoken')
