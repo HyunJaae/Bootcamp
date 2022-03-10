@@ -39,7 +39,10 @@ font-family: 'Varela Round', sans-serif;}
     text-align: center;
     width: 300px;
     height: 200px;
+    opacity: 0.7;
+    font-weight: bold;
 
+    display: block;
 
 }
 
@@ -98,6 +101,19 @@ font-family: 'Varela Round', sans-serif;}
 .card:hover{
     transform: scale(1.06);
 }
-/*.searchTerm {*/
-/*    margin-right: ;*/
-/*}*/
+.buy_ko_spi_box{
+    width: 300px;
+    height: 250px;
+    border: 3px solid lightcoral;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.buy_ko_daq_box{
+    width: 300px;
+    height: 250px;
+    border: 3px solid dodgerblue;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 0 auto;
+}

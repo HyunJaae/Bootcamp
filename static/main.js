@@ -17,6 +17,8 @@ function buy() {
 $(document).ready(function (){
     show_kospi()
     show_kosdaq()
+    $("#buying_kos_pi").hide()
+    $("#buying_kos_daq").hide()
 });
 
 function show_kospi() {
@@ -97,4 +99,44 @@ function sign_out() {
     $.removeCookie('mytoken', {path: '/'})
     alert("로그아웃 하셨습니다")
     window.location.replace('/login')
+}
+
+let count = 1;
+function live_btn() {
+    if (count % 2 == 0) {
+        $('#live_box').show();
+    } else {
+        $('#live_box').hidden();
+    }
+    count += 1;
+}
+
+function open_box(){
+    $("#buying_kos_pi").show()
+}
+function close_box(){
+    $("#buying_kos_pi").hide()
+}
+function opend_box2(){
+$("#buying_kos_daq").show()
+}
+function close_box2(){
+    $("#buying_kos_daq").hide()
+}
+
+function buying_kos() {
+    let stock_nm = $("#input_stock").val()
+    let price = $("#input_price").val()
+
+    $.ajax({
+        type: 'POST',
+        url: '/post_kos',
+        data: {stock_nm_give: stock_nm, price_give: price},
+        success: function (response) {
+            alert(response['msg'])
+            window.location.reload()
+        }
+    });
+
+
 }

@@ -56,3 +56,32 @@
             }
         })
     }
+
+
+
+    function show_mystock(username){
+
+         $.ajax({
+        type: "GET",
+        url: "/get_mystock",
+        data: {},
+        success: function (response) {
+            if (response["result"] == "success") {
+                let posts = response["posts"]
+                for (let i = 0; i < posts.length; i++) {
+                    let post = posts[i]
+                    let time_post = new Date(post["date"])
+                    let time_before = time2str(time_post)
+
+                    let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
+                    let count_heart = post['count_heart']
+                    let html_temp = `
+             `
+                    $("#post-box").append(html_temp)
+                }
+            }
+        }
+    })
+}
+
+    }
