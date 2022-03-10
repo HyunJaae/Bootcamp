@@ -20,6 +20,22 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Clust
 db = client.gazuaaa
 
 
+# mypage 보여주기
+@app.route("/mypage/", methods=['GET'])
+def mypage_template():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
+        print(user_stocks)
+        for user_stock in user_stocks:
+            user_stock["_id"] = str(user_stock["_id"])
+        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
+
+
+
 @app.route("/")
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -135,6 +151,7 @@ def my_stock():
         return jsonify({"result": "success", 'msg': '포스팅 성공'})
     except:
         return render_template("mypage.html")
+
 
 # mypage 상단 우측 버튼
 @app.route("/login/")
