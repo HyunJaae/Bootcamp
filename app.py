@@ -60,10 +60,6 @@ def main_template():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect("/login")
 
-<<<<<<< HEAD
-# mypage 상단 좌측 버튼
-=======
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
 # 나의 정보 보여주기
 # @app.route("/mypage_done")
 # def my_template():
@@ -74,13 +70,12 @@ def main_template():
 #         return render_template('mypage.html', user_info=user_info["nick"])
 
 
-<<<<<<< HEAD
 
-# mypage 상단 버튼
+# main page
 @app.route("/main")
 def main():
-    url = "https://finance.naver.com/sise/sise_index.naver?code=KOSPI"
-    url2 = "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ"
+    url = "https://finance.naver.com/sise/sise_index.naver?code=KOSPI"  #KOSPI URL
+    url2 = "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ" #KOSDAQ URL
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
     data = requests.get(url, headers=headers)
@@ -90,13 +85,8 @@ def main():
     req2 = data2.text
     soup = BeautifulSoup(req, 'html.parser').select_one('#now_value').text
     soup2 = BeautifulSoup(req2, 'html.parser').select_one('#now_value').text
-    return render_template("main.html",  kospi=soup, kosdaq=soup2)
+    return render_template("main.html",  kospi=soup, kosdaq=soup2)  # KOSPI, KOSDAQ 실시간 주가
 
-=======
-#  mypage 상단 좌측 버튼
-@app.route('/main')
-def main():
-    return render_template('main.html')
 
 @app.route('/my_stock', methods=['POST'])
 def my_stock():
@@ -119,20 +109,13 @@ def my_stock():
         return render_template("mypage.html")
 
 # mypage 상단 우측 버튼
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
-
-
 @app.route("/login/")
 def login():
-<<<<<<< HEAD
-    return render_template("login.html")
-=======
     login_cookie = request.cookies.get('mytoken')
     if login_cookie is not None:
         return redirect(url_for("main"))
     else:
         return render_template("login.html")
->>>>>>> b691b7c585949addbdd7741af91ea735a9bc2cf4
 
 @app.route("/join")
 def join():
