@@ -12,7 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
     <script src="{{ url_for('static', filename='main.js')}}"></script>
+
 
 
 
@@ -24,7 +26,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
     <title>gazuaaa</title>
-
     <script>
         function buy(){
             let stock_name = $("#card-header-title").val()
@@ -33,7 +34,7 @@
                 type: "POST",
                 url: "/my_stock",
                 data: {
-                    stock_name_give: stock_name,
+                    'stock_name_give': stock_name,
                     stock_cost_give: stock_cost
                 },
                 success: function (response) {
