@@ -92,8 +92,9 @@ function show_kosdaq() {
             }
     })
 }
-
+//로그아웃 함수
 function sign_out() {
     $.removeCookie('mytoken', {path: '/'})
-    window.location.replace('/main')
+    alert("로그아웃 하셨습니다")
+    window.location.replace('/login')
 }
