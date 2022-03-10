@@ -14,6 +14,7 @@ function show_kospi() {
         data: {},
         success: function (response) {
             let kospis = response['kospi']
+             console.log(kospis)
             for (let i = 0; i < kospis.length; i++) {
                 let rank = kospis[i]['rank']
                 let stock_nm = kospis[i]['stock_nm']
@@ -36,7 +37,7 @@ function show_kospi() {
                         <a href="${stock_url}" class="card-footer-item">네이버 정보</a>
                     </footer>
                 </div>`
-                $("#kospi_stocks").append(temp_html)
+                $("#kos_pi_box").append(temp_html)
             }
 
         }
@@ -74,7 +75,7 @@ function show_kosdaq() {
                         <a href="${stock_url}" class="card-footer-item">네이버 정보</a>
                     </footer>
                 </div>`
-                $("#kosdaq_box").append(temp_html)
+                $("#kos_daq_box").append(temp_html)
             }
             }
     })

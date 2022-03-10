@@ -17,15 +17,27 @@ db = client.gazuaaa
 
 @app.route("/")
 def home():
-    return render_template("main.html")
+    token_receive = request.cookies.get('mytoken')
+
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+        username=payload["id"]
+        status = (username == payload["id"])
+        return render_template('main.html', status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("login"))
+
+
+
 
 # 주식 보여주기 API
-@app.route("/main/kospi", methods=['GET'])
+@app.route("/main/ko_spi", methods=['GET'])
 def kospi():
     all_kospi = list(db.kospi.find({}, {'_id': False}))
     return jsonify({'kospi': all_kospi})
 
-@app.route("/main/kosdaq", methods=['GET'])
+@app.route("/main/kos_daq", methods=['GET'])
 def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
