@@ -50,7 +50,7 @@ def kosdaq():
 #     except:
 #         return render_template("mypage.html")
 
-@app.route("/mypage/done")
+@app.route("/mypage/")
 def second():
     return render_template("mypage.html")
 
