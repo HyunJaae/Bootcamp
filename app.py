@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 from datetime import timedelta, datetime
 import jwt
 import hashlib
+import requests
+from bs4 import BeautifulSoup
+
+
 
 app = Flask(__name__)
 
@@ -15,20 +19,50 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
 
+
+# mypage 보여주기
+@app.route("/mypage/", methods=['GET'])
+def mypage_template():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
+        print(user_stocks)
+        for user_stock in user_stocks:
+            user_stock["_id"] = str(user_stock["_id"])
+        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
+
+
+
 @app.route("/")
 def home():
-    return render_template("main.html")
+    token_receive = request.cookies.get('mytoken')
+
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+        username=payload["id"]
+        status = (username == payload["id"])
+        return render_template('main.html', status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("login"))
+
+
+
 
 # 주식 보여주기 API
-@app.route("/main/kospi", methods=['GET'])
+@app.route("/main/ko_spi", methods=['GET'])
 def kospi():
     all_kospi = list(db.kospi.find({}, {'_id': False}))
     return jsonify({'kospi': all_kospi})
 
-@app.route("/main/kosdaq", methods=['GET'])
+@app.route("/main/kos_daq", methods=['GET'])
 def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
+
 
 # @app.route('/my_stock', methods=['POST'])
 # def my_stock():
@@ -53,6 +87,22 @@ def kosdaq():
 @app.route("/mypage/")
 def second():
     return render_template("mypage.html")
+# mypage 보여주기
+@app.route("/mypage/", methods=['GET'])
+def mypage_template():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
+        print(user_stocks)
+        for user_stock in user_stocks:
+            user_stock["_id"] = str(user_stock["_id"])
+        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
+        
+
+
 
 # mypage 보여주기
 # @app.route("/mypage_done")
@@ -62,21 +112,48 @@ def second():
 #         payload = jwt.decode(token_receive)
 #         user_info = db.users.find_one({"username": payload["id"]})
 #         return render_template('mypage.html', user_info=user_info["nick"])
-# @app.route('/')
-# def main():
-#     try:
-#         token_receive = request.cookies.get('mytoken')
-#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#             # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-#         username=payload["id"]
-#         status = (username == payload["id"])
-#
-#         user_info = db.users.find_one({"username": username}, {"_id": False})
-#         return render_template('/', status=status)
-#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-#         return redirect(url_for("/login"))
 
 
+
+# main page
+@app.route("/main")
+def main():
+    url = "https://finance.naver.com/sise/sise_index.naver?code=KOSPI"  #KOSPI URL
+    url2 = "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ" #KOSDAQ URL
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
+    data = requests.get(url, headers=headers)
+    data2 = requests.get(url2, headers=headers)
+
+    req = data.text
+    req2 = data2.text
+    soup = BeautifulSoup(req, 'html.parser').select_one('#now_value').text
+    soup2 = BeautifulSoup(req2, 'html.parser').select_one('#now_value').text
+    return render_template("main.html",  kospi=soup, kosdaq=soup2)  # KOSPI, KOSDAQ 실시간 주가
+
+
+@app.route('/my_stock', methods=['POST'])
+def my_stock():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        stock_name_receive = request.form["stock_name_give"]
+        stock_cost_receive = request.form["stock_cost_give"]
+        doc = {
+            "username": user_info["username"],
+            "profile_name": user_info["profile_name"],
+            "profile_pic_real": user_info["profile_pic_real"],
+            "stock_name": stock_name_receive,
+            "stock_cost": stock_cost_receive
+        }
+        db.my_stock.insert_one(doc)
+        return jsonify({"result": "success", 'msg': '포스팅 성공'})
+    except:
+        return render_template("mypage.html")
+
+
+# mypage 상단 우측 버튼
 @app.route("/login/")
 def login():
     login_cookie = request.cookies.get('mytoken')

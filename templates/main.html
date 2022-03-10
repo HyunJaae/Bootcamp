@@ -26,54 +26,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
 
     <title>gazuaaa</title>
-    <script>
-        function buy(){
-            let stock_name = $("#card-header-title").val()
-            let stock_cost = $("#content").val()
-            $.ajax({
-                type: "POST",
-                url: "/my_stock",
-                data: {
-                    'stock_name_give': stock_name,
-                    stock_cost_give: stock_cost
-                },
-                success: function (response) {
-                    alert('msg')
-                }
-            })
-        }
-
-        function show_kospi(){
-            $.ajax({
-                type: 'GET',
-                url: '/main/kospi',
-                data: {},
-                success: function (response) {
-                    let kospis = response['kospi']
-                    console.log(kospis)
-                }
-            })
-        }
-
-        function show_kosdaq() {
-            $.ajax({
-                type: 'GET',
-                url: '/main/kosdaq',
-                data: {},
-                success: function (response) {
-                    let kosdaq = response['kosdaq']
-                    console.log(kosdaq)
-                }
-            })
-        }
-
-        function sign_out() {
-            $.removeCookie('mytoken', {path: '/'})
-            window.location.replace('/main')
-        }
-    </script>
 </head>
 <body>
+
 
 <section class="hero is-primary">
     <div class="hero-body">
@@ -106,19 +61,16 @@
         </button>
     </div>
 </div>
-<button onclick="show_kospi()" type="button" class="btn btn-primary">KOSPI</button>
-
-<div class="card-boxs" id="kospi_stocks">
 
 
+<button type="button" class="btn btn-primary">KOSPI: {{kospi}} </button>
+
+<div class="card-boxs" id="kos_pi_box">
 </div>
 
+<button type="button" class="btn btn-primary">KOSDAQ: {{kosdaq}}</button>
 
-
-<button type="button" class="btn btn-primary">KOSDAQ</button>
-
-<div class="card-boxs" id="kosdaq_box">
-
+<div class="card-boxs" id="kos_daq_box">
 </div>
 
 
