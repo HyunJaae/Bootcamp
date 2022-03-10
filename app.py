@@ -8,22 +8,22 @@ import hashlib
 import requests
 from bs4 import BeautifulSoup
 
-
-
 app = Flask(__name__)
 
 SECRET_KEY = 'GAZUAA'
 
 import certifi
+
 ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority',
+                     tlsCAFile=ca)
 db = client.gazuaaa
+
 
 # 메인 > 마이 페이지 > 로그인 페이지 > 회원가입 페이지
 
 
-
-# 로그인이 되어야지만 메인화면으로 전환 가능 
+# 로그인이 되어야지만 메인화면으로 전환 가능
 @app.route("/")
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -43,9 +43,9 @@ def home():
         soup = BeautifulSoup(req, 'html.parser').select_one('#now_value').text
         soup2 = BeautifulSoup(req2, 'html.parser').select_one('#now_value').text
         # KOSPI, KOSDAQ 실시간 주가
-        username=payload["id"]
+        username = payload["id"]
         status = (username == payload["id"])
-        return render_template('main.html',kospi=soup, kosdaq=soup2, status=status)
+        return render_template('main.html', kospi=soup, kosdaq=soup2, status=status, username=username)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("login"))
 
@@ -60,16 +60,14 @@ def mypage_template():
         print(user_stocks)
         for user_stock in user_stocks:
             user_stock["_id"] = str(user_stock["_id"])
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+        return render_template('mypage.html')
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect("/login")
-  
-  
-  # 로그인 페이지
+
+
+# 로그인 페이지
 @app.route('/login_Done/', methods=["POST"])
 def sign_in():
-  
-
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
     print(username_receive, password_receive)
@@ -79,8 +77,8 @@ def sign_in():
 
     if result is not None:
         payload = {
-         'id': username_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+            'id': username_receive,
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -93,8 +91,8 @@ def sign_in():
         result = db.users.find_one({'username': username_receive, 'password': pw_hash})
         if result is not None:
             payload = {
-            'id': username_receive,
-            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+                'id': username_receive,
+                'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
             }
             token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
             return jsonify({'result': 'success', 'token': token})
@@ -105,19 +103,20 @@ def sign_in():
         print("예외")
         return jsonify({'result': 'fail', 'msg': '그냥 안됩니다.'})
 
+
 # 회원 가입 페이지
 @app.route('/sign_up/save', methods=['POST'])
 def sign_up():
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
-    name_receive=request.form['name_give']
+    name_receive = request.form['name_give']
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     # 패스워드는 받고 해쉬암호화를 해준다.
     doc = {
         "username": username_receive,
         "password": password_hash,
         "profile_name": username_receive,
-        "name" : name_receive
+        "name": name_receive
 
     }
     db.users.insert_one(doc)
@@ -177,6 +176,7 @@ def login():
     else:
         return render_template("login.html")
 
+
 @app.route("/join")
 def join():
     return render_template("join.html")
@@ -193,6 +193,41 @@ def mypage_get():
 @app.route("/mypage/sell", methods=["POST"])
 def stock_sell():
     return jsonify({'msg': '매도 완료!'})
+
+
+
+@app.route("/post_kos", methods=["POST"])
+def post_mystock():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        # 포스팅하기
+        print(payload)
+        print(payload["id"])
+        stock_nm_receive = request.form["stock_nm_give"]
+        stock_price_receive=request.form["price_give"]
+
+        doc = {
+            "user_id": payload["id"],
+            "stockname": stock_nm_receive,
+            "stock_price": stock_price_receive,
+
+        }
+        db.my_stock.insert_one(doc)
+        return jsonify({"result": "success", 'msg': '매수 성공'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
+
+@app.route("/get_posts", methods=['GET'])
+def get_posts():
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    my_stockList=list(db.my_stock.find({},{'user_id':payload["id"]}))
+    return jsonify({'mystockList':my_stockList})
+
+
+
+
 
 
 

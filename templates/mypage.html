@@ -17,65 +17,7 @@
 
     <title>Gazuaaaaaa | 주식정보</title>
 </head>
-<!--    <script>-->
 
-<!--        function showhide() {-->
-<!--            if ($('#stock-list').css('display') == 'none') {-->
-<!--                $('#stock-list').show();-->
-<!--            } else {-->
-<!--                $('#stock-list').hide();-->
-<!--                window.location.reload()-->
-<!--            }-->
-<!--            $.ajax({-->
-<!--            type: "GET",-->
-<!--            url: "/mypage",-->
-<!--            data: {},-->
-<!--            success: function (response) {-->
-<!--                let rows = response['users']-->
-<!--                for(let i = 0; i < rows.length; i ++){-->
-<!--                    let name = rows[i]['name']-->
-<!--                    let age = rows[i]['age']-->
-
-<!--                    let temp_html = `<div id="stock-detail" class="card" style="width: 18rem;">-->
-<!--                                        <div class="card-body">-->
-<!--                                            <h5 class="card-title">${name}</h5>-->
-<!--                                            <h6 class="card-subtitle mb-2 text-muted">${age}</h6>-->
-<!--                                            <button onclick="sell()" id="button" type="button" class="btn btn-outline-danger">매도</button>-->
-<!--                                        </div>-->
-<!--                                    </div>`-->
-<!--                    $('#stock-detail').append(temp_html)-->
-<!--                    }-->
-<!--                }-->
-<!--            })-->
-<!--        }-->
-<!--        function myPage(){-->
-<!--            window.location.reload()-->
-<!--        }-->
-<!--        function goMain(){-->
-<!--            window.location.href ="/main"-->
-<!--        }-->
-<!--        function goLogin(){-->
-<!--            window.location.href ="/login"-->
-<!--        }-->
-<!--        function goJoin(){-->
-<!--            window.location.href ="/join"-->
-<!--        }-->
-<!--        function sell(){-->
-<!--            $.ajax({-->
-<!--                type: 'POST',-->
-<!--                url: '/mypage/sell',-->
-<!--                data: {},-->
-<!--                success: function (response) {-->
-<!--                    alert(response["msg"])-->
-<!--                }-->
-<!--            })-->
-<!--        }-->
-<!--         function sign_out() {-->
-<!--            $.removeCookie('mytoken', {path: '/'});-->
-<!--            alert('로그아웃!')-->
-<!--            window.location.href = "/login"-->
-<!--        }-->
-<!--    </script>-->
 <body>
     <div class="top-bar">
         <h1 class="logo"><a href="/">Gazuaa</a></h1>
@@ -86,7 +28,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <li>
-                    <button onclick="sign_out()" class="dropdown-item" type="button">logout</button>
+                    <button onclick="sign_out2()" class="dropdown-item" type="button">logout</button>
                 </li>
                 <li>
                     <button onclick="goJoin()" class="dropdown-item" type="button">join</button>
@@ -105,13 +47,9 @@
         <button onclick="showhide()" class="my-buy"><h4 class="buy-title" >나의 매수 목록 🔁 </h4></button>
     </div>
     <div class="wrap" id="stock-list" >
-            <div id="stock-detail" class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">test</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">test</h6>
-                    <button onclick="sell()" id="button" type="button" class="btn btn-outline-danger">매도</button>
-                </div>
-            </div>
+
+
+
     </div>
 </body>
 </html>
