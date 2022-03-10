@@ -45,7 +45,7 @@ def home():
         # KOSPI, KOSDAQ 실시간 주가
         username=payload["id"]
         status = (username == payload["id"])
-        return render_template('main.html',kospi=soup, kosdaq=soup2, status=status)
+        return render_template('main.html',kospi=soup, kosdaq=soup2, status=status,username=username)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("login"))
 
@@ -60,7 +60,7 @@ def mypage_template():
         print(user_stocks)
         for user_stock in user_stocks:
             user_stock["_id"] = str(user_stock["_id"])
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+        return render_template('mypage.html')
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect("/login")
   

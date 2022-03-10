@@ -35,11 +35,11 @@
         })
     }
     // 마이페이지 상단 우측 드롭다운 매뉴
-    function sign_out() {
-        // $.removeCookie('mytoken', {path: '/'});
-        alret('로그아웃 하시겠습니까?')
-        window.location.replace("/login")
-    }
+ function sign_out2() {
+    $.removeCookie('mytoken', {path: '/'})
+    alert("로그아웃 하셨습니다")
+    window.location.replace('/login')
+}
 
     function goJoin() {
         window.location.href = "/join"

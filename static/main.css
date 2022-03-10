@@ -1,4 +1,5 @@
-* {font-family: 'Jua', sans-serif;}
+* {
+font-family: 'Varela Round', sans-serif;}
 
 .card {
     min-width: 270px;
@@ -6,11 +7,9 @@
     margin: 10px;
     margin-top: 50px;
     padding: 10px;
+
 }
 
-.card-boxs {
-    display: flex;
-}
 
 .btn {
     width: 200px;
@@ -22,11 +21,15 @@
     background-color: lightblue;
 }
 .card-boxs{
-    overflow-x: scroll;
-    overflow-x: auto;
     width: 100%;
     display: flex;
-    object-fit: contain;
+    word-break: break-all;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+
+
+
 }
 .table {
     position: fixed;
@@ -47,7 +50,54 @@
     left: 60%;
     transform: translate(-50%, -50%);
 }
+.stock_block{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 20px;
+}
+.stock_block >button{
+    width: 40%;
+    height: 150px;
+}
+.stock_block >button{
+    font-size: xxx-large;
+}
+.card_header_kospi{
+    background-color: #ed6363;
+    border-radius: 10px;
 
+}
+.card_header_kosdaq{
+    background-color: #4c87ed;
+    border-radius: 10px;
+
+}
+.user_profile{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.users_id{
+    font-family: 'Fredoka', sans-serif;
+
+    font-size: 25px;
+}
+.card-footer >a{
+    transition: 450ms;
+    color: black;
+}
+.card-footer >a :hover{
+    transform: scale(1.1);
+    font-weight: bolder;
+}
+.card{
+    transition: 450ms;
+}
+.card:hover{
+    transform: scale(1.06);
+}
 /*.searchTerm {*/
 /*    margin-right: ;*/
 /*}*/

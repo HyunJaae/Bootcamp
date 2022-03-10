@@ -35,18 +35,18 @@ function show_kospi() {
                 let temp_html = `
                 <div class="card">
                     <header class="card-header">
-                        <p class="card-header-title">
+                        <p class="card-header-title card_header_kospi">
                           현재 순위 ${rank}
                         </p>
                     </header>
                     <div class="card-content">
                         <div class="content">
-                             ${stock_nm}: ${price}
+                             ${stock_nm} : ${price}
                         </div>
                     </div>
                     <footer class="card-footer">
                         <a class="card-footer-item" onclick="buy()">매수</a>
-                        <a href="${stock_url}" class="card-footer-item">네이버 정보</a>
+                        <a href="${stock_url}" class="card-footer-item">다음 정보</a>
                     </footer>
                 </div>`
                 $("#kos_pi_box").append(temp_html)
@@ -73,7 +73,7 @@ function show_kosdaq() {
                 let temp_html = `
                 <div class="card">
                     <header class="card-header">
-                        <p class="card-header-title">
+                        <p class="card-header-title card_header_kosdaq">
                           현재 순위 ${rank}
                         </p>
                     </header>
@@ -84,7 +84,7 @@ function show_kosdaq() {
                     </div>
                     <footer class="card-footer">
                         <a class="card-footer-item" onclick="buy()">매수</a>
-                        <a href="${stock_url}" class="card-footer-item">네이버 정보</a>
+                        <a href="${stock_url}" class="card-footer-item">다음 정보</a>
                     </footer>
                 </div>`
                 $("#kos_daq_box").append(temp_html)
