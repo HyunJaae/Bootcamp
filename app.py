@@ -36,8 +36,6 @@ def mypage_template():
 
 
 
-
-
 @app.route("/")
 def home():
     token_receive = request.cookies.get('mytoken')
@@ -65,6 +63,7 @@ def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
 
+
 # @app.route('/my_stock', methods=['POST'])
 # def my_stock():
 #     token_receive = request.cookies.get('mytoken')
@@ -88,6 +87,22 @@ def kosdaq():
 @app.route("/mypage/done")
 def second():
     return render_template("mypage.html")
+# mypage 보여주기
+@app.route("/mypage/", methods=['GET'])
+def mypage_template():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
+        print(user_stocks)
+        for user_stock in user_stocks:
+            user_stock["_id"] = str(user_stock["_id"])
+        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect("/login")
+        
+
+
 
 # mypage 보여주기
 # @app.route("/mypage_done")
@@ -138,6 +153,7 @@ def my_stock():
         return render_template("mypage.html")
 
 
+# mypage 상단 우측 버튼
 @app.route("/login/")
 def login():
     login_cookie = request.cookies.get('mytoken')
