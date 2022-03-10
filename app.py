@@ -19,16 +19,6 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
 
-<<<<<<< HEAD
-@app.route("/main/kospi", methods=['GET'])
-def kospi():
-    all_kospi = list(db.kospi.find({}, {'_id': False}))
-    return jsonify({'kospi': all_kospi})
-
-@app.route("/main/kosdaq", methods=['GET'])
-def kosdaq():
-    all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
-    return jsonify({"kosdaq": all_kosdaq})
 
 # mypage 보여주기
 @app.route("/mypage/", methods=['GET'])
@@ -43,19 +33,13 @@ def mypage_template():
         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect("/login")
-        
 
 
 
 
 
-# mypage 상단 버튼
-@app.route('/')
-def main_template():
-=======
 @app.route("/")
 def home():
->>>>>>> 1f7b2f2eaf22a2ee036984b2880f9ebcd7a80fa3
     token_receive = request.cookies.get('mytoken')
 
     try:
@@ -113,7 +97,6 @@ def second():
 #         payload = jwt.decode(token_receive)
 #         user_info = db.users.find_one({"username": payload["id"]})
 #         return render_template('mypage.html', user_info=user_info["nick"])
-<<<<<<< HEAD
 
 
 
@@ -154,24 +137,7 @@ def my_stock():
     except:
         return render_template("mypage.html")
 
-# mypage 상단 우측 버튼
-=======
-# @app.route('/')
-# def main():
-#     try:
-#         token_receive = request.cookies.get('mytoken')
-#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#             # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-#         username=payload["id"]
-#         status = (username == payload["id"])
-#
-#         user_info = db.users.find_one({"username": username}, {"_id": False})
-#         return render_template('/', status=status)
-#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-#         return redirect(url_for("/login"))
 
-
->>>>>>> 1f7b2f2eaf22a2ee036984b2880f9ebcd7a80fa3
 @app.route("/login/")
 def login():
     login_cookie = request.cookies.get('mytoken')
