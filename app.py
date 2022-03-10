@@ -15,123 +15,66 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://test:sparta@cluster0.d6z8z.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.gazuaaa
 
+@app.route("/")
+def home():
+    return render_template("main.html")
 
-<<<<<<< HEAD
+# 주식 보여주기 API
 @app.route("/main/kospi", methods=['GET'])
-=======
-
-
-
-@app.route("/main/ko_spi", methods=['GET'])
->>>>>>> c3997f393a043d75a9b20e5356337063876f467b
 def kospi():
     all_kospi = list(db.kospi.find({}, {'_id': False}))
     return jsonify({'kospi': all_kospi})
 
-
-@app.route("/main/kos_daq", methods=['GET'])
+@app.route("/main/kosdaq", methods=['GET'])
 def kosdaq():
     all_kosdaq = list(db.kosdaq.find({}, {'_id': False}))
     return jsonify({"kosdaq": all_kosdaq})
 
-# 매수 API
-# @app.route("/main/sell", methods=['POST'])
-# def buy_stock():
-#     title_receive = request.form['title_give']
-#     price_receive = request.form['price_give']
-#     url_receive = request.form['url_give']
-#
-#     doc = {
-#         'stock_nm': title_receive,
-#         're_price':price_receive,
-#         'url':url_receive
+# @app.route('/my_stock', methods=['POST'])
+# def my_stock():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         user_info = db.users.find_one({"username": payload["id"]})
+#         stock_name_receive = request.form["stock_name_give"]
+#         stock_cost_receive = request.form["stock_cost_give"]
+#         doc = {
+#             "username": user_info["username"],
+#             "profile_name": user_info["profile_name"],
+#             "profile_pic_real": user_info["profile_pic_real"],
+#             "stock_name": stock_name_receive,
+#             "stock_cost": stock_cost_receive
 #         }
-#     db.mystock.insert_one(doc)
-#
-#     return jsonify({'msg': '매수 되었습니다!'})
+#         db.my_stock.insert_one(doc)
+#         return jsonify({"result": "success", 'msg': '포스팅 성공'})
+#     except:
+#         return render_template("mypage.html")
 
-
+@app.route("/mypage/done")
+def second():
+    return render_template("mypage.html")
 
 # mypage 보여주기
-@app.route("/mypage/", methods=['GET'])
-def mypage_template():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        user_stocks = list(db.my_stock.find({"username": payload["id"]}).sort("stock_cost", -1).limit(30))
-        print(user_stocks)
-        for user_stock in user_stocks:
-            user_stock["_id"] = str(user_stock["_id"])
-        return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", "user_stock": user_stock})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect("/login")
-<<<<<<< HEAD
-=======
-        
->>>>>>> c3997f393a043d75a9b20e5356337063876f467b
-
-
-# mypage 상단 버튼
-@app.route('/')
-def main_template():
-    token_receive = request.cookies.get('mytoken')
-
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        username = payload["id"]
-        status = (username == payload["id"])
-        return render_template("main.html",status=status)
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect("/login")
-
-# 나의 정보 보여주기
 # @app.route("/mypage_done")
-
 # def my_template():
 #     token_receive = request.cookies.get('mytoken', SECRET_KEY, algorithm=['HS256'])
 #     try:
 #         payload = jwt.decode(token_receive)
 #         user_info = db.users.find_one({"username": payload["id"]})
 #         return render_template('mypage.html', user_info=user_info["nick"])
-
-
-#  mypage 상단 좌측 버튼
-@app.route('/')
-def main():
-    try:
-        token_receive = request.cookies.get('mytoken')
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-            # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-        username=payload["id"]
-        status = (username == payload["id"])
-
-        user_info = db.users.find_one({"username": username}, {"_id": False})
-        return render_template('/', status=status)
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("/login"))
-
-
-
-@app.route('/my_stock', methods=['POST'])
-def my_stock():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.users.find_one({"username": payload["id"]})
-        stock_name_receive = request.form["stock_name_give"]
-        stock_cost_receive = request.form["stock_cost_give"]
-        doc = {
-            "username": user_info["username"],
-            "profile_name": user_info["profile_name"],
-            "profile_pic_real": user_info["profile_pic_real"],
-            "stock_name": stock_name_receive,
-            "stock_cost": stock_cost_receive
-        }
-        db.my_stock.insert_one(doc)
-        return jsonify({"result": "success", 'msg': '포스팅 성공'})
-    except:
-        return render_template("mypage.html")
-
-# mypage 상단 우측 버튼
+# @app.route('/')
+# def main():
+#     try:
+#         token_receive = request.cookies.get('mytoken')
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#             # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+#         username=payload["id"]
+#         status = (username == payload["id"])
+#
+#         user_info = db.users.find_one({"username": username}, {"_id": False})
+#         return render_template('/', status=status)
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("/login"))
 
 
 @app.route("/login/")
