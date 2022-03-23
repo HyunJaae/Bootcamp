@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Devlog">
+    <meta property="og:description" content="개발자용 기술 블로그, velog 아니에요!">
+    <meta property="og:image" content="images/Devlog.png">
+    <title>Devlog</title>
+    <link rel="stylesheet" href="style.css?after">
+    <link rel="shortcut icon" size="32x32" href="images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@100&family=Jua&family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="basic.js?after"></script>
+</head>
+
+<body>
+<div class="background-header">
+
+</div>
+<div class="background-body">
+
+</div>
+<div class="wrap">
+    <div class="header" onclick="window.location.reload()">
+        <h2>Devlog</h2>
+        <p></p>
+    </div>
+    <input id= "writer" class="writer" type="text" placeholder="ID를 적어주세요." required>
+    <div class="area-write">
+        <textarea class="field" placeholder="오늘 어떤 생각을 했나요?" name="contents" id="contents" cols="30" rows="10"></textarea>
+        <img src="images/plane.png" alt="" onclick="writePost()">
+    </div>
+    <div id="cards-box" class="area-read">
+        <div class="card">
+            <!-- date/username 영역 -->
+            <div class="metadata">
+                <div class="date">
+                    October 10, 2020
+                </div>
+                <div id="1-username" class="username">
+                    anonymous
+                </div>
+            </div>
+            <!-- contents 조회/수정 영역-->
+            <div class="contents">
+                <div id="1-contents" class="text">
+                    dsafnkalfklewakflekelafkleajfkleafkldsankflenwaklfnekwlafneklwanfkelawnfkelanfkleanfklew
+                </div>
+                <div id="1-editarea" class="edit">
+                    <textarea id="1-textarea" class="te-edit" name="" id="" cols="30" rows="5"></textarea>
+                </div>
+            </div>
+            <!-- 버튼 영역-->
+            <div class="footer">
+                <img id="1-edit" onclick="editPost('1')" class="icon-start-edit" src="images/edt.png" alt="">
+                <img id="1-delete" onclick="deleteOne('1')" class="icon-delete" src="images/delete1.png" alt="">
+                <img id="1-submit" onclick="submitEdit('1')" class="icon-end-edit" src="images/editdone.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modalBox" id="modalBox">
+    <div class="popup">
+        <div class="modalMeta">
+            <div class="modalTime">시간</div>
+            <div class="modalId">아이디</div>
+        </div>
+        <div class="modalContents">
+            <div id="1-modalContents" class="modalText">
+                안녕하세요 첫 블로그 글입니다. 재미있는 개발 시간이네요.
+            </div>
+            <div id="1-modalEditarea" class="modalEdit">
+                <textarea id="1-modalTextarea" class="modalTe-edit" name="" id="" cols="30" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="modalFooter">
+            <img id="1-modalEdit" onclick="modalEditPost('1')" class="modalIcon-start-edit" src="images/edit.png" alt="">
+            <img id="1-modalDelete" onclick="modalOut('1')" class="modalIcon-delete" src="images/modalout.png" alt="">
+            <img id="1-modalSubmit" onclick="modalSubmitEdit('1')" class="modalIcon-end-edit" src="images/done.png" alt="">
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
