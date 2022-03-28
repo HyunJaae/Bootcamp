@@ -1,4 +1,4 @@
-package com.sparta.devleeblog.models;
+package com.sparta.devleeblog.model;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

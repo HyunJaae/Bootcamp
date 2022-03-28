@@ -1,5 +1,6 @@
-package com.sparta.devleeblog.models;
+package com.sparta.devleeblog.repository;
 
+import com.sparta.devleeblog.model.Blog;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

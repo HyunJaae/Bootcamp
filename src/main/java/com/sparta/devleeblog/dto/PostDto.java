@@ -1,4 +1,4 @@
-package com.sparta.devleeblog.models;
+package com.sparta.devleeblog.dto;
 
 import lombok.Getter;
 

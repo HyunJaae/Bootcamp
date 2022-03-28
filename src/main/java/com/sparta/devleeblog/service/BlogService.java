@@ -1,8 +1,8 @@
 package com.sparta.devleeblog.service;
 
-import com.sparta.devleeblog.models.Blog;
-import com.sparta.devleeblog.models.PostDto;
-import com.sparta.devleeblog.models.PostRepository;
+import com.sparta.devleeblog.model.Blog;
+import com.sparta.devleeblog.dto.PostDto;
+import com.sparta.devleeblog.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

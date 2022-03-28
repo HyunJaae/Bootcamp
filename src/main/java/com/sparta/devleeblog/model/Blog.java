@@ -1,6 +1,7 @@
-package com.sparta.devleeblog.models;
+package com.sparta.devleeblog.model;
 
 
+import com.sparta.devleeblog.dto.PostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
