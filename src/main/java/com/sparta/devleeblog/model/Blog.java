@@ -15,7 +15,7 @@ public class Blog extends Timestamped {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private String username;
 
     @Column(nullable = false)

@@ -14,11 +14,11 @@ public class User {
 
     // ID가 자동으로 생성 및 증가합니다.
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id  // primary key 설정
+    @Id
     private Long id;
 
     // nullable: null 허용 여부
-    // unique: 중복 허용 여부 (false 일때 중복 허용), default 값은 false
+// unique: 중복 허용 여부 (false 일때 중복 허용)
     @Column(nullable = false, unique = true)
     private String username;
 

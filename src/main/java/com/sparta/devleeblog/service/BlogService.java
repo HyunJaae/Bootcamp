@@ -20,6 +20,7 @@ public class BlogService {
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
         post.update(postDto);
+        System.out.println("서비스까지 넘어옴");
         return post.getId();
     }
 }

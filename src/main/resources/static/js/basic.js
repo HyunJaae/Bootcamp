@@ -15,7 +15,7 @@ function isValidContents(contents) {
 
 // 익명의 username을 만듭니다.
 function genRandomName() {
-    let result = $('#writer').val();
+    let result = $('#header-title-login-user').text();
     return result;
 }
 
@@ -104,9 +104,9 @@ function addHTML(id, username, content, modifiedAt) {
                                 </div>
                                 <!-- 버튼 영역-->
                                 <div class="footer">
-                                    <img id="${id}-edit" class="icon-start-edit" src="images/edt.png" alt="" onclick="editPost('${id}')">
-                                    <img id="${id}-delete" class="icon-delete" src="images/delete.png" alt="" onclick="deleteOne('${id}')">
-                                    <img id="${id}-submit" class="icon-end-edit" src="images/check.png" alt="" onclick="submitEdit('${id}')">
+                                    <img id="${id}-edit" class="none icon-start-edit" src="../images/edt.png" alt="" onclick="editPost('${id}')">
+                                    <img id="${id}-delete" class="none icon-delete" src="../images/delete.png" alt="" onclick="deleteOne('${id}')">
+                                    <img id="${id}-submit" class="none icon-end-edit" src="../images/check.png" alt="" onclick="submitEdit('${id}')">
                                 </div>
                             </div>`;
     // 2. #cards-box 에 HTML을 붙인다.
@@ -151,9 +151,9 @@ function addSelect(id, username, content, modifiedAt) {
                                 </div>
                             </div> 
                             <div class="modalFooter">
-                                <img id="${id}-modalEdit" onclick="modalEditPost('${id}')" class="modalIcon-start-edit" src="images/edt.png" alt="">
-                                <img id="${id}-modalDelete" onclick="modalOut()" class="modalIcon-delete" src="images/modalout.png" alt="">
-                                <img id="${id}-modalSubmit" onclick="modalSubmitEdit('${id}')" class="modalIcon-end-edit" src="images/check.png" alt="">
+                                <img id="${id}-modalEdit" onclick="modalEditPost('${id}')" class="modalIcon-start-edit" src="../images/edt.png" alt="">
+                                <img id="${id}-modalDelete" onclick="modalOut()" class="modalIcon-delete" src="../images/modalout.png" alt="">
+                                <img id="${id}-modalSubmit" onclick="modalSubmitEdit('${id}')" class="modalIcon-end-edit" src="../images/check.png" alt="">
                             </div>
                         </div>
                      `;
@@ -257,6 +257,7 @@ function submitEdit(id) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (response) {
+            console.log("수정완료");
             window.location.reload();
         }
     });

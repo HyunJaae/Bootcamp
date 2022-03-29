@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <meta charset="UTF-8">
     <title>회원가입 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function onclickAdmin() {
 // Get the checkbox
@@ -27,18 +28,25 @@
     </script>
 </head>
 <body>
-<div id="login-form">
-    <div id="login-title">Sign up Select Shop</div>
+<div id="signup-form">
+    <div id="login-title">Sign up Devlog</div>
 
-    <form action="/user/signup" method="post">
+    <form action="/user/signup" method="post" modelAttribute="requestDto">
         <div class="login-id-label">Username</div>
-        <input type="text" name="username" placeholder="Username" class="login-input-box">
+        <input type="text" name="username" th:value="${requestDto?.username}" placeholder="Username" class="login-input-box">
+        <p class="signup_error" th:text="${valid_username}"></p>
 
         <div class="login-id-label">Password</div>
-        <input type="password" name="password" class="login-input-box">
+        <input type="password" name="password" th:value="${requestDto?.password}" class="login-input-box">
+        <p class="signup_error" th:text="${valid_password}"></p>
+
+        <div class="login-id-label">Check Password</div>
+        <input type="password" name="checkPassword" class="login-input-box">
+        <p class="signup_error" th:text="${valid_checkPassword}"></p>
 
         <div class="login-id-label">E-mail</div>
-        <input type="text" name="email" placeholder="E-mail" class="login-input-box">
+        <input type="text" name="email" th:value="${requestDto?.email}" placeholder="E-mail" class="login-input-box">
+        <p class="signup_error" th:text="${valid_email}"></p>
 
         <div>
             <input id="admin-check" type="checkbox" name="admin" onclick="onclickAdmin()" style="margin-top: 40px;">관리자
