@@ -5,6 +5,8 @@ import com.sparta.devleeblog.service.UserService;
 import com.sparta.devleeblog.validator.CheckEmailValidator;
 import com.sparta.devleeblog.validator.CheckUsernameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -12,10 +14,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.lang.reflect.Member;
+import java.security.Principal;
 import java.util.Map;
 
 @Controller
@@ -24,25 +24,23 @@ public class UserController {
     private final UserService userService;
     private final CheckUsernameValidator checkUsernameValidator;
     private final CheckEmailValidator checkEmailValidator;
-    private final SessionManager sessionManager;
 
     @Autowired
-    public UserController(UserService userService, CheckUsernameValidator checkUsernameValidator, CheckEmailValidator checkEmailValidator, SessionManager sessionManager) {
+    public UserController(UserService userService, CheckUsernameValidator checkUsernameValidator, CheckEmailValidator checkEmailValidator) {
         this.userService = userService;
         this.checkUsernameValidator = checkUsernameValidator;
         this.checkEmailValidator = checkEmailValidator;
-        this.sessionManager = sessionManager;
     }
 
     // 회원 로그인 페이지
     @GetMapping("/user/login")
-    public String login(HttpServletRequest request) {
-        Member member = (Member) sessionManager.getSession(request);
-
-        if(member == null){
-            return "login";
+    public String login(Model model, Principal principal) {
+        if(principal != null){
+            model.addAttribute("msg", "로그인 페이지로 갈 수 없습니다.");
+            model.addAttribute("username", principal.getName());
+            return "index";
         }
-        return "index";
+        return "login";
     }
 
     // 회원 가입 페이지

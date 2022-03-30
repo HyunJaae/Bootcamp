@@ -57,6 +57,7 @@ $(document).ready(function () {
 function getMessages() {
     // 1. 기존 메모 내용을 지웁니다.
     $('#cards-box').empty();
+
     // 2. 메모 목록을 불러와서 HTML로 붙입니다.
     $.ajax({
         type: 'GET',
@@ -69,13 +70,15 @@ function getMessages() {
                 let content = post.contents;
                 let modifiedAt = convertUTCTimeToSeoulTime(post['modifiedAt']);
                 addHTML(id, username, content, modifiedAt)
+                loginUserOnly(id, username);
             }
         }
     })
 }
+// 서버 시간을 한국 시간으로 맞춤
 function convertUTCTimeToSeoulTime(UTCDate){
     let SeoulTime = new Date(UTCDate)
-    SeoulTime.setHours(SeoulTime.getHours() +9)
+    SeoulTime.setHours(SeoulTime.getHours())
     console.log(SeoulTime.toLocaleString())
     return SeoulTime.toLocaleString()
 }
@@ -112,7 +115,18 @@ function addHTML(id, username, content, modifiedAt) {
     // 2. #cards-box 에 HTML을 붙인다.
     $('#cards-box').append(tempHtml);
 }
+// 자기가 쓴 글만 볼 수 있다.
+function loginUserOnly(id, username) {
+    let loginUser = $('#header-title-login-user').text();
+    console.log(loginUser);
+    if(username === loginUser) {
+        $(`#${id}-edit`).removeClass('none');
+        $(`#${id}-delete`).removeClass('none');
+        $(`#${id}-submit`).removeClass('none');
+    }
+}
 
+// 모달 창 시작
 function selectMyPost(id) {
     $('#modalBox').empty();
     $('#modalBox').addClass('active');
@@ -127,9 +141,11 @@ function selectMyPost(id) {
                 let id = myPost.id;
                 let username = myPost.username;
                 let content = myPost.contents;
-                let modifiedAt = myPost.modifiedAt;
+                let modifiedAt = convertUTCTimeToSeoulTime(myPost['modifiedAt']);
                 console.log(id, username, content, modifiedAt);
                 addSelect(id, username, content, modifiedAt);
+                modal_loginUserOnly(id, username);
+                read_comments(id, username);
             }
         }
     })
@@ -137,6 +153,7 @@ function selectMyPost(id) {
 
 function addSelect(id, username, content, modifiedAt) {
     let selectHtml = `
+                        <div>
                         <div class="popup">
                             <div class="modalMeta">
                                 <div class="modalTime">${modifiedAt}</div>
@@ -151,17 +168,41 @@ function addSelect(id, username, content, modifiedAt) {
                                 </div>
                             </div> 
                             <div class="modalFooter">
-                                <img id="${id}-modalEdit" onclick="modalEditPost('${id}')" class="modalIcon-start-edit" src="../images/edt.png" alt="">
+                            <img id="${id}-comment" onclick="comments('${id}')" class="none commentIcon" src="../images/comment.png" alt="">
+                                <img id="${id}-modalEdit" onclick="modalEditPost('${id}')" class="none modalIcon-start-edit" src="../images/edt.png" alt="">
                                 <img id="${id}-modalDelete" onclick="modalOut()" class="modalIcon-delete" src="../images/modalout.png" alt="">
-                                <img id="${id}-modalSubmit" onclick="modalSubmitEdit('${id}')" class="modalIcon-end-edit" src="../images/check.png" alt="">
+                                <img id="${id}-modalSubmit" onclick="modalSubmitEdit('${id}')" class="none modalIcon-end-edit" src="../images/check.png" alt="">
                             </div>
                         </div>
+                        <div id="${id}-write_comment" class="none write_comment">
+                            <textarea class="comment_field" placeholder="댓글을 남겨주세요." name="write_comment_contents" id="${id}-commentTextarea" cols="30"
+                                      rows="5"></textarea>
+                            <img  class="add_comment_icon" src="../images/plane.png" alt="" onclick="add_comment(${id})">
+                            <img  class="comment_out_icon" src="../images/modalout.png" alt="" onclick="comment_out(${id})">
+                        </div>
+                        </div>
+                        <div id="commentBox"></div>
                      `;
     $('#modalBox').append(selectHtml);
 }
 
+function modal_loginUserOnly(id, username) {
+    let loginUser = $('#header-title-login-user').text();
+    console.log(loginUser);
+    // 로그인한 유저라면 댓글은 달 수 있게 한다.
+    if(loginUser != "") {
+        $(`#${id}-comment`).removeClass('none');
+    }
+    console.log(loginUser);
+    if(username === loginUser) {
+        $(`#${id}-modalEdit`).removeClass('none');
+        $(`#${id}-modalSubmit`).removeClass('none');
+    }
+}
+
 function modalEditPost(id) {
     modalShowEdits(id);
+    $(`#${id}-comment`).addClass('none');
     let contents = $(`#${id}-modalContents`).text().trim();
     $(`#${id}-modalTextarea`).val(contents);
 }
@@ -209,6 +250,175 @@ function modalSubmitEdit(id) {
 
 function modalOut() {
     $('#modalBox').removeClass('active');
+}
+
+// 댓글 창 시작
+// 댓글 작성란 보이기
+function comments(id) {
+    $(`#${id}-write_comment`).removeClass('none');
+}
+
+// 작성란 없애기
+function comment_out(id) {
+    $(`#${id}-write_comment`).addClass('none');
+}
+
+function add_comment(id) {
+    // 댓글 창은 없어진다.
+    comment_out(id);
+    // 1. 작성한 댓글을 불러옵니다.
+    let comment_contents = $(`#${id}-commentTextarea`).val();
+    comment_contents = comment_contents.replaceAll(/(\n|\r\n)/g, "<br>");
+    console.log(comment_contents);
+    // 2. 작성한 댓글이 올바른지 isValidContents 함수를 통해 확인합니다.
+    if (isValidContents(comment_contents) == false) {
+        return;
+    }
+    // 3. genRandomName 함수를 통해 로그인한 유저 ID를 가져옵니다.
+    let username = genRandomName();
+    if(username == "") {
+        alert("어떻게 여기까지 왔지?");
+    } else{
+        // 4. 전달할 data JSON으로 만듭니다.
+        let data = {'uid': id,'username': username, 'contents': comment_contents};
+        // 5. POST /api/memos 에 data를 전달합니다.
+        $.ajax({
+            type: "POST",
+            url: "/api/comments",
+            contentType: "application/json", // JSON 형식으로 전달함을 알리기
+            data: JSON.stringify(data), // ARC에서는 body였던 부분, 데이터는 string으로만 주고 받아야해서 string으로 변환
+            success: function (response) {
+                selectMyPost(id);
+            }
+        });
+    }
+}
+
+function read_comments(id, username) {
+    $('#commentBox').empty();
+
+    $.ajax({
+        type: 'GET',
+        url: `/api/comments/${id}`,
+        success: function (response) {
+            console.log(response);
+            for (let i = 0; i < response.length; i++) {
+                let comments = response[i];
+                let id = comments.id;
+                let uid = comments.uid;
+                let username = comments.username;
+                let content = comments.contents;
+                let modifiedAt = convertUTCTimeToSeoulTime(comments['modifiedAt']);
+                console.log(id, username, content, modifiedAt);
+                add_comment_HTML(id, uid, username, content, modifiedAt);
+                comment_loginUserOnly(id);
+            }
+        }
+    })
+}
+
+function add_comment_HTML(id, uid, username, content, modifiedAt) {
+    let comment_Html = `
+                        <div id="comments" class="comments">
+                            <div class="commentMeta">
+                                <div class="commentTime">${modifiedAt}</div>
+                                <div id="${id}-commentId" class="commentId">${username}</div>
+                            </div>
+                            <div class="commentContents">
+                                <div id="${id}-commentContents" class="commentText">
+                                    ${content}    
+                                </div>
+                                <div id="${id}-commentEditarea" class="commentEdit">
+                                    <textarea id="${id}-commentTextarea" class="commentTe-edit" name="" cols="30" rows="5"></textarea>
+                                </div>
+                                <div class="commentFooter">
+                                    <img id="${id}-commentEdit" onclick="commentEdit('${id}')" class="none commentIcon-start-edit" src="../images/edt.png"
+                                         alt="">
+                                    <img id="${id}-commentDelete" onclick="commentDelete('${id}', '${uid}')" class="none commentIcon-delete" src="../images/delete.png"
+                                         alt="">
+                                    <img id="${id}-commentSubmit" onclick="commentSubmitEdit('${id}', '${uid}')" class="none commentIcon-end-edit" src="../images/check.png"
+                                         alt="">
+                                    <img id="${id}-commentNoEdit" onclick="commentNoEdit('${id}')" class="none commentIcon-NoEdit" src="../images/modalout.png"
+                                         alt="">
+                                </div>
+                            </div>
+                        </div>
+                     `;
+    $('#commentBox').append(comment_Html);
+}
+
+function comment_loginUserOnly(id) {
+    let loginUser = $('#header-title-login-user').text();
+    let commentUser = $(`#${id}-commentId`).text();
+    console.log(loginUser);
+    console.log(commentUser);
+    if(commentUser === loginUser) {
+        $(`#${id}-commentEdit`).removeClass('none');
+        $(`#${id}-commentDelete`).removeClass('none');
+        $(`#${id}-commentSubmit`).removeClass('none');
+    }
+}
+
+function commentEdit(id) {
+    commentShowEdits(id);
+    $(`#${id}-commentEdit`).addClass('none');
+    let contents = $(`#${id}-commentContents`).text().trim();
+    $(`#${id}-commentTextarea`).val(contents);
+
+}
+
+function commentShowEdits(id) {
+    $(`#${id}-commentEditarea`).show();
+    $(`#${id}-commentSubmit`).show();
+    $(`#${id}-commentNoEdit`).show();
+
+    $(`#${id}-commentDelete`).hide();
+    $(`#${id}-commentContents`).hide();
+    $(`#${id}-commentEdit`).hide();
+}
+
+function commentNoEdit(id) {
+    $(`#${id}-commentEditarea`).hide();
+    $(`#${id}-commentSubmit`).hide();
+    $(`#${id}-commentNoEdit`).hide();
+
+    $(`#${id}-commentDelete`).show();
+    $(`#${id}-commentContents`).show();
+    $(`#${id}-commentEdit`).show();
+}
+
+function commentSubmitEdit(id, uid) {
+    // 1. 작성 대상 댓글의 username과 contents 를 확인합니다.
+    let username = $(`#${id}-commentId`).text().trim();
+    let contents = $(`#${id}-commentTextarea`).val().trim();
+    contents = contents.replaceAll(/(\n|\r\n)/g, "<br>");
+    // 2. 작성한 댓글이 올바른지 isValidContents 함수를 통해 확인합니다.
+    if (isValidContents(contents) == false) {
+        return;
+    }
+    // 3. 전달할 data JSON으로 만듭니다.
+    let data = {'uid': uid, 'username': username, 'contents': contents};
+    // 4. PUT /api/memos/{id} 에 data를 전달합니다.
+    $.ajax({
+        type: "PUT",
+        url: `/api/comments/${id}`, // 백틱
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (response) {
+            console.log("수정완료");
+            selectMyPost(uid);
+        }
+    });
+}
+
+function commentDelete(id, uid) {
+    $.ajax({
+        type: "DELETE",
+        url: `/api/comments/${id}`,
+        success: function (response) {
+            selectMyPost(uid);
+        }
+    })
 }
 
 // 메모를 생성합니다.

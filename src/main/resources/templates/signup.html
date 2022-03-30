@@ -39,6 +39,7 @@
         <div class="login-id-label">Password</div>
         <input type="password" name="password" th:value="${requestDto?.password}" class="login-input-box">
         <p class="signup_error" th:text="${valid_password}"></p>
+        <p class="signup_error" th:text="${valid_checkPasswordContaind}"></p>
 
         <div class="login-id-label">Check Password</div>
         <input type="password" name="checkPassword" class="login-input-box">

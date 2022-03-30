@@ -6,7 +6,6 @@ import lombok.Setter;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import java.lang.reflect.Member;
 
 @Setter
 @Getter
@@ -25,6 +24,11 @@ public class SignupRequestDto {
     @AssertTrue(message = "비밀번호가 일치하지 않습니다.")
     public boolean isCheckPassword() {
         return checkPassword.equals(password);
+    }
+
+    @AssertTrue(message = "비밀번호에 ID를 포함할 수 없습니다.")
+    public boolean isCheckPasswordContaind() {
+        return !password.contains(username);
     }
 
 
