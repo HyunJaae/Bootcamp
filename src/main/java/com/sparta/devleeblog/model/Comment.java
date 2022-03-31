@@ -1,7 +1,6 @@
 package com.sparta.devleeblog.model;
 
 import com.sparta.devleeblog.dto.CommentDto;
-import com.sparta.devleeblog.dto.PostDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,10 +23,14 @@ public class Comment extends Timestamped {
     @Column(nullable = false)
     private String contents;
 
+    @Column(nullable = false)
+    private int likeCount;
+
     public Comment(Long uid, String username, String contents) {
         this.uid = uid;
         this.username = username;
         this.contents = contents;
+        this.likeCount = 0;
     }
 
     public Comment(CommentDto commentDto) {
@@ -40,6 +43,10 @@ public class Comment extends Timestamped {
         this.uid = requestDto.getUid();
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
+    }
+
+    public void addCount() {
+        likeCount++;
     }
 
 

@@ -27,9 +27,6 @@ public class CommentController {
     @PostMapping("/api/comments")
     public Comment creatComment(@RequestBody CommentDto commentDto) {
         Comment comment = new Comment(commentDto);
-        System.out.println(commentDto.getUsername());
-        System.out.println(comment.getUsername());
-
         return commentRepository.save(comment);
     }
 

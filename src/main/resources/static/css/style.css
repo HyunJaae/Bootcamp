@@ -479,6 +479,23 @@ textarea.field::placeholder {
     color: coral;
 }
 
+.heartimg {
+    width: 13px;
+}
+
+.commentIcon_heart {
+    cursor: pointer;
+    position: absolute;
+    bottom: 14px;
+    width: 13px;
+    height: 13px;
+    margin-left: 5px;
+}
+
+.heartCount {
+    margin-left: 8px;
+}
+
 .commentText {
     width: 280px;
 }

@@ -8,12 +8,12 @@
     <meta property="og:description" content="개발자용 기술 블로그, velog 아니에요!">
     <meta property="og:image" content="images/Devlog.png">
     <title>Devlog</title>
-    <link rel="stylesheet" href="/css/style.css?pre">
+    <link rel="stylesheet" href="/css/style.css?star">
     <link rel="shortcut icon" size="32x32" href="/images/favicon.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@100&family=Jua&family=Ubuntu:wght@300;700&display=swap"
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/basic.js"></script>
+    <script src="/js/basic.js?star"></script>
     <script th:if="${msg} != null" th:inline="javascript">
         let message = [[${msg}]];
         alert(message);
@@ -29,7 +29,7 @@
 <div class="mainNav">
     <div id="header-title-login-user" class="nav_userName" th:text="${username}"></div>
     <div class="nav_signup" th:if="${guest}">
-        <form id="my_signupform" method="post" action="/user/signup">
+        <form id="my_signupform" method="get" action="/user/signup">
             <a id="signup-text" href="javascript:{}" onclick="document.getElementById('my_signupform').submit();">Join</a>
         </form>
     </div>

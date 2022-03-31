@@ -1,12 +1,12 @@
 package com.sparta.devleeblog.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.devleeblog.dto.SignupRequestDto;
+import com.sparta.devleeblog.service.KakaoUserService;
 import com.sparta.devleeblog.service.UserService;
 import com.sparta.devleeblog.validator.CheckEmailValidator;
 import com.sparta.devleeblog.validator.CheckUsernameValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,12 +22,14 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final KakaoUserService kakaoUserService;
     private final CheckUsernameValidator checkUsernameValidator;
     private final CheckEmailValidator checkEmailValidator;
 
     @Autowired
-    public UserController(UserService userService, CheckUsernameValidator checkUsernameValidator, CheckEmailValidator checkEmailValidator) {
+    public UserController(UserService userService, KakaoUserService kakaoUserService, CheckUsernameValidator checkUsernameValidator, CheckEmailValidator checkEmailValidator) {
         this.userService = userService;
+        this.kakaoUserService = kakaoUserService;
         this.checkUsernameValidator = checkUsernameValidator;
         this.checkEmailValidator = checkEmailValidator;
     }
@@ -80,5 +82,11 @@ public class UserController {
 
         userService.registerUser(requestDto);
         return "redirect:/user/login";
+    }
+
+    @GetMapping("/user/kakao/callback")
+    public String kakaoLogin(String code) throws JsonProcessingException {  // @RequestParam 은 생략 가능
+        kakaoUserService.kakaoLogin(code);
+        return "redirect:/";
     }
 }

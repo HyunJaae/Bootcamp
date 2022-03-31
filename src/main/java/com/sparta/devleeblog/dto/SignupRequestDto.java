@@ -2,6 +2,7 @@ package com.sparta.devleeblog.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;

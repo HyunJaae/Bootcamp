@@ -309,20 +309,28 @@ function read_comments(id, username) {
                 let username = comments.username;
                 let content = comments.contents;
                 let modifiedAt = convertUTCTimeToSeoulTime(comments['modifiedAt']);
-                console.log(id, username, content, modifiedAt);
-                add_comment_HTML(id, uid, username, content, modifiedAt);
+                let likeCount = comments.likeCount;
+                console.log(id, username, content, modifiedAt, likeCount);
+                add_comment_HTML(id, uid, username, content, modifiedAt, likeCount);
                 comment_loginUserOnly(id);
             }
         }
     })
 }
 
-function add_comment_HTML(id, uid, username, content, modifiedAt) {
+function add_comment_HTML(id, uid, username, content, modifiedAt, likeCount) {
     let comment_Html = `
                         <div id="comments" class="comments">
                             <div class="commentMeta">
                                 <div class="commentTime">${modifiedAt}</div>
                                 <div id="${id}-commentId" class="commentId">${username}</div>
+                                <div id="heartimg" class="heartimg">
+                                    <img id="${id}-commentAddHeart" onclick="commentAddHeart('${id}', '${username}')" class="commentIcon_heart" src="../images/emptyheart.png"
+                                         alt="">
+                                    <img id="${id}-commentEmptyHeart" onclick="commentEmptyHeart('${id}')" class="none commentIcon_heart" src="../images/fullheart.png"
+                                         alt="">
+                                </div>
+                                <div id="heartCount" class="heartCount">${likeCount}</div>
                             </div>
                             <div class="commentContents">
                                 <div id="${id}-commentContents" class="commentText">
@@ -419,6 +427,22 @@ function commentDelete(id, uid) {
             selectMyPost(uid);
         }
     })
+}
+
+function commentAddHeart(id, username) {
+    $(`#${id}-commentAddHeart`).addClass('none');
+    $(`#${id}-commentEmptyHeart`).removeClass('none');
+
+    let data = {'username' : username, 'commentNum' : id}
+    $.ajax({
+        type: 'POST',
+        url: `/api/comments/like/${id}`,
+        contentType: "application/json", // JSON 형식으로 전달함을 알리기
+        data: JSON.stringify(data),
+        success: function (response) {
+            window.location.reload();
+        }
+    });
 }
 
 // 메모를 생성합니다.
