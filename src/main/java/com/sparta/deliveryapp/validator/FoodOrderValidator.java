@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class FoodOrderValidator {
     public static void validateFoodorder(int quantity) {
-
         if(quantity < 1) {
             throw new NullPointerException("음식은 1개 이상 주문해야 합니다.");
         }

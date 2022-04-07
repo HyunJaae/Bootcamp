@@ -2,11 +2,13 @@ package com.sparta.deliveryapp.model;
 
 
 import com.sparta.deliveryapp.validator.FoodOrderValidator;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
 @RequiredArgsConstructor
+@Getter
 @Entity
 public class FoodOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +30,6 @@ public class FoodOrder {
 
         this.name = name;
         this.quantity = quantity;
-        this.price = price;
+        this.price = price * quantity;
     }
 }

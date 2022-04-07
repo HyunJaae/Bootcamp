@@ -1,21 +1,17 @@
 package com.sparta.deliveryapp.model;
 
-import com.sparta.deliveryapp.dto.FoodOrderDto;
-import com.sparta.deliveryapp.dto.FoodOrderRequestDto;
-import com.sparta.deliveryapp.dto.OrderRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-public class Order {
+public class OrderRequest {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -24,7 +20,7 @@ public class Order {
     @Column
     private String restaurantName;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "FOOOD_ORDER")
     private List<FoodOrder> foods;
 
@@ -34,10 +30,14 @@ public class Order {
     @Column
     private int totalPrice;
 
-    public Order(Restaurant restaurant, List<FoodOrder> foodOrderList, int totalPrice) {
+    public OrderRequest(Restaurant restaurant, List<FoodOrder> foodOrderList, int totalPrice) {
+        if(totalPrice < 5000) {
+            throw new NullPointerException("최소 주문 가격을 지켜주세요.");
+        }
+
         this.restaurantName = restaurant.getName();
         this.foods = foodOrderList;
         this.deliveryFee = restaurant.getDeliveryFee();
-        this.totalPrice = totalPrice;
+        this.totalPrice = totalPrice + deliveryFee;
     }
 }
