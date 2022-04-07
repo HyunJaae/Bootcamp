@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 public class OrderController {
-    OrderService orderService;
+    private final OrderService orderService;
 
     @PostMapping("/order/request")
     public Order createOrder(@RequestBody OrderRequestDto orderRequestDto) {
         System.out.println("order controller 도착!" + orderRequestDto.getRestaurantId());
-        if(orderRequestDto == null) {
-            throw new NullPointerException("주문을 해주세요.");
-        }
+
         return orderService.createOrder(orderRequestDto);
     }
 }

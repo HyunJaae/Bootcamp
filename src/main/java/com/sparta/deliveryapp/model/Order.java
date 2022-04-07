@@ -25,7 +25,7 @@ public class Order {
     private String restaurantName;
 
     @OneToMany
-    @JoinColumn(name = "FOOOD_ORDER", nullable = false)
+    @JoinColumn(name = "FOOOD_ORDER")
     private List<FoodOrder> foods;
 
     @Column

@@ -1,7 +1,6 @@
 package com.sparta.deliveryapp.service;
 
 import com.sparta.deliveryapp.dto.FoodOrderRequestDto;
-import com.sparta.deliveryapp.dto.OrderDto;
 import com.sparta.deliveryapp.dto.OrderRequestDto;
 import com.sparta.deliveryapp.model.Food;
 import com.sparta.deliveryapp.model.FoodOrder;
@@ -16,14 +15,13 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class OrderService {
-    RestaurantRepository restaurantRepository;
-    FoodRepository foodRepository;
-    OrderRepository orderRepository;
+    private final RestaurantRepository restaurantRepository;
+    private final FoodRepository foodRepository;
+    private final OrderRepository orderRepository;
 
     @Transactional
     public Order createOrder(OrderRequestDto orderRequestDto) {
@@ -44,6 +42,9 @@ public class OrderService {
         }
         Order order = new Order(restaurant, foodOrderList, totalPrice);
         orderRepository.save(order);
+        if(order == null) {
+            throw new NullPointerException("order 객체가 null입니다.");
+        }
         return order;
     }
 }
