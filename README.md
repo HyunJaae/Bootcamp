@@ -230,29 +230,3 @@ ex) FEAT: 로그인 rest api 추가 [#지라이슈넘버]
 |8081|Jenkins|
 |8080|Spring boot Docker Container|
 |3000|React, NginX Docker Container|
-
-### 😃 팀원 역할
-
----
-![image](https://user-images.githubusercontent.com/48950985/169887325-4f49da9f-54d6-4c32-8ce9-79cee520a530.png)
-
-- **팀원1**
-  - openvidu를 통한 WebRTC 기능 구현
-  - 백엔드 방 관리 API 구현(토론방 생성, 입장시 토론자/패널 구분, 토론방 나가기)
-  - 댓글 생성, 조회, 좋아요
-  - 상세페이지 조회 구현
-  - ERD 설계/유저플로우 그리기
-- **팀원2**
-  - react와 redux-toolkit을 활용하여 SPA 구현
-  - 프론트 개발(회원가입, 로그인, 회원정보 수정, 메인 화면, 랭킹, 튜토리얼, 마이페이지, 방만들기, 방찾기등, 관리자 페이지 구현)
-  - styled-components와 material-ui를 통한 컴포넌트 레이아웃 구현 및 css 스타일링
-- **팀원3**
-  - Teachable Machine을 통한 운동 인식 구현
-  - 운동별 로직을 통한 운동 카운트 기능 및 튜토리얼 구현
-  - Openvidu를 통한 게임 내부 정보 실시간 통신
-  - 게임 시작, 종료 이벤트 처리 및 실시간 랭킹, 채팅 기능 구현
-  - styled-component와 material-ui를 통한 css 스타일링
-- **팀장(이현재)**
-    - IP 기준으로 oneClick 찬반 토론 기능 구현
-    - Docker 를 통해 Spring 서버와 Openvidu 서버를 하나의 인스턴스에서 배포
-    - Stomp와 Redis 를 이용한 실시간 채팅 기능 구현
