@@ -1,0 +1,800 @@
+body {
+    margin: 0px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.mainNav {
+    height: 50px;
+
+    border-bottom: solid 1px #3cffbb;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.nav_userName {
+    color: #3cffbb;
+    margin: 10px;
+    font-weight: bolder;
+}
+
+.nav_logout {
+    margin: 10px;
+    color: coral;
+    font-weight: bold;
+}
+
+.nav_logout a:link {
+    color: coral;
+    text-decoration: none;
+}
+
+.nav_logout a:visited {
+    color: coral;
+    text-decoration: none;
+}
+
+.nav_logout a:hover {
+    color: lightcoral;
+    text-decoration: none;
+}
+
+.nav_login {
+    margin: 10px;
+    color: coral;
+    font-weight: bold;
+}
+
+.nav_login a:link {
+    color: coral;
+    text-decoration: none;
+}
+
+.nav_login a:visited {
+    color: coral;
+    text-decoration: none;
+}
+
+.nav_login a:hover {
+    color: lightcoral;
+    text-decoration: none;
+}
+
+.nav_signup {
+    margin: 10px;
+    color: coral;
+    font-weight: bold;
+}
+
+.nav_signup a:link {
+    color: coral;
+    text-decoration: none;
+}
+
+.nav_signup a:visited {
+    color: coral;
+    text-decoration: none;
+}
+
+.nav_signup a:hover {
+    color: lightcoral;
+    text-decoration: none;
+}
+
+.area-edit {
+    display: none;
+}
+
+.wrap {
+    width: 538px;
+    margin: 10px auto;
+}
+
+#contents {
+    width: 538px;
+}
+
+.writer {
+    margin: 10px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+    border: none;
+    border-bottom: solid 1px #3cffbb;
+}
+.writer::placeholder {
+    color: darkgray;
+}
+
+.area-write {
+    position: relative;
+    width: 538px;
+}
+
+.area-write img {
+    cursor: pointer;
+    position: absolute;
+    width: 22.2px;
+    height: 18.7px;
+    bottom: 15px;
+    right: 17px;
+}
+
+.background-header {
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    width: 100%;
+    height: 728px;
+    background-color: #0c0c0c;
+}
+
+.background-body {
+    position: fixed;
+    z-index: -1;
+    top: 428px;
+    height: 100%;
+    width: 100%;
+    background-color: #0c0c0c;
+}
+
+.header {
+    margin-top: 50px;
+}
+
+.header h2 {
+    /*font-family: 'Noto Sans KR', sans-serif;*/
+    height: 33px;
+    font-size: 58px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.79;
+    letter-spacing: -0.5px;
+    text-align: center;
+    color: #3cffbb;
+
+    cursor: pointer;
+}
+
+.header p {
+    margin: 40px auto;
+    width: 217px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -1.12px;
+    text-align: center;
+    color: #3cffbb;
+}
+
+textarea {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+textarea:focus {
+    outline: none;
+}
+
+textarea.field {
+    width: 502px !important;
+    height: 146px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid 1px #3cffbb;
+    padding: 18px;
+    resize: none;
+}
+
+textarea.field::placeholder {
+    width: 216px;
+    height: 16px;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.96px;
+    text-align: left;
+    color: #ffffff;
+}
+
+.area-read {
+    border-top: solid 1px #3cffbb;
+    padding-top: 10px;
+}
+
+.card {
+    width: 536px;
+    border-radius: 5px;
+    background-color: rgba(100%, 100%, 100%, 0%);
+    border: solid 1px #3cffbb;
+    margin-bottom: 12px;
+}
+
+.card .metadata {
+    position: relative;
+    display: flex;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.77px;
+    text-align: left;
+    height: 14px;
+    color: white;
+    padding: 10px 23px;
+}
+
+.card .metadata .date {
+
+}
+
+.card .metadata .username {
+    margin-left: 20px;
+}
+
+.contents {
+    padding: 0px 23px;
+    word-wrap: break-word;
+    word-break: break-all;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    cursor: default;
+}
+
+.contents div.edit {
+    display: none;
+}
+
+.contents textarea.te-edit {
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    resize: none;
+    border-bottom: 1px solid #212529;
+    background-color: rgba(0, 0, 0, 3%);
+    width: 100%;
+}
+
+.footer {
+    position: relative;
+    height: 40px;
+}
+
+.footer img.icon-start-edit {
+    cursor: pointer;
+    position: absolute;
+    bottom: 12px;
+    right: 55px;
+    width: 18px;
+    height: 18px;
+}
+
+.footer img.icon-end-edit {
+    cursor: pointer;
+    position: absolute;
+    display: none;
+    bottom: 14px;
+    right: 55px;
+    width: 20px;
+    height: 15px;
+}
+
+.footer img.icon-delete {
+    cursor: pointer;
+    position: absolute;
+    bottom: 12px;
+    right: 19px;
+    width: 18px;
+    height: 18px;
+}
+
+#cards-box {
+    margin-top: 10px;
+}
+/* 모달 박스 시작 */
+.modalBox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    align-items: center;
+    justify-content: center;
+}
+
+.popup {
+    padding: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 380px;
+    height: 210px;
+    border-radius: 11px;
+    border: solid 1px #3cffbb;
+    background-color: rgba(0, 0, 0, 80%);
+    color: white;
+}
+
+.modalBox.active {
+    display: flex;
+}
+
+.modalMeta {
+    position: relative;
+    display: flex;
+    font-size: 14px;
+    line-height: 0;
+    letter-spacing: -0.5px;
+    text-align: left;
+    justify-content: space-between;
+    color: #ffffff;
+    height: 14px;
+    padding: 10px 23px;
+}
+.modalContents {
+    padding: 0px 23px;
+    word-wrap: break-word;
+    word-break: break-all;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.modalEdit {
+    display: none;
+}
+
+.modalTe-edit {
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    resize: none;
+    background-color: rgba(0, 0, 0, 3%);
+    border-bottom: 1px solid #3cffbb;
+    width: 100%;
+}
+.commentIcon {
+    cursor: pointer;
+    position: absolute;
+    bottom: 13px;
+    right: 77px;
+    width: 20px;
+    height: 20px;
+}
+
+.modalIcon-start-edit {
+    cursor: pointer;
+    position: absolute;
+    bottom: 13px;
+    right: 46px;
+    width: 18px;
+    height: 19px;
+}
+
+.modalIcon-end-edit {
+    cursor: pointer;
+    position: absolute;
+    display: none;
+    bottom: 11px;
+    right: 44px;
+    width: 22px;
+    height: 24px;
+}
+
+.modalIcon-delete {
+    cursor: pointer;
+    position: absolute;
+    bottom: 14px;
+    right: 18px;
+    width: 14px;
+    height: 17px;
+    color: #868e96;
+}
+
+/* 댓글 남기기 */
+.write_comment {
+    margin-top: 5px;
+    box-shadow: 2px 2px 10px rgb(0 0 0 / 30%);
+    position: relative;
+    width: 380px;
+    height: 45px;
+    border-radius: 11px;
+    color: white;
+}
+
+.comment_field {
+    width: 312px !important;
+    height: 13px;
+    border-radius: 11px;
+    background-color: rgba(0, 0, 0, 80%);
+    border: solid 1px #3cffbb;
+    padding: 10px;
+    margin: 5px;
+    resize: none;
+    overflow: hidden;
+}
+
+.add_comment_icon {
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    right: 12px;
+    width: 15px;
+    height: 16px;
+}
+
+.comment_out_icon {
+    cursor: pointer;
+    position: absolute;
+    bottom: 16px;
+    right: -13px;
+    width: 14px;
+    height: 15px;
+}
+
+/* 댓글 창 */
+.comments {
+    padding: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 320px;
+    border-radius: 11px;
+    border: solid 1px #3cffbb;
+    background-color: rgba(0, 0, 0, 80%);
+    color: white;
+}
+
+.commentMeta {
+    position: relative;
+    display: flex;
+    font-size: 11px;
+    line-height: 0;
+    letter-spacing: -0.5px;
+    text-align: left;
+    justify-content: left;
+    color: #ffffff;
+    height: 14px;
+    padding: 7px 2px;
+}
+
+.commentTime {
+    margin-right: 5px;
+}
+
+.commentId {
+    color: coral;
+}
+
+.heartimg {
+    width: 13px;
+}
+
+.commentIcon_heart {
+    cursor: pointer;
+    position: absolute;
+    bottom: 14px;
+    width: 13px;
+    height: 13px;
+    margin-left: 5px;
+}
+
+.heartCount {
+    margin-left: 8px;
+}
+
+.commentText {
+    width: 280px;
+}
+
+.commentContents {
+    font-size: 13px;
+}
+
+.commentEdit {
+    display: none;
+}
+
+.commentEdit textarea {
+    height: 1.4em;
+    width: 20em;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+
+.commentTe-edit {
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    resize: none;
+    background-color: rgba(0, 0, 0, 3%);
+    border-bottom: 1px solid #3cffbb;
+    width: 100%;
+}
+
+.commentIcon-start-edit {
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    right: 33px;
+    width: 14px;
+    height: 15px;
+}
+
+.commentIcon-end-edit {
+    cursor: pointer;
+    position: absolute;
+    display: none;
+    bottom: 15px;
+    right: 33px;
+    width: 14px;
+    height: 15px;
+}
+
+.commentIcon-delete {
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    right: 11px;
+    width: 15px;
+    height: 15px;
+    color: #868e96;
+}
+
+.commentIcon-NoEdit {
+    cursor: pointer;
+    position: absolute;
+    bottom: 16px;
+    right: 11px;
+    width: 12px;
+    height: 12px;
+    color: #868e96;
+}
+
+/* 로그인, 회원가입 페이지 */
+#login-form {
+    width: 538px;
+    height: 710px;
+    margin: 70px auto 141px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /*gap: 96px;*/
+    padding: 56px 0 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+#signup-form {
+    width: 538px;
+    height: 900px;
+    margin: 70px auto 141px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /*gap: 96px;*/
+    padding: 56px 0 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.15);
+    background-color: #ffffff;
+}
+
+#login-title {
+    width: 303px;
+    height: 32px;
+    /*margin: 56px auto auto auto;*/
+    flex-grow: 0;
+    font-family: SpoqaHanSansNeo;
+    font-size: 32px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.96px;
+    text-align: center;
+    color: #212529;
+}
+
+#login-kakao-btn {
+    border-width: 0;
+    margin: 96px 0 8px;
+    width: 393px;
+    height: 62px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /*margin: 0 0 8px;*/
+    padding: 11px 12px;
+    border-radius: 5px;
+    background-color: #ffd43b;
+
+    font-family: SpoqaHanSansNeo;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #414141;
+}
+
+#login-id-btn {
+    width: 393px;
+    height: 62px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /*margin: 8px 0 0;*/
+    padding: 11px 12px;
+    border-radius: 5px;
+    border: solid 1px #212529;
+    background-color: #ffffff;
+
+    font-family: SpoqaHanSansNeo;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: #414141;
+}
+
+.login-input-box {
+    border-width: 0;
+
+    width: 370px !important;
+    height: 52px;
+    margin: 14px 0 0;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.login-id-label {
+    /*width: 44.1px;*/
+    /*height: 16px;*/
+    width: 382px;
+    padding-left: 11px;
+    margin-top: 40px;
+    /*margin: 0 337.9px 14px 11px;*/
+    font-family: NotoSansCJKKR;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.8px;
+    text-align: left;
+    color: #212529;
+}
+
+.signup_error {
+    color: red;
+}
+
+#login-id-submit {
+    border-width: 0;
+    width: 393px;
+    height: 62px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 40px 0 0;
+    padding: 11px 12px;
+    border-radius: 5px;
+    background-color: #15aabf;
+
+    font-family: SpoqaHanSansNeo;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.none {
+    display: none;
+}
+
+input#kakao-login {
+    padding: 15px;
+    width: 526px;
+    border-radius: 2px;
+    background-color: #e9ecef;
+    border: none;
+
+    background-image: url('images/kakao_login_medium_narrow.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px 20px;
+}
+
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+}
+input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 16px;
+}
+input[type=text] {
+    background-color: #f1f1f1;
+    /*width: 100%;*/
+}
+input[type=password] {
+    background-color: #f1f1f1;
+    /*width: 100%;*/
+}
+input[type=submit] {
+    background-color: DodgerBlue;
+    color: #fff;
+}
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+}
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert {
+    width: 300px;
+    height: 20px;
+    margin-top: 18px;
+    padding: 5px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    text-align: center;
+}
