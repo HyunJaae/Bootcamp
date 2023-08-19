@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- ajax import -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- css파일의 경로 설정 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='mypage.css')}}">
+
+    <!-- script 파일의 경로 설정  -->
+    <script src="{{ url_for('static', filename='mypage.js')}}"></script>
+
+    <!-- google font import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&family=Parisienne&display=swap" rel="stylesheet">
+
+
+
+    <title>My_page</title>
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="nav" id="nav">
+            <h6 class="nav__logo"><a href="/" class="nav__logo_a" onclick="showMovies">NOTFLIX</a> </h6>
+             <ul class="primary-navigation-login">
+                 <li class="navigation-login"><a href="/login" class="navigation-login_a">로그인</a></li>
+                 <li class="navigation-join"><a href="/sign_up" class="navigation-join_a">회원가입</a></li>
+                
+             </ul>
+        </div>
+
+        <div class="title">
+            <div id="title__message" class="title__message">
+                <h2>임인혁님 안녕하세요!!</h2>
+                <p>임인혁님이 즐겨보신 영화를 추가해 <br>나만의 영화관을 만들어보세요!!</p>
+
+                <div class="title__btn">
+                    <button id="open__form" onclick="open__form()" type="button" class="btn btn-dark">나만의 영화 기록하기</button>
+                </div>
+            </div>
+
+
+            <div class="mypage_form" id="mypage_form">
+                <div id="mypage__inputform" class="mypage__inputform">
+
+                    <h3>영화의 링크를 입력해주세요</h3>
+                    <input id="link_input" class="form-control form-control-lg link_input" type="text"
+                        placeholder="영화 링크를 입력해주세요" aria-label=".form-control-lg example">
+
+                    <h4>평점을 선택해주세요</h4>
+                    <select id="star_select" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="1">⭐</option>
+                        <option value="2">⭐⭐</option>
+                        <option value="3">⭐⭐⭐</option>
+                        <option value="4">⭐⭐⭐⭐</option>
+                        <option value="5">⭐⭐⭐⭐⭐</option>
+                    </select>
+
+                    <div class="comment_form"> 
+                        <h4>감상평을 입력해주세요</h4>
+                        <textarea id="comment_input" class="form-control" id="exampleFormControlTextarea1"
+                            rows="4"></textarea>
+                    </div>
+
+                    <button id="save" onclick="save()" type="button"
+                        class="save_btn btn-dark close_box">저장하기</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="movie_card" class="movie_card">
+            <div class="row row-cols-1 row-cols-md-4 g-4" id="card-box">
+            </div>
+        </div>
+
+
+        <footer>
+            <h5>Questions ?  Contact us </h5>
+            <div class="content">
+                 <div class="middle box">
+                      <div><a href="https://github.com/Hanghae99Study/Hanghae99-ToyProject"><img src="data:image/png;base64,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" ></a></div>
+                
+                 </div>
+       
+           
+                 <div class="middle box">
+                      <div><a href="#">FAQ</a></div>
+                      <div><a href="#">자막 및 음성</a></div>
+                      <div><a href="#">음성지원</a></div>
+                      <div><a href="#">고객센터</a></div>
+                      <br><br>
+                      <select>
+                           <option value="/kw-en/">English</option>
+                           <option value="/kw/">Korean</option>
+       
+                      </select>
+                      <br><br>
+                      <p>Hanghae99</p>
+                 </div>
+                 <div class="middle box ">
+                      <div> <a href="#">기프트카드</a></div>
+                      <div><a href="#">미디어 센터</a></div>
+                      <div><a href="#">투자 정보(IR)</a></div>
+                      <div> <a href="#">입사 정보</a></div>
+                 </div>
+                 <div class="middle box ">
+                     
+                      <div><a href="#">이용 약관</a></div>
+                      <div><a href="#">개인정보</a></div>
+                      <div><a href="#">법적 고지</a></div>
+                      <div><a href="#">쿠키 설정</a></div>
+                 </div>
+                 <div class="middle box ">
+                      <div> <a href="#">회사 정보 </a></div>
+                      <div><a href="#">문의하기</a></div>
+                      <div><a href="#">Contact Us</a></div>  
+                      
+                 </div>
+            </div>
+       </footer>
+    </div>
+</body>
+
+</html>

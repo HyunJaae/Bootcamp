@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  margin: 0;
+  padding: 0;
+}
+header {
+  top: 0;
+}
+body {
+  background: url("https://help.nflxext.com/0af6ce3e-b27a-4722-a5f0-e32af4df3045_what_is_netflix_5_en.png");
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.row__poster {
+  width: 100%;
+  object-fit: contain;
+  max-height: 150px;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+.row_posters {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.row__poster:hover {
+  transform: scale(1.2);
+}
+.row_posters_middle {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+}
+
+.row_posters::-webkit-scrollbar {
+  display: none;
+}
+.row__posterLarge {
+  max-height: 270px;
+  width: 100%;
+}
+.row__posterLarge :hover {
+  transform: scale(0.9);
+}
+.row {
+  color: white;
+  margin-left: 5px;
+  position: relative;
+  width: 100%;
+}
+.banner {
+  object-fit: contain;
+  color: white;
+  height: 900px;
+  margin-bottom: 100px;
+}
+.banner__contents {
+  height: 110%;
+
+  padding-top: 140px;
+}
+
+.banner__contents > a > img {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+section {
+  flex: 1;
+  padding-bottom: 20%;
+}
+.swiper {
+  width: 600px;
+  height: 300px;
+}
+
+/* nav section */
+.nav__logo {
+  font-size: 40px;
+  color: red;
+}
+.nav__logo_a {
+  color: red;
+}
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  z-index: 3;
+  transition-timing-function: ease-in;
+  transition: all 0.5s;
+}
+.navigation-login {
+  margin-right: 15px;
+}
+.nav__logo_a:hover {
+  font-weight: bolder;
+  color: red;
+}
+.nav__logo_a {
+  color: red;
+}
+.nav__black {
+  background-color: black;
+}
+.navigation-login_a {
+  color: white;
+}
+.navigation-login_a:hover {
+  color: white;
+}
+.navigation-join_a {
+  color: white;
+}
+.navigation-join_a:hover {
+  color: white;
+}
+.navigation-my_page_a {
+  color: white;
+}
+.navigation-my_page_a:hover {
+  color: white;
+}
+.main-header {
+  display: flex;
+  justify-content: left;
+  align-content: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.primary-navigation-login {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: right;
+}
+.navigation-login-login {
+  margin-right: 30px;
+}
+.navigation-join_a {
+  margin-right: 15px;
+}
+
+.primary-navigation {
+  display: flex;
+  width: 20%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* nav section end  */
+
+a:link {
+  text-decoration-line: none;
+}
+a:visited {
+  text-decoration-line: none;
+}
+a:active {
+  text-decoration-line: none;
+  color: #646464;
+}
+a:hover {
+  text-decoration-line: none;
+  font-weight: bolder;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Footer  */
+footer {
+  background-color: black;
+  border-top: 9px solid #222;
+  padding-top: 5%;
+}
+
+footer h5 {
+  color: white;
+  text-align: center;
+  padding-bottom: 1%;
+}
+footer .content {
+  max-width: 1350px;
+  margin: 0px 90px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+footer .content .box {
+  width: 20%;
+  transition: all 0.4s ease;
+}
+footer .content p {
+  text-align: justify;
+}
+footer .content .middle {
+  padding-left: 80px;
+}
+footer .content .middle a {
+  line-height: 32px;
+  color: white;
+  text-decoration: none;
+}
+footer .content .middle a:hover {
+  text-decoration: underline;
+}
+footer .content .middle select {
+  padding: 8px;
+  background-color: transparent;
+  border: 1px solid gray;
+  color: white;
+}
+footer .content .middle select option {
+  background-color: black;
+}
+footer .content .middle img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+/* footer ends */
