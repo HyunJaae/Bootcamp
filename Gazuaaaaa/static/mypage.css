@@ -1,0 +1,131 @@
+* {margin: 0;padding: 0;box-sizing: border-box;}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+
+    border-bottom: solid 1px rgb(233, 233, 233);
+    box-shadow: 0.7em 0.7em 1.2em rgb(233, 231, 231);
+
+}
+
+
+.top-bar > logo {
+    text-align: left;
+    width: 100px;
+    height: 40px;
+
+
+    background-color: transparent;
+    color: rgb(46, 46, 165);
+
+    border: solid transparent;
+
+    text-decoration-line: none;
+    font-size: 40px;
+    color: rgb(46, 46, 165);
+
+}
+
+.top-bar h1 > a {
+    text-decoration-line: none;
+    font-size: 40px;
+    color: rgb(46, 46, 165);
+    /*text-align: left;*/
+    /*width: 100px;*/
+    /*height: 40px;*/
+
+    background-color: transparent;
+    /*color: rgb(46, 46, 165);*/
+}
+.menu {
+    padding-right: 10px;
+}
+/*.logo h1:link {*/
+/*    color: white;*/
+/*}*/
+/*.logo h1:visited {*/
+/*    color: white;*/
+/*    text-decoration-line: none*/
+/*}*/
+/*.logo h1:hover {*/
+/*    font-weight: bolder;*/
+/*    text-decoration-line: none*/
+/*}*/
+
+.header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left {
+    width: 33%;
+    float: left;
+    box-sizing: border-box;
+    text-align: left;
+}
+.middle {
+    width: 33%;
+    float: left;
+    box-sizing: border-box;
+
+    text-align: center;
+    color: rgb(46, 46, 165);
+
+    text-align: center;
+}
+
+.right {
+    width: 33%;
+    float: right;
+    box-sizing: border-box;
+
+
+    text-align: right;
+    padding-right: 40px;
+}
+
+.buy-title {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    /*flex-direction: row;*/
+    align-items: center;
+    /*justify-content: center;*/
+    background-color: whitesmoke;
+    color: rgb(46, 46, 165);
+    /*float: left;*/
+    background-color: whitesmoke;
+
+    float: left;
+}
+.my-buy {
+    width: 100%;
+    height: 60px;;
+
+    background-color: transparent;
+    border: solid transparent;
+
+}
+.wrap {
+    display: none;
+    border: solid transparent;
+}
+.card {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+card > button {
+    float: left;
+}
+
+
