@@ -34,6 +34,12 @@ def bucket_done():
     db.bucket.update_one({'num':int(num_receive)},{'$set':{'done':1}})
     return jsonify({'msg': '버킷 완료!'})
 
+@app.route("/bucket/help", methods=["POST"])
+def bucket_help():
+    num_receive = request.form['num_give']
+    db.bucket.update_one({'num':int(num_receive)},{'$set':{'done':0}})
+    return jsonify({'msg': '버킷 취소!'})
+
 
 @app.route("/bucket", methods=["GET"])
 def bucket_get():
@@ -41,4 +47,4 @@ def bucket_get():
     return jsonify({'buckets': bucket_list})
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5001, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True)
